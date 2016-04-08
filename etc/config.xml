@@ -1,0 +1,346 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Shop System Plugins - Terms of Use
+*
+* The plugins offered are provided free of charge by Wirecard Central Eastern Europe GmbH
+* (abbreviated to Wirecard CEE) and are explicitly not part of the Wirecard CEE range of
+* products and services.
+*
+* They have been tested and approved for full functionality in the standard configuration
+* (status on delivery) of the corresponding shop system. They are under General Public
+* License Version 2 (GPLv2) and can be used, developed and passed on to third parties under
+* the same terms.
+*
+* However, Wirecard CEE does not provide any guarantee or accept any liability for any errors
+* occurring when used in an enhanced, customized shop system configuration.
+*
+* Operation in an enhanced, customized configuration is at your own risk and requires a
+* comprehensive test phase by the user of the plugin.
+*
+* Customers use the plugins at their own risk. Wirecard CEE does not guarantee their full
+* functionality neither does Wirecard CEE assume liability for any disadvantages related to
+* the use of the plugins. Additionally, Wirecard CEE does not guarantee the full functionality
+* for customized shop systems or installed plugins of other vendors of plugins within the same
+* shop system.
+*
+* Customers are responsible for testing the plugin's functionality before starting productive
+* operation.
+*
+* By installing the plugin into the shop system the customer agrees to these terms of use.
+* Please do not use the plugin if you do not agree to these terms of use!
+*/
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <wirecard_checkoutpage>
+            <basicdata>
+                <customer_id>D200001</customer_id>
+                <secret>B8AKTPWBRMNBV455FG6M2DANE99WU2</secret>
+            </basicdata>
+            <options>
+                <order_creation>after</order_creation>
+                <mobiledetect>0</mobiledetect>
+                <maxretries>-1</maxretries>
+                <sendbillingdata>1</sendbillingdata>
+                <sendshippingdata>1</sendshippingdata>
+                <paymenttypesortorder>0</paymenttypesortorder>
+            </options>
+
+        </wirecard_checkoutpage>
+
+        <payment>
+            <wirecard_checkoutpage_select>
+                <active>0</active>
+                <title>Wirecard Checkout Page Select</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Select</model>
+                <sort_order>100</sort_order>
+            </wirecard_checkoutpage_select>
+
+            <wirecard_checkoutpage_ccard>
+                <active>1</active>
+                <title>Wirecard Checkout Page Credit Card</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Ccard</model>
+                <sort_order>110</sort_order>
+            </wirecard_checkoutpage_ccard>
+
+            <wirecard_checkoutpage_ccardmoto>
+                <active>0</active>
+                <title>Wirecard Checkout Page Credit Card - Mail Order / Telephone Order</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Ccardmoto</model>
+                <sort_order>120</sort_order>
+            </wirecard_checkoutpage_ccardmoto>
+
+            <wirecard_checkoutpage_maestro>
+                <active>0</active>
+                <title>Wirecard Checkout Page Maestro SecureCode</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Maestro</model>
+                <sort_order>125</sort_order>
+            </wirecard_checkoutpage_maestro>
+
+            <wirecard_checkoutpage_bmc>
+                <active>0</active>
+                <title>Wirecard Checkout Page Bancontact/Mister Cash</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Bmc</model>
+                <sort_order>130</sort_order>
+            </wirecard_checkoutpage_bmc>
+
+            <wirecard_checkoutpage_ekonto>
+                <active>0</active>
+                <title>Wirecard Checkout Page eKonto</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Ekonto</model>
+                <sort_order>140</sort_order>
+            </wirecard_checkoutpage_ekonto>
+
+            <wirecard_checkoutpage_eps>
+                <active>0</active>
+                <title>Wirecard Checkout Page eps Überweisung</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Eps</model>
+                <sort_order>150</sort_order>
+            </wirecard_checkoutpage_eps>
+
+            <wirecard_checkoutpage_giropay>
+                <active>0</active>
+                <title>Wirecard Checkout Page giropay</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Giropay</model>
+                <sort_order>160</sort_order>
+            </wirecard_checkoutpage_giropay>
+
+            <wirecard_checkoutpage_ideal>
+                <active>0</active>
+                <title>Wirecard Checkout Page iDEAL</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Ideal</model>
+                <sort_order>170</sort_order>
+            </wirecard_checkoutpage_ideal>
+
+            <wirecard_checkoutpage_poli>
+                <active>0</active>
+                <title>Wirecard Checkout Page POLi</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Poli</model>
+                <sort_order>180</sort_order>
+            </wirecard_checkoutpage_poli>
+
+            <wirecard_checkoutpage_p24>
+                <active>0</active>
+                <title>Wirecard Checkout Page Przelewy24</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\P24</model>
+                <sort_order>190</sort_order>
+            </wirecard_checkoutpage_p24>
+
+            <wirecard_checkoutpage_skrilldirect>
+                <active>0</active>
+                <title>Wirecard Checkout Page Skrill Direct</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Skrilldirect</model>
+                <sort_order>200</sort_order>
+            </wirecard_checkoutpage_skrilldirect>
+
+            <wirecard_checkoutpage_sofortbanking>
+                <active>1</active>
+                <title>Wirecard Checkout Page SOFORT Banking</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Sofortbanking</model>
+                <sort_order>210</sort_order>
+            </wirecard_checkoutpage_sofortbanking>
+
+            <wirecard_checkoutpage_tatrapay>
+                <active>0</active>
+                <title>Wirecard Checkout Page TatraPay</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Tatrapay</model>
+                <sort_order>220</sort_order>
+            </wirecard_checkoutpage_tatrapay>
+
+            <wirecard_checkoutpage_trustly>
+                <active>0</active>
+                <title>Wirecard Checkout Page Trustly</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Trustly</model>
+                <sort_order>230</sort_order>
+            </wirecard_checkoutpage_trustly>
+
+            <wirecard_checkoutpage_trustpay>
+                <active>0</active>
+                <title>Wirecard Checkout Page Trustpay</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Trustpay</model>
+                <sort_order>240</sort_order>
+            </wirecard_checkoutpage_trustpay>
+
+            <wirecard_checkoutpage_epaybg>
+                <active>0</active>
+                <title>Wirecard Checkout Page ePay.bg</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Epaybg</model>
+                <sort_order>250</sort_order>
+            </wirecard_checkoutpage_epaybg>
+
+            <wirecard_checkoutpage_moneta>
+                <active>0</active>
+                <title>Wirecard Checkout Page moneta.ru</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Moneta</model>
+                <sort_order>260</sort_order>
+            </wirecard_checkoutpage_moneta>
+
+            <wirecard_checkoutpage_invoice>
+                <active>1</active>
+                <title>Wirecard Checkout Page Invoice</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <payolution_terms>1</payolution_terms>
+                <displaymode>iframe</displaymode>
+                <currency>EUR</currency>
+                <provider>wirecard</provider>
+                <allowspecific>1</allowspecific>
+                <specificcountry>AT,DE,CH</specificcountry>
+                <shippingcountry>AT,DE,CH</shippingcountry>
+                <billing_shipping_address_identical>1</billing_shipping_address_identical>
+                <min_order_total>10</min_order_total>
+                <max_order_total>3500</max_order_total>
+                <model>Wirecard\CheckoutPage\Model\Payment\Invoice</model>
+                <sort_order>270</sort_order>
+            </wirecard_checkoutpage_invoice>
+
+            <wirecard_checkoutpage_invoiceb2b>
+                <active>0</active>
+                <title>Wirecard Checkout Page Invoice B2B</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <payolution_terms>1</payolution_terms>
+                <displaymode>iframe</displaymode>
+                <currency>EUR</currency>
+                <allowspecific>1</allowspecific>
+                <specificcountry>AT,DE,CH</specificcountry>
+                <shippingcountry>AT,DE,CH</shippingcountry>
+                <billing_shipping_address_identical>1</billing_shipping_address_identical>
+                <min_order_total>25</min_order_total>
+                <max_order_total>3500</max_order_total>
+                <model>Wirecard\CheckoutPage\Model\Payment\Invoiceb2b</model>
+                <sort_order>280</sort_order>
+            </wirecard_checkoutpage_invoiceb2b>
+
+            <wirecard_checkoutpage_installment>
+                <active>0</active>
+                <title>Wirecard Checkout Page Installment</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <payolution_terms>1</payolution_terms>
+                <displaymode>iframe</displaymode>
+                <currency>EUR</currency>
+                <provider>payolution</provider>
+                <allowspecific>1</allowspecific>
+                <specificcountry>AT,DE,CH</specificcountry>
+                <shippingcountry>AT,DE,CH</shippingcountry>
+                <billing_shipping_address_identical>1</billing_shipping_address_identical>
+                <min_order_total>150</min_order_total>
+                <max_order_total>3500</max_order_total>
+                <model>Wirecard\CheckoutPage\Model\Payment\Installment</model>
+                <sort_order>290</sort_order>
+            </wirecard_checkoutpage_installment>
+
+            <wirecard_checkoutpage_paypal>
+                <active>1</active>
+                <title>Wirecard Checkout Page PayPal</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Paypal</model>
+                <sort_order>300</sort_order>
+                <txident>SINGLE</txident>
+            </wirecard_checkoutpage_paypal>
+
+            <wirecard_checkoutpage_paysafecard>
+                <active>0</active>
+                <title>Wirecard Checkout Page paysafecard</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Paysafecard</model>
+                <sort_order>310</sort_order>
+            </wirecard_checkoutpage_paysafecard>
+
+            <wirecard_checkoutpage_quick>
+                <active>0</active>
+                <title>Wirecard Checkout Page @Quick</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Quick</model>
+                <sort_order>320</sort_order>
+            </wirecard_checkoutpage_quick>
+
+            <wirecard_checkoutpage_skrillwallet>
+                <active>0</active>
+                <title>Wirecard Checkout Page Skrill Digital Wallet</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Skrillwallet</model>
+                <sort_order>330</sort_order>
+            </wirecard_checkoutpage_skrillwallet>
+
+            <wirecard_checkoutpage_sepa>
+                <active>1</active>
+                <title>Wirecard Checkout Page SEPA Direct Debit</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Sepa</model>
+                <sort_order>340</sort_order>
+                <txident>SINGLE</txident>
+            </wirecard_checkoutpage_sepa>
+
+            <wirecard_checkoutpage_mpass>
+                <active>0</active>
+                <title>Wirecard Checkout Page mpass</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Mpass</model>
+                <sort_order>350</sort_order>
+            </wirecard_checkoutpage_mpass>
+
+            <wirecard_checkoutpage_paybox>
+                <active>0</active>
+                <title>Wirecard Checkout Page paybox</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Paybox</model>
+                <sort_order>360</sort_order>
+            </wirecard_checkoutpage_paybox>
+
+            <wirecard_checkoutpage_voucher>
+                <active>0</active>
+                <title>Wirecard Checkout Page My Voucher</title>
+                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Wirecard\CheckoutPage\Model\Payment\Voucher</model>
+                <sort_order>370</sort_order>
+            </wirecard_checkoutpage_voucher>
+
+        </payment>
+
+    </default>
+</config>

@@ -1,0 +1,114 @@
+<?php
+/**
+ * Shop System Plugins - Terms of Use
+ *
+ * The plugins offered are provided free of charge by Wirecard Central Eastern Europe GmbH
+ * (abbreviated to Wirecard CEE) and are explicitly not part of the Wirecard CEE range of
+ * products and services.
+ *
+ * They have been tested and approved for full functionality in the standard configuration
+ * (status on delivery) of the corresponding shop system. They are under General Public
+ * License Version 2 (GPLv2) and can be used, developed and passed on to third parties under
+ * the same terms.
+ *
+ * However, Wirecard CEE does not provide any guarantee or accept any liability for any errors
+ * occurring when used in an enhanced, customized shop system configuration.
+ *
+ * Operation in an enhanced, customized configuration is at your own risk and requires a
+ * comprehensive test phase by the user of the plugin.
+ *
+ * Customers use the plugins at their own risk. Wirecard CEE does not guarantee their full
+ * functionality neither does Wirecard CEE assume liability for any disadvantages related to
+ * the use of the plugins. Additionally, Wirecard CEE does not guarantee the full functionality
+ * for customized shop systems or installed plugins of other vendors of plugins within the same
+ * shop system.
+ *
+ * Customers are responsible for testing the plugin's functionality before starting productive
+ * operation.
+ *
+ * By installing the plugin into the shop system the customer agrees to these terms of use.
+ * Please do not use the plugin if you do not agree to these terms of use!
+ */
+
+namespace Wirecard\CheckoutPage\Model\Payment;
+
+use Wirecard\CheckoutPage\Model\AbstractPayment;
+
+class Invoice extends AbstractPayment
+{
+    const CODE = 'wirecard_checkoutpage_invoice';
+    protected $_code = self::CODE;
+
+    protected $_paymentMethod = \WirecardCEE_Stdlib_PaymentTypeAbstract::INVOICE;
+
+    protected $_autoDepositAllowed = false;
+
+    protected $_logo = 'invoice.png';
+
+    protected $_forceSendAdditionalData = true;
+
+
+    /**
+     * Assign data to info model instance
+     *
+     * @param array|\Magento\Framework\DataObject $data
+     *
+     * @return $this
+     * @throws \Magento\Framework\Exception\LocalizedException
+     * @api
+     */
+    public function assignData(\Magento\Framework\DataObject $data)
+    {
+        parent::assignData($data);
+        if (!$data instanceof \Magento\Framework\DataObject) {
+            $data = new \Magento\Framework\DataObject($data);
+        }
+
+        /** @var \Magento\Quote\Model\Quote\Payment $infoInstance */
+        $infoInstance = $this->getInfoInstance();
+        $infoInstance->setAdditionalInformation('customerDob', $data->getData('customerDob'));
+
+        return $this;
+    }
+
+    /**
+     * Determine method availability based on quote amount and config data
+     *
+     * @param \Magento\Quote\Api\Data\CartInterface|null $quote
+     *
+     * @return bool
+     */
+    public function isAvailable(\Magento\Quote\Api\Data\CartInterface $quote = null)
+    {
+        $avail = parent::isAvailable($quote);
+        if ($avail === false) {
+            return false;
+        }
+
+        if ($quote === null) {
+            return false;
+        }
+
+        if ($this->getConfigData('provider') == 'ratepay') {
+            return $this->_isAvailableRatePay($quote);
+        } elseif ($this->getConfigData('provider') == 'payolution') {
+            return $this->_isAvailablePayolution($quote);
+        } elseif ($this->getConfigData('provider') == 'wirecard') {
+            return $this->_isAvailableWirecard($quote);
+        }
+
+        return true;
+    }
+
+    /**
+     * force transmitting the basket data
+     *
+     * @return bool
+     */
+    protected function forceSendingBasket()
+    {
+        return $this->getConfigData('provider') == 'ratepay' || $this->getConfigData('provider') == 'wirecard';
+    }
+
+
+}
