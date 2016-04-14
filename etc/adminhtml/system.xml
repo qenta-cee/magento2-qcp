@@ -72,7 +72,7 @@
                 <field id="shop_id" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
                     <label>Shop ID</label>
                     <comment><![CDATA[
-                                Shop identifier in case of more than one shop. Please contact our <a href="https://guides.wirecard.at/sales" target="_blank">sales teams</a> to activate this feature. <a href="https://guides.wirecard.at/request_parameters#shopId" target="_blank">More information: shopId</a>
+                                Shop identifier in case of more than one shop. Please contact our <a href="https://guides.wirecard.at/sales" target="_blank">sales teams</a> to activate this feature. <a href="https://guides.wirecard.at/request_parameters#shopid" target="_blank">More information: shopId</a>
                             ]]></comment>
                 </field>
                 <field id="secret" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
@@ -85,7 +85,7 @@
                 <field id="backendpw" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
                     <label>Backend password</label>
                     <comment><![CDATA[
-                                Password for back-end operations (Toolkit). <a href="https://guides.wirecard.at/back-end_operations:technical_wcs:start#password" target="_blank">More information</a>.
+                                Password for back-end operations (Toolkit). <a href="https://guides.wirecard.at/back-end_operations:technical_wcp:start#required_request_parameters_for_all_operations" target="_blank">More information</a>.
                                 If this password is not set, back-end operations are not possible.
                             ]]>
                     </comment>

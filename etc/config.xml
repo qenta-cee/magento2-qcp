@@ -46,6 +46,7 @@
                 <sendbillingdata>1</sendbillingdata>
                 <sendshippingdata>1</sendshippingdata>
                 <paymenttypesortorder>0</paymenttypesortorder>
+                <duplicaterequestcheck>1</duplicaterequestcheck>
             </options>
 
         </wirecard_checkoutpage>
@@ -107,7 +108,7 @@
 
             <wirecard_checkoutpage_eps>
                 <active>0</active>
-                <title>Wirecard Checkout Page eps Überweisung</title>
+                <title>Wirecard Checkout Page eps-Überweisung</title>
                 <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
                 <displaymode>iframe</displaymode>
                 <model>Wirecard\CheckoutPage\Model\Payment\Eps</model>

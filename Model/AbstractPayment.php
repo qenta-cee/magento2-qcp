@@ -165,7 +165,7 @@ abstract class AbstractPayment extends AbstractMethod
         $init->mage_quoteId       = $quote->getId();
         $init->mage_orderCreation = $this->_dataHelper->getConfigData('options/order_creation');
 
-        $init->generateCustomerStatement($this->_dataHelper->getConfigData('options/shopname'));
+        $init->generateCustomerStatement($this->_dataHelper->getConfigData('options/shopname'), sprintf('%010d', $orderId));
 
         if ($this->_dataHelper->getConfigData('options/sendbasketinformation') || $this->forceSendingBasket()) {
             $basket = new \WirecardCEE_Stdlib_Basket();
