@@ -132,6 +132,8 @@ class Back extends \Magento\Framework\App\Action\Action
 
             $this->_logger->debug(__METHOD__ . ':' . print_r($this->_request->getPost()->toArray(), true));
 
+            $this->_cart->getCustomerSession()->unsUniqueId();
+
             if (!$this->_request->isPost()) {
                 throw new \Exception('Not a post request');
             }

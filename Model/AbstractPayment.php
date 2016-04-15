@@ -147,6 +147,7 @@ abstract class AbstractPayment extends AbstractMethod
 
         $orderId = $quote->getReservedOrderId();
         $init->setOrderReference(sprintf('%010d', $orderId));
+        $init->uniqueId = $this->_getUniqueId($cart);
 
         $precision = 2;
         $init->setAmount(round($cart->getQuote()->getBaseGrandTotal(), $precision))
@@ -293,6 +294,51 @@ abstract class AbstractPayment extends AbstractMethod
     {
         return sprintf('%s %s %s', $quote->getCustomerEmail(), $quote->getCustomerFirstname(),
             $quote->getCustomerLastname());
+    }
+
+    /**
+     * Returns uniqueId - required for duplicate request check, if the transaction was canceled
+     *
+     * @param CheckoutCart $cart
+     *
+     * @return string
+     */
+    protected function _getUniqueId($cart)
+    {
+        $uniqueId = $cart->getCustomerSession()->getUniqueId();
+        if (!strlen($uniqueId)) {
+            $uniqueId = $this->_generateUniqString();
+            $cart->getCustomerSession()->setUniqueId($uniqueId);
+        }
+
+        return $uniqueId;
+    }
+
+    /**
+     * returns a uniq String with default length 10.
+     *
+     * @param int $length
+     *
+     * @return string
+     */
+    private function _generateUniqString($length = 10)
+    {
+        $tid = '';
+        $alphabet = "023456789abcdefghikmnopqrstuvwxyzABCDEFGHIKMNOPQRSTUVWXYZ";
+        for ($i = 0; $i < $length; $i ++) {
+            $c = substr($alphabet, mt_rand(0, strlen($alphabet) - 1), 1);
+            if (( ( $i % 2 ) == 0 ) && !is_numeric($c)) {
+                $i --;
+                continue;
+            }
+            if (( ( $i % 2 ) == 1 ) && is_numeric($c)) {
+                $i --;
+                continue;
+            }
+            $alphabet = str_replace($c, '', $alphabet);
+            $tid .= $c;
+        }
+        return $tid;
     }
 
     /**
