@@ -363,4 +363,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         return true;
     }
+
+    /**
+     * Creates return url that is called when the transaction is completed
+     *
+     * @return string
+     */
+    public function getReturnUrl()
+    {
+        return $this->_getUrl('wirecardcheckoutpage/checkout/back', ['_secure' => true, '_nosid' => true]);
+    }
 }

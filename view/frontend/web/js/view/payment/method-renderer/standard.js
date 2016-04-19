@@ -63,6 +63,12 @@ define(
 
                 return window.checkoutConfig.payment[this.getCode()].logo_url
             },
+            getBackUrl: function() {
+                if (!window.checkoutConfig.payment[this.getCode()])
+                    return false;
+
+                return window.checkoutConfig.payment[this.getCode()].back_url
+            },
             placeWirecardOrder: function () {
 
                 if (this.validate() && additionalValidators.validate())

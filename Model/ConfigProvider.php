@@ -137,6 +137,7 @@ class ConfigProvider implements ConfigProviderInterface
             $config['payment'][$code]['instructions'] = $this->getInstructions($code);
             $config['payment'][$code]['displaymode']  = $this->methods[$code]->getDisplayMode();
             $config['payment'][$code]['logo_url']     = $this->getLogoUrl($code);
+            $config['payment'][$code]['back_url']     = $this->_dataHelper->getReturnUrl();
         }
 
         /*

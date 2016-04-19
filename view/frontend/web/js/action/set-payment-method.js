@@ -95,6 +95,13 @@ define(
                             iframe.modal({
                                 title: 'Wirecard Checkout Page',
                                 autoOpen: true,
+                                closed: function() {
+                                    var redirectUrl = $('#' + methodeCode + '-back-url').val();
+
+                                    // get rid of onbeforeunload events
+                                    document.write("");
+                                    location.href = redirectUrl;
+                                },
                                 closeText: '',
                                 buttons: []
                             });

@@ -97,6 +97,7 @@
             </fieldset>
         </form>
 
+        <input type="hidden" data-bind="attr: {id: getCode() + '-back-url'}, value: getBackUrl()" />
         <iframe width="0" height="0" data-bind="attr: {id: getCode() + '-iframe'}" frameborder="0"
                 name="wirecard_checkoutpage_iframe" style="display:none;width:100%;"></iframe>
 
