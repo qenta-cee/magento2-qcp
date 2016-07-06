@@ -256,6 +256,16 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
+     * get amount precision
+     *
+     * @return int
+     */
+    public function getPrecision()
+    {
+        return 2;
+    }
+
+    /**
      * @return bool|\Zend\Http\Header\HeaderInterface
      */
     public function getUserAgent()
@@ -310,15 +320,15 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function calculateQuoteChecksum($quote)
     {
-        $data = $quote->getBaseGrandTotal() .
+        $data = round($quote->getBaseGrandTotal(), $this->getPrecision()) .
                 $quote->getBaseCurrencyCode() .
                 $quote->getCustomerEmail();
 
         foreach ($quote->getAllVisibleItems() as $item) {
             /** @var \Magento\Quote\Model\Quote\Item $item */
             $data .= $item->getSku();
-            $data .= $item->getPrice();
-            $data .= $item->getTaxAmount();
+            $data .= round($item->getPrice(), $this->getPrecision());
+            $data .= round($item->getTaxAmount(), $this->getPrecision());
         }
 
         $address = $quote->getBillingAddress();
