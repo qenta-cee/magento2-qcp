@@ -5,7 +5,7 @@
 
 Wirecard Checkout Page extension for Magento 2. 
 
-Our [Online Guides](https://guides.wirecard.at/) provide further information on payment methods and additional features. 
+Our [Online Guides](https://guides.wirecard.at/) provide further information on payment methods and additional features. Please observe our [terms of use](https://guides.wirecard.at/shop_plugins:info#terms_of_use) regarding plugins.
 
 ## Wirecard Checkout Page
 Wirecard Checkout Page is designed to meet the ambitious demands of merchants offering a wide range of payment methods while at the same time fulfilling PCI DSS compliance.
