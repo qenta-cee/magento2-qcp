@@ -278,7 +278,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getClientIp()
     {
-        return $this->_request->getClientIp();
+        $clientIp = $this->_request->getClientIp();
+        if(strpos($clientIp, ',') !== false) {
+            // more than one ip given (due to proxy) -> normalize ip
+            list($firstIp,) = explode(',', (string)$clientIp, 2);
+            $clientIp = trim($firstIp);
+        }
+        return $clientIp;
     }
 
     /**
