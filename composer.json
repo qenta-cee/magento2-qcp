@@ -11,16 +11,12 @@
         "docs": "https://guides.wirecard.com"
     },
     "require": {
-        "php": "~5.5.0|~5.6.0|~7.0.0",
+        "php": "~5.5.0|~5.6.0|~7.0",
         "magento/magento-composer-installer": "*",
         "magento/module-sales": "*",
         "magento/module-payment": "*",
         "magento/module-quote": "*",
         "wirecard/checkout-client-library": "3.3.0"
-    },
-    "require-dev":{
-        "php": "~5.5|~5.6|~7.0",
-        "wirecard/checkout-client-library": "*"
     },
     "autoload": {
         "files": [
