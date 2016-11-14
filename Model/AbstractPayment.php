@@ -149,8 +149,7 @@ abstract class AbstractPayment extends AbstractMethod
         $init->setOrderReference(sprintf('%010d', $orderId));
         $init->uniqueId = $this->_getUniqueId($cart);
 
-        $precision = 2;
-        $init->setAmount(round($cart->getQuote()->getBaseGrandTotal(), $precision))
+        $init->setAmount(round($cart->getQuote()->getBaseGrandTotal(), $this->_dataHelper->getPrecision()))
              ->setCurrency($quote->getCurrency()->getBaseCurrencyCode())
              ->setPaymentType($this->_paymentMethod)
              ->setOrderDescription($this->getUserDescription($quote))
@@ -178,15 +177,15 @@ abstract class AbstractPayment extends AbstractMethod
                 $bitem = new \WirecardCEE_Stdlib_Basket_Item();
                 $bitem->setDescription($item->getProduct()->getName());
                 $bitem->setArticleNumber($item->getSku());
-                $bitem->setUnitPrice(number_format($item->getPrice(), $precision, '.', ''));
-                $bitem->setTax(number_format($item->getTaxAmount(), $precision, '.', ''));
+                $bitem->setUnitPrice(number_format($item->getPrice(), $this->_dataHelper->getPrecision(), '.', ''));
+                $bitem->setTax(number_format($item->getTaxAmount(), $this->_dataHelper->getPrecision(), '.', ''));
                 $basket->addItem($bitem, (int) $item->getQty());
             }
 
             $bitem = new \WirecardCEE_Stdlib_Basket_Item();
             $bitem->setArticleNumber('shipping');
-            $bitem->setUnitPrice(number_format($quote->getShippingAddress()->getShippingAmount(), $precision, '.', ''));
-            $bitem->setTax(number_format($quote->getShippingAddress()->getShippingTaxAmount(), $precision, '.', ''));
+            $bitem->setUnitPrice(number_format($quote->getShippingAddress()->getShippingAmount(), $this->_dataHelper->getPrecision(), '.', ''));
+            $bitem->setTax(number_format($quote->getShippingAddress()->getShippingTaxAmount(), $this->_dataHelper->getPrecision(), '.', ''));
             $bitem->setDescription($quote->getShippingAddress()->getShippingDescription());
             $basket->addItem($bitem);
 
