@@ -13,7 +13,6 @@
     "require": {
         "php": "~5.5.0|~5.6.0|~7.0",
         "magento/magento-composer-installer": "*",
-        "magento/module-sales": "*",
         "magento/module-payment": "*",
         "magento/module-quote": "*",
         "wirecard/checkout-client-library": "3.3.0"
