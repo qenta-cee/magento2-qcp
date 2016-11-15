@@ -39,10 +39,11 @@ define(
         'Magento_Checkout/js/model/error-processor',
         'Magento_Customer/js/model/customer',
         'Magento_Checkout/js/model/full-screen-loader',
+        'Magento_CheckoutAgreements/js/model/agreements-assigner',
         'jquery/ui',
         'Magento_Ui/js/modal/modal'
     ],
-    function ($, quote, urlBuilder, url, storage, errorProcessor, customer, fullScreenLoader) {
+    function ($, quote, urlBuilder, url, storage, errorProcessor, customer, fullScreenLoader,agreementsAssigner) {
         'use strict';
 
         return function (messageContainer, displaymode, iframe) {
@@ -67,6 +68,7 @@ define(
                 };
             } else {
                 serviceUrl = urlBuilder.createUrl('/carts/mine/set-payment-information', {});
+                agreementsAssigner(paymentData);
                 payload = {
                     cartId: quote.getQuoteId(),
                     paymentMethod: paymentData,
@@ -87,7 +89,7 @@ define(
                         $('#' + methodeCode + '-button').css('display', 'none');
                         var iframe = $('#' + methodeCode + '-iframe');
                         iframe.css('display', 'block').css('height', '900px').css('width', '640px');
- 
+
                         if (displaymode == 'iframe')
                             $('html, body').animate({ scrollTop: $('#' + methodeCode).offset().top }, 'slow');
 
