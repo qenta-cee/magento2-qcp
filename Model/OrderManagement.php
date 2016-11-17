@@ -339,6 +339,7 @@ class OrderManagement
             } else {
                 /** @var \WirecardCEE_QPay_Return_Success $return */
                 $order->setState(\Magento\Sales\Model\Order::STATE_PROCESSING);
+                $order->setStatus(\Magento\Sales\Model\Order::STATE_PROCESSING);
                 $message = $this->_dataHelper->__('The payment has been successfully completed.');
 
                 // invoice payment
