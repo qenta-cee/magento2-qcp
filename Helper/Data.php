@@ -326,14 +326,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function calculateQuoteChecksum($quote)
     {
-        $data = round($quote->getBaseGrandTotal(), $this->getPrecision()) .
+        $data = round($quote->getGrandTotal(), $this->getPrecision()) .
                 $quote->getBaseCurrencyCode() .
                 $quote->getCustomerEmail();
 
         foreach ($quote->getAllVisibleItems() as $item) {
             /** @var \Magento\Quote\Model\Quote\Item $item */
             $data .= $item->getSku();
-            $data .= round($item->getPrice(), $this->getPrecision());
+            $data .= round($item->getRowTotal(), $this->getPrecision());
             $data .= round($item->getTaxAmount(), $this->getPrecision());
         }
 
