@@ -157,7 +157,7 @@ abstract class AbstractPayment extends AbstractMethod
              ->setPendingUrl($urls['return'])
              ->setCancelUrl($urls['return'])
              ->setFailureUrl($urls['return'])
-             ->createCustomerMerchantCrmId($quote->getCustomerEmail())
+             ->createConsumerMerchantCrmId($quote->getCustomerEmail())
              ->setServiceUrl($this->_dataHelper->getConfigData('options/service_url'))
              ->setConsumerData($this->_getConsumerData($quote))
              ->setMaxRetries($this->_dataHelper->getConfigData('options/maxretries'));
