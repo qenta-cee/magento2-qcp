@@ -176,6 +176,7 @@ abstract class AbstractPayment extends AbstractMethod
 
 		        $bitem = new \WirecardCEE_Stdlib_Basket_Item();
 		        $bitem->setDescription( $item->getProduct()->getName() );
+		        $bitem->setName( $item->getProduct()->getName() );
 		        $bitem->setArticleNumber( $item->getSku() );
 
 		        $bitem->setUnitGrossAmount( number_format( $item->getPriceInclTax(), $this->_dataHelper->getPrecision(), '.', '' ) );
@@ -186,30 +187,36 @@ abstract class AbstractPayment extends AbstractMethod
 		        $basket->addItem( $bitem, (int) $item->getQty() );
 	        }
 
-	        $bitem = new \WirecardCEE_Stdlib_Basket_Item();
-	        $bitem->setArticleNumber( 'shipping' );
+	        if($quote->getShippingAddress()->getShippingAmount() != 0) {
+		        $bitem = new \WirecardCEE_Stdlib_Basket_Item();
+		        $bitem->setArticleNumber( 'shipping' );
 
-	        $bitem->setUnitGrossAmount(
-		        number_format( $quote->getShippingAddress()->getShippingAmount(), $this->_dataHelper->getPrecision(), '.', '' )
-		        +
-		        number_format( $quote->getShippingAddress()->getShippingTaxAmount(), $this->_dataHelper->getPrecision(), '.', '' )
-	        );
-	        $bitem->setUnitNetAmount( number_format( $quote->getShippingAddress()->getShippingAmount(), $this->_dataHelper->getPrecision(), '.', '' ) );
-	        $bitem->setUnitTaxRate(
-		        number_format(
-			        $quote->getShippingAddress()->getShippingTax() / $quote->getShippingAddress()->getShippingAmount(),
-			        $this->_dataHelper->getPrecision(),
-			        '.',
-			        ''
-		        )
-	        );
-	        $bitem->setUnitTaxAmount( number_format( $quote->getShippingAddress()->getShippingTax(), $this->_dataHelper->getPrecision(), '.', '' ) );
-	        $bitem->setDescription( $quote->getShippingAddress()->getShippingDescription() );
-	        $basket->addItem( $bitem );
+		        $bitem->setUnitGrossAmount(
+			        number_format( $quote->getShippingAddress()->getShippingAmount(),
+			                       $this->_dataHelper->getPrecision(), '.', '' )
+			        +
+			        number_format( $quote->getShippingAddress()->getShippingTaxAmount(),
+			                       $this->_dataHelper->getPrecision(), '.', '' )
+		        );
+		        $bitem->setUnitNetAmount( number_format( $quote->getShippingAddress()->getShippingAmount(),
+		                                                 $this->_dataHelper->getPrecision(), '.', '' ) );
 
-            foreach ($basket->__toArray() as $k => $v) {
-                $init->$k = $v;
-            }
+		        $bitem->setUnitTaxRate(
+			        number_format(
+				        $quote->getShippingAddress()->getShippingTax() / $quote->getShippingAddress()->getShippingAmount(),
+				        $this->_dataHelper->getPrecision(),
+				        '.',
+				        ''
+			        )
+		        );
+		        $bitem->setUnitTaxAmount( number_format( $quote->getShippingAddress()->getShippingTax(),
+		                                                 $this->_dataHelper->getPrecision(), '.', '' ) );
+		        $bitem->setDescription( $quote->getShippingAddress()->getShippingDescription() );
+		        $bitem->setName( $quote->getShippingAddress()->getShippingDescription() );
+		        $basket->addItem( $bitem );
+	        }
+
+	        $init->setBasket( $basket );
         }
 
         if ($this->_dataHelper->getConfigData('options/sendconfirmationemail')) {
