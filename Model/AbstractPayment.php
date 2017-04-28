@@ -172,23 +172,41 @@ abstract class AbstractPayment extends AbstractMethod
             $basket = new \WirecardCEE_Stdlib_Basket();
             $basket->setCurrency($quote->getBaseCurrencyCode());
 
-            foreach ($quote->getAllVisibleItems() as $item) {
-                /** @var \Magento\Quote\Model\Quote\Item $item */
+	        foreach ( $quote->getAllVisibleItems() as $item ) {
+		        /** @var \Magento\Quote\Model\Quote\Item $item */
 
-                $bitem = new \WirecardCEE_Stdlib_Basket_Item();
-                $bitem->setDescription($item->getProduct()->getName());
-                $bitem->setArticleNumber($item->getSku());
-                $bitem->setUnitPrice(number_format($item->getPrice(), $this->_dataHelper->getPrecision(), '.', ''));
-                $bitem->setTax(number_format($item->getTaxAmount(), $this->_dataHelper->getPrecision(), '.', ''));
-                $basket->addItem($bitem, (int) $item->getQty());
-            }
+		        $bitem = new \WirecardCEE_Stdlib_Basket_Item();
+		        $bitem->setDescription( $item->getProduct()->getName() );
+		        $bitem->setArticleNumber( $item->getSku() );
 
-            $bitem = new \WirecardCEE_Stdlib_Basket_Item();
-            $bitem->setArticleNumber('shipping');
-            $bitem->setUnitPrice(number_format($quote->getShippingAddress()->getShippingAmount(), $this->_dataHelper->getPrecision(), '.', ''));
-            $bitem->setTax(number_format($quote->getShippingAddress()->getShippingTaxAmount(), $this->_dataHelper->getPrecision(), '.', ''));
-            $bitem->setDescription($quote->getShippingAddress()->getShippingDescription());
-            $basket->addItem($bitem);
+		        $bitem->setUnitGrossAmount( number_format( $item->getPriceInclTax(), $this->_dataHelper->getPrecision(), '.', '' ) );
+		        $bitem->setUnitNetAmount( number_format( $item->getPrice(), $this->_dataHelper->getPrecision(), '.', '' ) );
+		        $bitem->setUnitTaxRate( number_format( $item->getTaxPercent(), $this->_dataHelper->getPrecision(), '.', '' ) );
+		        $bitem->setUnitTaxAmount( number_format( $item->getTaxAmount(), $this->_dataHelper->getPrecision(), '.', '' ) );
+
+		        $basket->addItem( $bitem, (int) $item->getQty() );
+	        }
+
+	        $bitem = new \WirecardCEE_Stdlib_Basket_Item();
+	        $bitem->setArticleNumber( 'shipping' );
+
+	        $bitem->setUnitGrossAmount(
+		        number_format( $quote->getShippingAddress()->getShippingAmount(), $this->_dataHelper->getPrecision(), '.', '' )
+		        +
+		        number_format( $quote->getShippingAddress()->getShippingTaxAmount(), $this->_dataHelper->getPrecision(), '.', '' )
+	        );
+	        $bitem->setUnitNetAmount( number_format( $quote->getShippingAddress()->getShippingAmount(), $this->_dataHelper->getPrecision(), '.', '' ) );
+	        $bitem->setUnitTaxRate(
+		        number_format(
+			        $quote->getShippingAddress()->getShippingTax() / $quote->getShippingAddress()->getShippingAmount(),
+			        $this->_dataHelper->getPrecision(),
+			        '.',
+			        ''
+		        )
+	        );
+	        $bitem->setUnitTaxAmount( number_format( $quote->getShippingAddress()->getShippingTax(), $this->_dataHelper->getPrecision(), '.', '' ) );
+	        $bitem->setDescription( $quote->getShippingAddress()->getShippingDescription() );
+	        $basket->addItem( $bitem );
 
             foreach ($basket->__toArray() as $k => $v) {
                 $init->$k = $v;
