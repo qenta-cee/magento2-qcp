@@ -170,7 +170,6 @@ abstract class AbstractPayment extends AbstractMethod
 
         if ($this->_dataHelper->getConfigData('options/sendbasketinformation') || $this->forceSendingBasket()) {
             $basket = new \WirecardCEE_Stdlib_Basket();
-            $basket->setCurrency($quote->getBaseCurrencyCode());
 
 	        foreach ( $quote->getAllVisibleItems() as $item ) {
 		        /** @var \Magento\Quote\Model\Quote\Item $item */
