@@ -51,7 +51,7 @@ define(
                 payload,
                 paymentData = quote.paymentMethod(),
                 methodeCode = quote.paymentMethod().method,
-                checkoutStartUrl = url.build('/wirecardcheckoutpage/checkout/start', {});
+                checkoutStartUrl = url.build('wirecardcheckoutpage/checkout/start', {});
 
             /**
              * Checkout for guest and registered customer.
