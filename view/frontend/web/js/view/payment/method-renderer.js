@@ -49,6 +49,10 @@ define(
                 component: 'Wirecard_CheckoutPage/js/view/payment/method-renderer/standard'
             },
             {
+                type: 'wirecard_checkoutpage_masterpass',
+                component: 'Wirecard_CheckoutPage/js/view/payment/method-renderer/standard'
+            },
+            {
                 type: 'wirecard_checkoutpage_ccardmoto',
                 component: 'Wirecard_CheckoutPage/js/view/payment/method-renderer/standard'
             },
