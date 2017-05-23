@@ -5,7 +5,7 @@
     "description": "Wirecard Checkout Page extension for Magento 2",
     "keywords": ["wirecard", "checkout", "page", "payment", "magento2"],
     "homepage": "https://www.wirecard.at",
-    "version":"1.0.6",
+    "version":"1.0.8",
     "support": {
         "email": "support.at@wirecard.com",
         "docs": "https://guides.wirecard.com"
