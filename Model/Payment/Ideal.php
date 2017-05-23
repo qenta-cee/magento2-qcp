@@ -60,7 +60,7 @@ class Ideal extends AbstractPayment
 
         /** @var \Magento\Quote\Model\Quote\Payment $infoInstance */
         $infoInstance = $this->getInfoInstance();
-        $infoInstance->setAdditionalInformation('financialInstitution', $data->getData('financialInstitution'));
+        $infoInstance->setAdditionalInformation('financialInstitution', $data->getDataByPath('additional_data/financialInstitution'));
 
         return $this;
     }
