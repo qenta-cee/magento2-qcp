@@ -151,15 +151,6 @@
                 <sort_order>190</sort_order>
             </wirecard_checkoutpage_p24>
 
-            <wirecard_checkoutpage_skrilldirect>
-                <active>0</active>
-                <title>Wirecard Checkout Page Skrill Direct</title>
-                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
-                <displaymode>iframe</displaymode>
-                <model>Wirecard\CheckoutPage\Model\Payment\Skrilldirect</model>
-                <sort_order>200</sort_order>
-            </wirecard_checkoutpage_skrilldirect>
-
             <wirecard_checkoutpage_sofortbanking>
                 <active>1</active>
                 <title>Wirecard Checkout Page SOFORT Banking</title>
@@ -313,15 +304,6 @@
                 <sort_order>340</sort_order>
                 <txident>SINGLE</txident>
             </wirecard_checkoutpage_sepa>
-
-            <wirecard_checkoutpage_mpass>
-                <active>0</active>
-                <title>Wirecard Checkout Page mpass</title>
-                <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
-                <displaymode>iframe</displaymode>
-                <model>Wirecard\CheckoutPage\Model\Payment\Mpass</model>
-                <sort_order>350</sort_order>
-            </wirecard_checkoutpage_mpass>
 
             <wirecard_checkoutpage_paybox>
                 <active>0</active>

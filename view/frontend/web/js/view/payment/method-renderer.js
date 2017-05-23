@@ -77,15 +77,7 @@ define(
                 component: 'Wirecard_CheckoutPage/js/view/payment/method-renderer/standard'
             },
             {
-                type: 'wirecard_checkoutpage_skrilldirect',
-                component: 'Wirecard_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
                 type: 'wirecard_checkoutpage_skrillwallet',
-                component: 'Wirecard_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
-                type: 'wirecard_checkoutpage_mpass',
                 component: 'Wirecard_CheckoutPage/js/view/payment/method-renderer/standard'
             },
             {
