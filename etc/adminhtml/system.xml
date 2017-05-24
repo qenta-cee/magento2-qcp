@@ -320,9 +320,6 @@
                 <field id="title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Title</label>
                 </field>
-                <field id="shipping_profile" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Shipping profile</label>
-                </field>
                 <field id="allowed_carrier" translate="label" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Available shipping methods</label>
                     <source_model>Magento\Shipping\Model\Config\Source\Allmethods</source_model>
