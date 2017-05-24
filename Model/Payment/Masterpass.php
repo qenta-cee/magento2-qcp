@@ -34,12 +34,14 @@ namespace Wirecard\CheckoutPage\Model\Payment;
 
 use Wirecard\CheckoutPage\Model\AbstractPayment;
 
-class Skrilldirect extends AbstractPayment
+class Masterpass extends AbstractPayment
 {
-    const CODE = 'wirecard_checkoutpage_skrilldirect';
+
+    const CODE = 'wirecard_checkoutpage_masterpass';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \WirecardCEE_Stdlib_PaymentTypeAbstract::SKRILLDIRECT;
+    protected $_paymentMethod = \WirecardCEE_Stdlib_PaymentTypeAbstract::MASTERPASS;
 
-    protected $_logo = 'skrilldirect.png';
+    protected $_logo = 'masterpass.png';
+
 }
