@@ -34,7 +34,7 @@ namespace Wirecard\CheckoutPage\Model\Payment;
 
 use Wirecard\CheckoutPage\Model\AbstractPayment;
 
-class Ccard extends AbstractPayment
+class Masterpass extends AbstractPayment
 {
 
     const CODE = 'wirecard_checkoutpage_masterpass';
