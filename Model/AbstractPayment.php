@@ -162,7 +162,9 @@ abstract class AbstractPayment extends AbstractMethod
              ->setConsumerData($this->_getConsumerData($quote))
              ->setMaxRetries($this->_dataHelper->getConfigData('options/maxretries'));
 
-        $shippingProfile = $this->_dataHelper->getConfigData('payolution_terms');
+        if ($this->_paymentMethod == \WirecardCEE_QMore_PaymentType::MASTERPASS && strlen($this->getConfigData('shipping_profile'))) {
+            $init->setShippingProfile($this->getConfigData('shipping_profile'));
+        }
 
         $init->mage_orderId       = $orderId;
         $init->mage_quoteId       = $quote->getId();
