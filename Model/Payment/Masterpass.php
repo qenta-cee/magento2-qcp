@@ -42,6 +42,6 @@ class Masterpass extends AbstractPayment
 
     protected $_paymentMethod = \WirecardCEE_Stdlib_PaymentTypeAbstract::MASTERPASS;
 
-    protected $_logo = 'cc.png';
+    protected $_logo = 'masterpass.png';
 
 }
