@@ -66,7 +66,7 @@ class Installment extends AbstractPayment
 
         /** @var \Magento\Quote\Model\Quote\Payment $infoInstance */
         $infoInstance = $this->getInfoInstance();
-        $infoInstance->setAdditionalInformation('customerDob', $data->getData('customerDob'));
+        $infoInstance->setAdditionalInformation('customerDob', $data->getDataByPath('additional_data/customerDob'));
 
         return $this;
     }
