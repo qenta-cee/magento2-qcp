@@ -24,4 +24,3 @@ Wirecard Checkout Page offers:
 - Web interface for managing payments (approvals, cancelations, credits, etc.).
 - Benefit from Wirecard Bank´s license to conclude credit card acceptance contracts (acquiring) and issue credit cards.
 - With Wirecard Collecting only a single contract is required for payouts within various payment methods.
-- Support of recurring payments (subscriptions, one-click checkout).
