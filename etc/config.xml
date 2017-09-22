@@ -162,7 +162,7 @@
 
             <wirecard_checkoutpage_sofortbanking>
                 <active>1</active>
-                <title>Wirecard Checkout Page SOFORT Banking</title>
+                <title>Wirecard Checkout Page Online bank transfer.</title>
                 <instructions>You will be redirected to Wirecard Checkout Page when you place an order.</instructions>
                 <displaymode>iframe</displaymode>
                 <model>Wirecard\CheckoutPage\Model\Payment\Sofortbanking</model>
