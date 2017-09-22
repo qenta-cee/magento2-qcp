@@ -41,18 +41,5 @@ class Sofortbanking extends AbstractPayment
 
     protected $_paymentMethod = \WirecardCEE_Stdlib_PaymentTypeAbstract::SOFORTUEBERWEISUNG;
 
-    protected $_logo = 'sofortbanking-%s.png';
-
-    /**
-     * return logo (png)
-     * @return bool
-     */
-    public function getLogo()
-    {
-        $lang = $this->_dataHelper->getLanguage();
-        if (!in_array($lang, ['de', 'en']))
-            $lang = 'en';
-
-        return sprintf($this->_logo, $lang);
-    }
+    protected $_logo = 'sofortbanking.png';
 }
