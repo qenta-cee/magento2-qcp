@@ -726,7 +726,7 @@
             </group>
 
             <group id="wirecard_checkoutpage_sofortbanking" translate="label" type="text" sortOrder="1130" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page SOFORT Banking</label>
+                <label>Wirecard Checkout Page Online bank transfer.</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
