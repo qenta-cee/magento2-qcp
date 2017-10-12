@@ -38,7 +38,7 @@ namespace Wirecard\CheckoutPage\Helper;
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
 
-    protected $_pluginVersion = '1.0.9';
+    protected $_pluginVersion = '1.0.10';
     protected $_pluginName = 'Wirecard/CheckoutPage';
 
     /**
