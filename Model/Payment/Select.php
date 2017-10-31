@@ -50,7 +50,7 @@ class Select extends AbstractPayment
     protected $_paymentConfig;
 
     /**
-     * @var \Magento\Framework\App\Config\ScopePool
+     * @var \Wirecard\CheckoutPage\Model\App\Config\ScopePool
      */
     protected $_scopePool;
 
