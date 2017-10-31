@@ -3,9 +3,9 @@
 [![License](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://raw.githubusercontent.com/wirecard/Magento2-WCP/master/LICENSE)
 [![PHP v5.6](https://img.shields.io/badge/php-v5.6-yellow.svg)](http://www.php.net)
 [![PHP v7.0](https://img.shields.io/badge/php-v7.0-yellow.svg)](http://www.php.net)
-[![Magento v2.1.8](https://img.shields.io/badge/magento-v2.1.8-green.svg)](https://magento.com/)
+[![Magento v2.2.0](https://img.shields.io/badge/magento-v2.2.0-green.svg)](https://magento.com/)
 
-Wirecard Checkout Page extension for Magento 2 and Magento 2.1 
+Wirecard Checkout Page extension for Magento 2, Magento 2.1 and Magento 2.2
 
 Our [Online Guides](https://guides.wirecard.at/) provide further information on payment methods and additional features. Please observe our [terms of use](https://guides.wirecard.at/shop_plugins:info#terms_of_use) regarding plugins.
 
