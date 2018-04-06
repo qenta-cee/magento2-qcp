@@ -382,12 +382,17 @@ abstract class AbstractPayment extends AbstractMethod
 
         $deliveryAddress = $quote->getShippingAddress();
         $billingAddress  = $quote->getBillingAddress();
-        $dob             = $this->getCustomerDob($quote);
+        $userDob         = $this->getCustomerDob($quote);
 
         $consumerData->setEmail($quote->getCustomerEmail());
-        if ($dob !== false) {
+
+        $dob = new \DateTime($quote->getPayment()->getAdditionalInformation('customerDob'));
+        if (strlen($dob)) {
             $consumerData->setBirthDate($dob);
+        } elseif ($userDob !== false) {
+            $consumerData->setBirthdate($userDob);
         }
+
         if (strlen($billingAddress->getCompany())) {
             $consumerData->setCompanyName($billingAddress->getCompany());
         }
@@ -403,7 +408,6 @@ abstract class AbstractPayment extends AbstractMethod
         if ($this->_forceSendAdditionalData || $this->_dataHelper->getConfigData('options/sendshippingdata')) {
             $consumerData->addAddressInformation($this->_getAddress($deliveryAddress, 'shipping'));
         }
-
         return $consumerData;
     }
 
