@@ -63,10 +63,11 @@ class Invoice extends AbstractPayment
         if (!$data instanceof \Magento\Framework\DataObject) {
             $data = new \Magento\Framework\DataObject($data);
         }
+        $additionalData = $data->getData('additional_data');
 
         /** @var \Magento\Quote\Model\Quote\Payment $infoInstance */
         $infoInstance = $this->getInfoInstance();
-        $infoInstance->setAdditionalInformation('customerDob', $data->getData('customerDob'));
+        $infoInstance->setAdditionalInformation('customerDob', $additionalData['customerDob']);
 
         return $this;
     }
