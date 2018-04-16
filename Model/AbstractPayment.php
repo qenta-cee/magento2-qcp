@@ -385,13 +385,13 @@ abstract class AbstractPayment extends AbstractMethod
         $userDob         = $this->getCustomerDob($quote);
 
         $consumerData->setEmail($quote->getCustomerEmail());
+        $dob = $quote->getPayment()->getAdditionalInformation('customerDob');
 
-        $dob = new \DateTime($quote->getPayment()->getAdditionalInformation('customerDob'));
-        if (strlen($dob)) {
-            $consumerData->setBirthDate($dob);
-        } elseif ($userDob !== false) {
-            $consumerData->setBirthdate($userDob);
-        }
+	    if (strlen($dob)) {
+		    $consumerData->setBirthDate(new \DateTime($dob));
+	    } elseif ($userDob !== false) {
+		    $consumerData->setBirthdate($userDob);
+	    }
 
         if (strlen($billingAddress->getCompany())) {
             $consumerData->setCompanyName($billingAddress->getCompany());
