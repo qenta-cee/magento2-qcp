@@ -60,6 +60,7 @@ define(
                 serviceUrl = urlBuilder.createUrl('/guest-carts/:cartId/set-payment-information', {
                     cartId: quote.getQuoteId()
                 });
+                agreementsAssigner(paymentData);
                 payload = {
                     cartId: quote.getQuoteId(),
                     paymentMethod: paymentData,
