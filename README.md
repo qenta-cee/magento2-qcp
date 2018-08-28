@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://raw.githubusercontent.com/wirecard/Magento2-WCP/master/LICENSE)
 [![PHP v5.6](https://img.shields.io/badge/php-v5.6-yellow.svg)](http://www.php.net)
 [![PHP v7.0](https://img.shields.io/badge/php-v7.0-yellow.svg)](http://www.php.net)
-[![Magento v2.2.4](https://img.shields.io/badge/magento-v2.2.4-green.svg)](https://magento.com/)
+[![Magento v2.2.5](https://img.shields.io/badge/magento-v2.2.5-green.svg)](https://magento.com/)
 
 Wirecard Checkout Page extension for Magento 2, Magento 2.1 and Magento 2.2
 
