@@ -6,6 +6,14 @@
 [![Magento v2.1.15](https://img.shields.io/badge/magento-v2.1.15-green.svg)](https://magento.com/)
 [![Magento v2.2.6](https://img.shields.io/badge/magento-v2.2.6-green.svg)](https://magento.com/)
 
+----
+**IMPORTANT INFORMATION**  
+You are visiting a shop extension which will become obsolete in the near future. It has been replaced by a new one with new features and enhanced functionality.   
+Please use our new shop extension available on [magento2.wirecard.com](https://magento2.wirecard.com), which will be maintained, updated and supported on a regular basis.  
+If you have any questions, please contact shop-systems-support@wirecard.com
+
+----
+
 Wirecard Checkout Page extension for Magento 2.1 and Magento 2.2
 
 Our [Online Guides](https://guides.wirecard.at/) provide further information on payment methods and additional features. Please observe our [terms of use](https://guides.wirecard.at/shop_plugins:info#terms_of_use) regarding plugins.
