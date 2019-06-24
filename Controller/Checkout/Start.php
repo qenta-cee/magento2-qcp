@@ -97,11 +97,13 @@ class Start extends \Magento\Framework\App\Action\Action
 
     public function execute()
     {
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $formKey = $objectManager->get('Magento\Framework\Data\Form\FormKey');
         $urls = [
             'confirm' => $this->_url->getUrl('wirecardcheckoutpage/checkout/confirm',
-                ['_secure' => true, '_nosid' => true]),
+                ['_secure' => true, '_nosid' => true, 'form_key' => $formKey->getFormKey()]),
             'return'  => $this->_url->getUrl('wirecardcheckoutpage/checkout/back',
-                ['_secure' => true, '_nosid' => true])
+                ['_secure' => true, '_nosid' => true, 'form_key' => $formKey->getFormKey()])
         ];
 
         $payment = null;
