@@ -4,7 +4,7 @@
  * See COPYING.txt for license details.
  */
 
-namespace Wirecard\CheckoutPage\Model\App\Config;
+namespace Qenta\CheckoutPage\Model\App\Config;
 
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\App\RequestInterface;
@@ -58,14 +58,14 @@ class ScopePool
     private $scopeCodeResolver;
 
     /**
-     * @param \Wirecard\CheckoutPage\Model\App\Config\ReaderPool $readerPool
+     * @param \Qenta\CheckoutPage\Model\App\Config\ReaderPool $readerPool
      * @param DataFactory $dataFactory
      * @param \Magento\Framework\Cache\FrontendInterface $cache
      * @param \Magento\Framework\App\ScopeResolverPool $scopeResolverPool
      * @param string $cacheId
      */
     public function __construct(
-        \Wirecard\CheckoutPage\Model\App\Config\ReaderPool $readerPool,
+        \Qenta\CheckoutPage\Model\App\Config\ReaderPool $readerPool,
         \Magento\Framework\App\Config\DataFactory $dataFactory,
         \Magento\Framework\Cache\FrontendInterface $cache,
         \Magento\Framework\App\ScopeResolverPool $scopeResolverPool,

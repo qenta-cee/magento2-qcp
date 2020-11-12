@@ -39,11 +39,6 @@ that are not aligned to this Code of Conduct, or to ban temporarily or
 permanently any contributor for other behaviors that they deem inappropriate,
 threatening, offensive, or harmful.
 
-## Scope
-
-This Code Of Conduct applies to all open source projects published by
-Wirecard AG, including the issue tracker of those projects.
-
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
@@ -58,4 +53,4 @@ This Code of Conduct is adapted from the [Contributor Covenant][homepage], versi
 available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
 
 [homepage]: https://www.contributor-covenant.org
-[email]: mailto:shop-systems-support@wirecard.com
+[email]: mailto:support@qenta.com

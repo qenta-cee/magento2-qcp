@@ -1,29 +1,29 @@
 {
-    "name": "wirecard/magento2-wcp",
+    "name": "qenta/magento2-qcp",
     "license": "GPL-2.0",
     "type": "magento2-module",
-    "description": "Wirecard Checkout Page extension for Magento 2",
-    "keywords": ["wirecard", "checkout", "page", "payment", "magento2"],
-    "homepage": "https://www.wirecard.at",
-    "version":"1.0.13",
+    "description": "QENTA Checkout Page extension for Magento 2",
+    "keywords": ["Qenta", "checkout", "page", "payment", "magento2"],
+    "homepage": "https://www.qenta-cee.at",
+    "version":"2.0.0",
     "support": {
-        "email": "support.at@wirecard.com",
+        "email": "support@qenta.com",
         "docs": "https://guides.wirecard.com"
     },
     "require": {
-        "php": "~5.5.0|~5.6.0|~7.0",
+        "php": "~7.3.0",
         "magento/magento-composer-installer": "*",
         "magento/module-sales": "*",
         "magento/module-payment": "*",
         "magento/module-quote": "*",
-        "wirecard/checkout-client-library": "3.3.5"
+        "qenta/checkout-client-library": "4.0.0"
     },
     "autoload": {
         "files": [
             "registration.php"
         ],
         "psr-4": {
-            "Wirecard\\CheckoutPage\\": ""
+            "Qenta\\CheckoutPage\\": ""
         }
     }
 }

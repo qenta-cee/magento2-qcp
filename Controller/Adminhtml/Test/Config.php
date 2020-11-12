@@ -2,8 +2,8 @@
 /**
  * Shop System Plugins - Terms of Use
  *
- * The plugins offered are provided free of charge by Wirecard Central Eastern Europe GmbH
- * (abbreviated to Wirecard CEE) and are explicitly not part of the Wirecard CEE range of
+ * The plugins offered are provided free of charge by Qenta Payment CEE GmbH
+ * (abbreviated to Qenta CEE) and are explicitly not part of the Qenta CEE range of
  * products and services.
  *
  * They have been tested and approved for full functionality in the standard configuration
@@ -11,15 +11,15 @@
  * License Version 2 (GPLv2) and can be used, developed and passed on to third parties under
  * the same terms.
  *
- * However, Wirecard CEE does not provide any guarantee or accept any liability for any errors
+ * However, Qenta CEE does not provide any guarantee or accept any liability for any errors
  * occurring when used in an enhanced, customized shop system configuration.
  *
  * Operation in an enhanced, customized configuration is at your own risk and requires a
  * comprehensive test phase by the user of the plugin.
  *
- * Customers use the plugins at their own risk. Wirecard CEE does not guarantee their full
- * functionality neither does Wirecard CEE assume liability for any disadvantages related to
- * the use of the plugins. Additionally, Wirecard CEE does not guarantee the full functionality
+ * Customers use the plugins at their own risk. Qenta CEE does not guarantee their full
+ * functionality neither does Qenta CEE assume liability for any disadvantages related to
+ * the use of the plugins. Additionally, Qenta CEE does not guarantee the full functionality
  * for customized shop systems or installed plugins of other vendors of plugins within the same
  * shop system.
  *
@@ -30,26 +30,26 @@
  * Please do not use the plugin if you do not agree to these terms of use!
  */
 
-namespace Wirecard\CheckoutPage\Controller\Adminhtml\Test;
+namespace Qenta\CheckoutPage\Controller\Adminhtml\Test;
 
 use Magento\Backend\App\Action\Context;
 
 class Config extends \Magento\Backend\App\Action
 {
     /**
-     * @var \Wirecard\CheckoutPage\Helper\Data
+     * @var \Qenta\CheckoutPage\Helper\Data
      */
     protected $_dataHelper;
 
     /**
-     * @var \Wirecard\CheckoutPage\Model\Test
+     * @var \Qenta\CheckoutPage\Model\Test
      */
     protected $_testModel;
 
     public function __construct(
         Context $context,
-        \Wirecard\CheckoutPage\Model\Test $testModel,
-        \Wirecard\CheckoutPage\Helper\Data $dataHelper
+        \Qenta\CheckoutPage\Model\Test $testModel,
+        \Qenta\CheckoutPage\Helper\Data $dataHelper
     ) {
         parent::__construct($context);
         $this->_testModel  = $testModel;
@@ -59,11 +59,11 @@ class Config extends \Magento\Backend\App\Action
     public function execute()
     {
 
-        $redirectUrl = $this->getUrl('adminhtml/system_config/edit/section/wirecard_checkoutpage');
+        $redirectUrl = $this->getUrl('adminhtml/system_config/edit/section/qenta_checkoutpage');
         $urls = [
-            'confirm' => $this->_url->getUrl('wirecardcheckoutpage/checkout/confirm',
+            'confirm' => $this->_url->getUrl('qentacheckoutpage/checkout/confirm',
                 ['_secure' => true, '_nosid' => true]),
-            'return'  => $this->_url->getUrl('wirecardcheckoutpage/checkout/back',
+            'return'  => $this->_url->getUrl('qentacheckoutpage/checkout/back',
                 ['_secure' => true, '_nosid' => true])
         ];
 

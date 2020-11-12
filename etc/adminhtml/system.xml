@@ -3,8 +3,8 @@
 /**
  * Shop System Plugins - Terms of Use
  *
- * The plugins offered are provided free of charge by Wirecard Central Eastern Europe GmbH
- * (abbreviated to Wirecard CEE) and are explicitly not part of the Wirecard CEE range of
+ * The plugins offered are provided free of charge by Qenta Payment CEE GmbH
+ * (abbreviated to Qenta CEE) and are explicitly not part of the Qenta CEE range of
  * products and services.
  *
  * They have been tested and approved for full functionality in the standard configuration
@@ -12,15 +12,15 @@
  * License Version 2 (GPLv2) and can be used, developed and passed on to third parties under
  * the same terms.
  *
- * However, Wirecard CEE does not provide any guarantee or accept any liability for any errors
+ * However, Qenta CEE does not provide any guarantee or accept any liability for any errors
  * occurring when used in an enhanced, customized shop system configuration.
  *
  * Operation in an enhanced, customized configuration is at your own risk and requires a
  * comprehensive test phase by the user of the plugin.
  *
- * Customers use the plugins at their own risk. Wirecard CEE does not guarantee their full
- * functionality neither does Wirecard CEE assume liability for any disadvantages related to
- * the use of the plugins. Additionally, Wirecard CEE does not guarantee the full functionality
+ * Customers use the plugins at their own risk. Qenta CEE does not guarantee their full
+ * functionality neither does Qenta CEE assume liability for any disadvantages related to
+ * the use of the plugins. Additionally, Qenta CEE does not guarantee the full functionality
  * for customized shop systems or installed plugins of other vendors of plugins within the same
  * shop system.
  *
@@ -33,12 +33,12 @@
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="wirecard_checkoutpage" translate="label" sortOrder="400">
-            <label>Wirecard Checkout Page</label>
+        <tab id="qenta_checkoutpage" translate="label" sortOrder="400">
+            <label>Qenta Checkout Page</label>
         </tab>
-        <section id="wirecard_checkoutpage" translate="label" type="text" sortOrder="3000" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="qenta_checkoutpage" translate="label" type="text" sortOrder="3000" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
-            <label>Wirecard Checkout Page</label>
+            <label>Qenta Checkout Page</label>
             <tab>sales</tab>
             <resource>Magento_Sales::config_sales</resource>
             <group id="basicdata" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -46,10 +46,10 @@
                 <comment>
                     <![CDATA[
                         <div style="padding:10px;margin-bottom:7px;">
-                        <a href="https://www.wirecard.at/" target="_blank"><span class="wirecard-logo" title="www.wirecard.at"></span></a><br />
-                        <h3>Your Full Service Payment Provider - Comprehensive solutions from one single source</h3>Wirecard is one of the world's leading providers of outsourcing and white label solutions for electronic payment transactions.<br /><br /> As independent provider of payment solutions, we accompany our customers along the entire business development. Our payment solutions are perfectly tailored to suit e-Commerce requirements and have made us Austria's leading payment service provider. Customization, competence, and commitment. <br />
+                        <a href="https://www.qenta-cee.at/" target="_blank"><span class="qenta-logo" title="www.qenta-cee.at"></span></a><br />
+                        <h3>Your Full Service Payment Provider - Comprehensive solutions from one single source</h3>Qenta is one of the world's leading providers of outsourcing and white label solutions for electronic payment transactions.<br /><br /> As independent provider of payment solutions, we accompany our customers along the entire business development. Our payment solutions are perfectly tailored to suit e-Commerce requirements and have made us Austria's leading payment service provider. Customization, competence, and commitment. <br />
                         <br/>
-                        <p><a href="https://guides.wirecard.at/plugins_general" target="_blank">General information regarding Wirecard Shop Plugins</a></p>
+                        <p><a href="https://guides.wirecard.com/plugins_general" target="_blank">General information regarding Qenta Shop Plugins</a></p>
                         </div>
                         <div style="clear:both;"></div>
                     ]]>
@@ -60,38 +60,38 @@
                     <comment>For integration, select predefined configuration settings or "production" for live
                         systems.
                     </comment>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\Configurations</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\Configurations</source_model>
                 </field>
                 <field id="customer_id" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
                     <label>Customer ID</label>
                     <comment><![CDATA[
-                                Your Wirecard customer number. <a href="https://guides.wirecard.at/request_parameters#customerid" target="_blank">More information.</a>
+                                Your Qenta customer number. <a href="https://guides.wirecard.com/request_parameters#customerid" target="_blank">More information.</a>
                             ]]></comment>
-                    <backend_model>Wirecard\CheckoutPage\Model\Config\Backend\CustomerId</backend_model>
+                    <backend_model>Qenta\CheckoutPage\Model\Config\Backend\CustomerId</backend_model>
                 </field>
                 <field id="shop_id" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
                     <label>Shop ID</label>
                     <comment><![CDATA[
-                                Shop identifier in case of more than one shop. Please contact our <a href="https://guides.wirecard.at/sales" target="_blank">sales teams</a> to activate this feature. <a href="https://guides.wirecard.at/request_parameters#shopid" target="_blank">More information: shopId</a>
+                                Shop identifier in case of more than one shop. Please contact our <a href="https://guides.wirecard.com/sales" target="_blank">sales teams</a> to activate this feature. <a href="https://guides.wirecard.com/request_parameters#shopid" target="_blank">More information: shopId</a>
                             ]]></comment>
                 </field>
                 <field id="secret" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
                     <label>Secret</label>
                     <comment><![CDATA[
-                                String which you received from Wirecard for signing and validating data to prove their authenticity. <a href="https://guides.wirecard.at/security:start#secret_and_fingerprint" target="_blank">More information.</a>
+                                String which you received from Qenta for signing and validating data to prove their authenticity. <a href="https://guides.wirecard.com/security:start#secret_and_fingerprint" target="_blank">More information.</a>
                             ]]></comment>
-                    <backend_model>Wirecard\CheckoutPage\Model\Config\Backend\Secret</backend_model>
+                    <backend_model>Qenta\CheckoutPage\Model\Config\Backend\Secret</backend_model>
                 </field>
                 <field id="backendpw" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
                     <label>Backend password</label>
                     <comment><![CDATA[
-                                Password for back-end operations (Toolkit). <a href="https://guides.wirecard.at/back-end_operations:technical_wcp:start#required_request_parameters_for_all_operations" target="_blank">More information</a>.
+                                Password for back-end operations (Toolkit). <a href="https://guides.wirecard.com/back-end_operations:technical_wcp:start#required_request_parameters_for_all_operations" target="_blank">More information</a>.
                                 If this password is not set, back-end operations are not possible.
                             ]]>
                     </comment>
                 </field>
                 <field id="checks" translate="" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="150">
-                    <frontend_model>Wirecard\CheckoutPage\Block\Adminhtml\Buttons</frontend_model>
+                    <frontend_model>Qenta\CheckoutPage\Block\Adminhtml\Buttons</frontend_model>
                 </field>
 
             </group>
@@ -102,13 +102,13 @@
                     <comment><![CDATA[
                     Selecting "Always", orders are created even if the payment process leads to failed payment. Selecting "Only for successful payments", orders are created if the payment process was successful.
                     ]]></comment>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\OrderCreation</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\OrderCreation</source_model>
                 </field>
 
                 <field id="service_url" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
                     <label>URL to imprint page</label>
                     <comment><![CDATA[
-                                URL on the payment page which leads to the imprint page of the online shop. <a href="https://guides.wirecard.at/request_parameters#serviceurl" target="_blank">More information.</a>
+                                URL on the payment page which leads to the imprint page of the online shop. <a href="https://guides.wirecard.com/request_parameters#serviceurl" target="_blank">More information.</a>
                             ]]></comment>
                     <validate>validate-url</validate>
                 </field>
@@ -116,14 +116,14 @@
                 <field id="displaytext" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
                     <label>Text on payment page</label>
                     <comment><![CDATA[
-                                Text displayed during the payment process, i.e. "Thank you for ordering in xy-shop". <a href="https://guides.wirecard.at/request_parameters#displaytext" target="_blank">More information.</a>
+                                Text displayed during the payment process, i.e. "Thank you for ordering in xy-shop". <a href="https://guides.wirecard.com/request_parameters#displaytext" target="_blank">More information.</a>
                             ]]></comment>
                 </field>
 
                 <field id="imageurl" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
                     <label>URL to image on payment page</label>
                     <comment><![CDATA[
-                                URL to an image/logo which is displayed during the payment process in Wirecard Checkout Page. <a href="https://guides.wirecard.at/request_parameters#imageurl" target="_blank">More information.</a>
+                                URL to an image/logo which is displayed during the payment process in Qenta Checkout Page. <a href="https://guides.wirecard.com/request_parameters#imageurl" target="_blank">More information.</a>
                             ]]></comment>
                     <validate>validate-url</validate>
                 </field>
@@ -131,14 +131,14 @@
                 <field id="bgcolor" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
                     <label>Background color for credit card logos</label>
                     <comment><![CDATA[
-                                Background color for the image containing the credit card brand logos. <a href="https://guides.wirecard.at/wcp:customization_desktop" target="_blank">More information.</a>
+                                Background color for the image containing the credit card brand logos. <a href="https://guides.wirecard.com/wcp:customization_desktop" target="_blank">More information.</a>
                             ]]></comment>
                 </field>
 
                 <field id="shopname" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
                     <label>Shop reference in posting text</label>
                     <comment><![CDATA[
-                                Reference to your online shop on your consumer's invoice, limited to 9 characters (used together with the order number to create the parameter <a href="https://guides.wirecard.at/request_parameters#customerstatement" target="_blank">customerStatement</a>).
+                                Reference to your online shop on your consumer's invoice, limited to 9 characters (used together with the order number to create the parameter <a href="https://guides.wirecard.com/request_parameters#customerstatement" target="_blank">customerStatement</a>).
                             ]]></comment>
                 </field>
 
@@ -162,7 +162,7 @@
                     <label>Notification e-mail</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[
-                                Receiving notification by e-mail regarding the orders of your consumers if an error occurred in the communication between Wirecard and your online shop. <a href="https://guides.wirecard.at/request_parameters#confirmmail" target="_blank">More information</a>. Please contact our <a href="https://guides.wirecard.at/sales" target="_blank">sales teams</a> to activate this feature.
+                                Receiving notification by e-mail regarding the orders of your consumers if an error occurred in the communication between Qenta and your online shop. <a href="https://guides.wirecard.com/request_parameters#confirmmail" target="_blank">More information</a>. Please contact our <a href="https://guides.wirecard.com/sales" target="_blank">sales teams</a> to activate this feature.
                             ]]></comment>
                 </field>
 
@@ -170,7 +170,7 @@
                     <label>Automated deposit</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[
-                                Enabling an automated deposit of payments. <a href="https://guides.wirecard.at/request_parameters#autodeposit" target="_blank">More information</a>. Please contact our <a href="https://guides.wirecard.at/sales" target="_blank">sales teams</a> to activate this feature.
+                                Enabling an automated deposit of payments. <a href="https://guides.wirecard.com/request_parameters#autodeposit" target="_blank">More information</a>. Please contact our <a href="https://guides.wirecard.com/sales" target="_blank">sales teams</a> to activate this feature.
                             ]]></comment>
                 </field>
 
@@ -187,16 +187,16 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[
                                 Detecting mobile browsers and setting "layout" request parameter accordingly. Forcing page redirect for mobile devices instead of iframe based checkout.
-                                <br/>Has to be enabled by Wirecard on your behalf.
+                                <br/>Has to be enabled by Qenta on your behalf.
                             ]]></comment>
                 </field>
 
                 <field id="layout" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="110">
                     <label>Device type optimization</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\Layouts</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\Layouts</source_model>
                     <comment><![CDATA[
-                                Device type for which Wirecard Checkout Page should be optimized ("desktop", "tablet" or "smartphone"; parameter <a href="https://guides.wirecard.at/request_parameters#layout" target="_blank">layout</a>).
-                                <br/>Has to be enabled by Wirecard on your behalf.
+                                Device type for which Qenta Checkout Page should be optimized ("desktop", "tablet" or "smartphone"; parameter <a href="https://guides.wirecard.com/request_parameters#layout" target="_blank">layout</a>).
+                                <br/>Has to be enabled by Qenta on your behalf.
                             ]]></comment>
                 </field>
 
@@ -204,14 +204,14 @@
                     <label>Check for duplicate requests</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[
-                                Checking duplicate requests made by your consumer. <a href="https://guides.wirecard.at/request_parameters#duplicaterequestcheck" target="_blank">More information.</a>
+                                Checking duplicate requests made by your consumer. <a href="https://guides.wirecard.com/request_parameters#duplicaterequestcheck" target="_blank">More information.</a>
                             ]]></comment>
                 </field>
 
                 <field id="maxretries" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="120">
                     <label>Max. retries</label>
                     <comment><![CDATA[
-                                Maximum number of payment attempts regarding a certain order. <a href="https://guides.wirecard.at/request_parameters#maxretries" target="_blank">More information.</a>
+                                Maximum number of payment attempts regarding a certain order. <a href="https://guides.wirecard.com/request_parameters#maxretries" target="_blank">More information.</a>
                             ]]></comment>
                     <frontend_class>validate-number</frontend_class>
                 </field>
@@ -220,8 +220,8 @@
                     <label>Payment method sort order</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[
-                                Sort order of payment methods and sub-methods in the payment method selection area. <a href="https://guides.wirecard.at/request_parameters?s=order#paymenttypesortorder" target="_blank">More information.</a>
-                                <br/>Has to be enabled by Wirecard on your behalf.
+                                Sort order of payment methods and sub-methods in the payment method selection area. <a href="https://guides.wirecard.com/request_parameters?s=order#paymenttypesortorder" target="_blank">More information.</a>
+                                <br/>Has to be enabled by Qenta on your behalf.
                             ]]></comment>
                 </field>
 
@@ -229,8 +229,8 @@
         </section>
 
         <section id="payment">
-            <group id="wirecard_checkoutpage_select" translate="label" type="text" sortOrder="1010" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page Select</label>
+            <group id="qenta_checkoutpage_select" translate="label" type="text" sortOrder="1010" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page Select</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -256,7 +256,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -270,8 +270,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_ccard" translate="label" type="text" sortOrder="1020" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page Credit Card</label>
+            <group id="qenta_checkoutpage_ccard" translate="label" type="text" sortOrder="1020" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page Credit Card</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -297,7 +297,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -311,8 +311,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_masterpass" translate="label" type="text" sortOrder="1020" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page Masterpass</label>
+            <group id="qenta_checkoutpage_masterpass" translate="label" type="text" sortOrder="1020" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page Masterpass</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -338,7 +338,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -352,8 +352,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_ccardmoto" translate="label" type="text" sortOrder="1030" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page Credit Card - Mail Order/Telephone Order</label>
+            <group id="qenta_checkoutpage_ccardmoto" translate="label" type="text" sortOrder="1030" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page Credit Card - Mail Order/Telephone Order</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -383,7 +383,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -397,8 +397,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_maestro" translate="label" type="text" sortOrder="1040" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page Maestro SecureCode</label>
+            <group id="qenta_checkoutpage_maestro" translate="label" type="text" sortOrder="1040" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page Maestro SecureCode</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -424,7 +424,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -438,8 +438,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_bmc" translate="label" type="text" sortOrder="1050" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page Bancontact/Mister Cash</label>
+            <group id="qenta_checkoutpage_bmc" translate="label" type="text" sortOrder="1050" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page Bancontact/Mister Cash</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -465,7 +465,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -479,8 +479,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_ekonto" translate="label" type="text" sortOrder="1060" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page eKonto</label>
+            <group id="qenta_checkoutpage_ekonto" translate="label" type="text" sortOrder="1060" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page eKonto</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -506,7 +506,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -520,8 +520,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_eps" translate="label" type="text" sortOrder="1070" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page eps-Überweisung</label>
+            <group id="qenta_checkoutpage_eps" translate="label" type="text" sortOrder="1070" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page eps-Überweisung</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -547,7 +547,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -561,8 +561,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_giropay" translate="label" type="text" sortOrder="1080" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page giropay</label>
+            <group id="qenta_checkoutpage_giropay" translate="label" type="text" sortOrder="1080" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page giropay</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -588,7 +588,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -602,8 +602,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_ideal" translate="label" type="text" sortOrder="1090" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page iDEAL</label>
+            <group id="qenta_checkoutpage_ideal" translate="label" type="text" sortOrder="1090" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page iDEAL</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -629,7 +629,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -643,8 +643,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_poli" translate="label" type="text" sortOrder="1100" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page POLi</label>
+            <group id="qenta_checkoutpage_poli" translate="label" type="text" sortOrder="1100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page POLi</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -670,7 +670,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -684,8 +684,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_p24" translate="label" type="text" sortOrder="1110" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page Przelewy24</label>
+            <group id="qenta_checkoutpage_p24" translate="label" type="text" sortOrder="1110" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page Przelewy24</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -711,7 +711,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -725,8 +725,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_sofortbanking" translate="label" type="text" sortOrder="1130" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page Online bank transfer.</label>
+            <group id="qenta_checkoutpage_sofortbanking" translate="label" type="text" sortOrder="1130" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page Online bank transfer.</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -752,7 +752,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -766,8 +766,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_tatrapay" translate="label" type="text" sortOrder="1140" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page TatraPay</label>
+            <group id="qenta_checkoutpage_tatrapay" translate="label" type="text" sortOrder="1140" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page TatraPay</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -793,7 +793,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -807,8 +807,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_trustly" translate="label" type="text" sortOrder="1150" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page Trustly</label>
+            <group id="qenta_checkoutpage_trustly" translate="label" type="text" sortOrder="1150" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page Trustly</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -834,7 +834,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -848,8 +848,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_trustpay" translate="label" type="text" sortOrder="1160" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page TrustPay</label>
+            <group id="qenta_checkoutpage_trustpay" translate="label" type="text" sortOrder="1160" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page TrustPay</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -875,7 +875,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -889,8 +889,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_epaybg" translate="label" type="text" sortOrder="1170" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page ePay.bg</label>
+            <group id="qenta_checkoutpage_epaybg" translate="label" type="text" sortOrder="1170" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page ePay.bg</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -916,7 +916,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -930,8 +930,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_moneta" translate="label" type="text" sortOrder="1180" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page moneta.ru</label>
+            <group id="qenta_checkoutpage_moneta" translate="label" type="text" sortOrder="1180" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page moneta.ru</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -957,7 +957,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -971,8 +971,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_invoice" translate="label" type="text" sortOrder="1190" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page Invoice</label>
+            <group id="qenta_checkoutpage_invoice" translate="label" type="text" sortOrder="1190" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page Invoice</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -982,13 +982,13 @@
                 </field>
                 <field id="provider" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Provider</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\InvoiceProviders</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\InvoiceProviders</source_model>
                 </field>
                 <field id="payolution_terms" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="22">
                     <label>payolution terms</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[
-                                Consumer must accept payolution terms during the checkout process. <a href="https://guides.wirecard.at/payment_methods:payolution:start" target="_blank">More information.</a>
+                                Consumer must accept payolution terms during the checkout process. <a href="https://guides.wirecard.com/payment_methods:payolution:start" target="_blank">More information.</a>
                             ]]></comment>
                 </field>
                 <field id="payolution_mid" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="24">
@@ -1036,7 +1036,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -1059,8 +1059,8 @@
 
             </group>
 
-            <group id="wirecard_checkoutpage_invoiceb2b" translate="label" type="text" sortOrder="1200" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page Invoice B2B</label>
+            <group id="qenta_checkoutpage_invoiceb2b" translate="label" type="text" sortOrder="1200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page Invoice B2B</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -1072,7 +1072,7 @@
                     <label>payolution terms</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[
-                                Consumer must accept payolution terms during the checkout process. <a href="https://guides.wirecard.at/payment_methods:payolution:start" target="_blank">More information.</a>
+                                Consumer must accept payolution terms during the checkout process. <a href="https://guides.wirecard.com/payment_methods:payolution:start" target="_blank">More information.</a>
                             ]]></comment>
                 </field>
                 <field id="payolution_mid" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="24">
@@ -1109,7 +1109,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -1131,8 +1131,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_installment" translate="label" type="text" sortOrder="1210" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page Installment</label>
+            <group id="qenta_checkoutpage_installment" translate="label" type="text" sortOrder="1210" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page Installment</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -1142,13 +1142,13 @@
                 </field>
                 <field id="provider" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Provider</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\InstallmentProviders</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\InstallmentProviders</source_model>
                 </field>
                 <field id="payolution_terms" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="22">
                     <label>payolution terms</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[
-                                Consumer must accept payolution terms during the checkout process. <a href="https://guides.wirecard.at/payment_methods:payolution:start" target="_blank">More information.</a>
+                                Consumer must accept payolution terms during the checkout process. <a href="https://guides.wirecard.com/payment_methods:payolution:start" target="_blank">More information.</a>
                             ]]></comment>
                 </field>
                 <field id="payolution_mid" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="24">
@@ -1196,7 +1196,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -1218,8 +1218,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_paypal" translate="label" type="text" sortOrder="1220" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page PayPal</label>
+            <group id="qenta_checkoutpage_paypal" translate="label" type="text" sortOrder="1220" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page PayPal</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -1245,7 +1245,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -1259,16 +1259,16 @@
                 </field>
                 <field id="txident" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Transaction identifier</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\Txident</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\Txident</source_model>
                     <comment><![CDATA[
                         This parameter defines whether a transaction is a single (one-off) transaction or an initial transaction followed by many subsequent transactions (e.g. for subscription models).
-                        <a href="https://guides.wirecard.at/request_parameters#transactionidentifier" target="_blank">More information.</a>
+                        <a href="https://guides.wirecard.com/request_parameters#transactionidentifier" target="_blank">More information.</a>
                     ]]></comment>
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_paysafecard" translate="label" type="text" sortOrder="1230" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page paysafecard</label>
+            <group id="qenta_checkoutpage_paysafecard" translate="label" type="text" sortOrder="1230" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page paysafecard</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -1294,7 +1294,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -1308,8 +1308,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_quick" translate="label" type="text" sortOrder="1240" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page @Quick</label>
+            <group id="qenta_checkoutpage_quick" translate="label" type="text" sortOrder="1240" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page @Quick</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -1335,7 +1335,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -1349,8 +1349,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_skrillwallet" translate="label" type="text" sortOrder="1250" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page Skrill Digital Wallet</label>
+            <group id="qenta_checkoutpage_skrillwallet" translate="label" type="text" sortOrder="1250" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page Skrill Digital Wallet</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -1376,7 +1376,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -1390,8 +1390,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_sepa" translate="label" type="text" sortOrder="1260" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page SEPA Direct Debit</label>
+            <group id="qenta_checkoutpage_sepa" translate="label" type="text" sortOrder="1260" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page SEPA Direct Debit</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -1417,7 +1417,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -1431,16 +1431,16 @@
                 </field>
                 <field id="txident" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Transaction identifier</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\Txident</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\Txident</source_model>
                     <comment><![CDATA[
                         With this parameter you can define whether a transaction is a single (one-off) transaction or an initial transaction followed by many subsequent ones (e.g. for subscription models).
-                        <a href="https://guides.wirecard.at/request_parameters#transactionidentifier" target="_blank">More information.</a>
+                        <a href="https://guides.wirecard.com/request_parameters#transactionidentifier" target="_blank">More information.</a>
                     ]]></comment>
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_paybox" translate="label" type="text" sortOrder="1280" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page paybox</label>
+            <group id="qenta_checkoutpage_paybox" translate="label" type="text" sortOrder="1280" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page paybox</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -1466,7 +1466,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>
@@ -1480,8 +1480,8 @@
                 </field>
             </group>
 
-            <group id="wirecard_checkoutpage_voucher" translate="label" type="text" sortOrder="1290" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Wirecard Checkout Page My Voucher</label>
+            <group id="qenta_checkoutpage_voucher" translate="label" type="text" sortOrder="1290" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page My Voucher</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -1507,7 +1507,7 @@
                 </field>
                 <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Display mode</label>
-                    <source_model>Wirecard\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort order</label>

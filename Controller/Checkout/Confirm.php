@@ -2,8 +2,8 @@
 /**
  * Shop System Plugins - Terms of Use
  *
- * The plugins offered are provided free of charge by Wirecard Central Eastern Europe GmbH
- * (abbreviated to Wirecard CEE) and are explicitly not part of the Wirecard CEE range of
+ * The plugins offered are provided free of charge by Qenta Payment CEE GmbH
+ * (abbreviated to Qenta CEE) and are explicitly not part of the Qenta CEE range of
  * products and services.
  *
  * They have been tested and approved for full functionality in the standard configuration
@@ -11,15 +11,15 @@
  * License Version 2 (GPLv2) and can be used, developed and passed on to third parties under
  * the same terms.
  *
- * However, Wirecard CEE does not provide any guarantee or accept any liability for any errors
+ * However, Qenta CEE does not provide any guarantee or accept any liability for any errors
  * occurring when used in an enhanced, customized shop system configuration.
  *
  * Operation in an enhanced, customized configuration is at your own risk and requires a
  * comprehensive test phase by the user of the plugin.
  *
- * Customers use the plugins at their own risk. Wirecard CEE does not guarantee their full
- * functionality neither does Wirecard CEE assume liability for any disadvantages related to
- * the use of the plugins. Additionally, Wirecard CEE does not guarantee the full functionality
+ * Customers use the plugins at their own risk. Qenta CEE does not guarantee their full
+ * functionality neither does Qenta CEE assume liability for any disadvantages related to
+ * the use of the plugins. Additionally, Qenta CEE does not guarantee the full functionality
  * for customized shop systems or installed plugins of other vendors of plugins within the same
  * shop system.
  *
@@ -30,7 +30,7 @@
  * Please do not use the plugin if you do not agree to these terms of use!
  */
 
-namespace Wirecard\CheckoutPage\Controller\Checkout;
+namespace Qenta\CheckoutPage\Controller\Checkout;
 
 use Magento\Checkout\Model\Cart as CheckoutCart;
 use Magento\Framework\Exception\InputException;
@@ -44,7 +44,7 @@ class Confirm extends \Magento\Framework\App\Action\Action
     protected $_request;
 
     /**
-     * @var \Wirecard\CheckoutPage\Helper\Data
+     * @var \Qenta\CheckoutPage\Helper\Data
      */
     protected $_dataHelper;
 
@@ -69,26 +69,26 @@ class Confirm extends \Magento\Framework\App\Action\Action
     protected $_quoteManagement;
 
     /**
-     * @var \Wirecard\CheckoutPage\Model\OrderManagement
+     * @var \Qenta\CheckoutPage\Model\OrderManagement
      */
     protected $_orderManagement;
 
     /**
      * @param \Magento\Framework\App\Action\Context $context
-     * @param \Wirecard\CheckoutPage\Helper\Data $dataHelper
+     * @param \Qenta\CheckoutPage\Helper\Data $dataHelper
      * @param CheckoutCart $cart
      * @param \Psr\Log\LoggerInterface $logger
      * @param \Magento\Quote\Api\CartManagementInterface $quoteManagement
-     * @param \Wirecard\CheckoutPage\Model\OrderManagement $orderManagement
+     * @param \Qenta\CheckoutPage\Model\OrderManagement $orderManagement
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
-        \Wirecard\CheckoutPage\Helper\Data $dataHelper,
+        \Qenta\CheckoutPage\Helper\Data $dataHelper,
         CheckoutCart $cart,
         \Psr\Log\LoggerInterface $logger,
         \Magento\Quote\Api\CartManagementInterface $quoteManagement,
-        \Wirecard\CheckoutPage\Model\OrderManagement $orderManagement
+        \Qenta\CheckoutPage\Model\OrderManagement $orderManagement
     ) {
         parent::__construct($context);
         $this->_dataHelper      = $dataHelper;
@@ -105,7 +105,7 @@ class Confirm extends \Magento\Framework\App\Action\Action
 
         try {
 
-            $return = \WirecardCEE_QPay_ReturnFactory::getInstance($this->_request->getPost()->toArray(),
+            $return = \QentaCEE_QPay_ReturnFactory::getInstance($this->_request->getPost()->toArray(),
                 $this->_dataHelper->getConfigData('basicdata/secret'));
 
             if (!$return->validate()) {
@@ -122,12 +122,12 @@ class Confirm extends \Magento\Framework\App\Action\Action
 
             $this->_orderManagement->processOrder($return);
 
-            die( \WirecardCEE_QPay_ReturnFactory::generateConfirmResponseString() );
+            die( \QentaCEE_QPay_ReturnFactory::generateConfirmResponseString() );
         } catch (\Exception $e) {
             $this->_logger->debug(__METHOD__ . ':' . $e->getMessage());
             $this->_logger->debug(__METHOD__ . ':' . $e->getTraceAsString());
 
-            die( \WirecardCEE_QPay_ReturnFactory::generateConfirmResponseString($e->getMessage()) );
+            die( \QentaCEE_QPay_ReturnFactory::generateConfirmResponseString($e->getMessage()) );
         }
     }
 }

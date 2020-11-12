@@ -2,8 +2,8 @@
 /**
  * Shop System Plugins - Terms of Use
  *
- * The plugins offered are provided free of charge by Wirecard Central Eastern Europe GmbH
- * (abbreviated to Wirecard CEE) and are explicitly not part of the Wirecard CEE range of
+ * The plugins offered are provided free of charge by Qenta Payment CEE GmbH
+ * (abbreviated to Qenta CEE) and are explicitly not part of the Qenta CEE range of
  * products and services.
  *
  * They have been tested and approved for full functionality in the standard configuration
@@ -11,15 +11,15 @@
  * License Version 2 (GPLv2) and can be used, developed and passed on to third parties under
  * the same terms.
  *
- * However, Wirecard CEE does not provide any guarantee or accept any liability for any errors
+ * However, Qenta CEE does not provide any guarantee or accept any liability for any errors
  * occurring when used in an enhanced, customized shop system configuration.
  *
  * Operation in an enhanced, customized configuration is at your own risk and requires a
  * comprehensive test phase by the user of the plugin.
  *
- * Customers use the plugins at their own risk. Wirecard CEE does not guarantee their full
- * functionality neither does Wirecard CEE assume liability for any disadvantages related to
- * the use of the plugins. Additionally, Wirecard CEE does not guarantee the full functionality
+ * Customers use the plugins at their own risk. Qenta CEE does not guarantee their full
+ * functionality neither does Qenta CEE assume liability for any disadvantages related to
+ * the use of the plugins. Additionally, Qenta CEE does not guarantee the full functionality
  * for customized shop systems or installed plugins of other vendors of plugins within the same
  * shop system.
  *
@@ -55,14 +55,14 @@
             <!-- ko template: getTemplate() --><!-- /ko -->
             <!--/ko-->
         </div>
-        <form data-bind="attr: {id: getCode() + '-form'}" class="form form-wirecard-checkoutpage-ideal-form" data-role="form-wirecard-checkoutpage-ideal-form">
+        <form data-bind="attr: {id: getCode() + '-form'}" class="form form-qenta-checkoutpage-ideal-form" data-role="form-qenta-checkoutpage-ideal-form">
             <fieldset class="fieldset payment method" data-bind='attr: {id: "payment_form_" + getCode()}'>
                 <div class="field required">
-                    <label for="wirecard_checkoutpage_idealbank" class="label">
+                    <label for="qenta_checkoutpage_idealbank" class="label">
                         <span><!-- ko i18n: 'Choose your bank...'--><!-- /ko --></span>
                     </label>
                     <div class="control">
-                        <select id="wirecard_checkoutpage_idealbank"
+                        <select id="qenta_checkoutpage_idealbank"
                                name="payment[idealbank]"
                                data-validate="{required:true}"
                                data-bind="options: getFinancialInstitutions(), optionsValue: 'value', optionsText: 'label',
@@ -80,14 +80,14 @@
         </div>
 
         <input type="hidden" data-bind="attr: {id: getCode() + '-back-url'}, value: getBackUrl()" />
-        <iframe width="0" height="0" data-bind="attr: {id: getCode() + '-iframe'}" frameborder="0" name="wirecard_checkoutpage_iframe" style="display:none;width:100%;"></iframe>
+        <iframe width="0" height="0" data-bind="attr: {id: getCode() + '-iframe'}" frameborder="0" name="qenta_checkoutpage_iframe" style="display:none;width:100%;"></iframe>
 
         <div class="actions-toolbar">
             <div class="primary">
                 <button class="action primary checkout"
                         type="submit"
                         data-bind="
-                        click: placeWirecardOrder,
+                        click: placeQentaOrder,
                         attr: {title: $t('Order with obligation to pay'), id: getCode() + '-button'},
                         css: {disabled: !isPlaceOrderActionAllowed()},
                         enable: (getCode() == isChecked())
