@@ -11,11 +11,7 @@
         "docs": "https://guides.wirecard.com"
     },
     "require": {
-        "php": "~7.3.0",
-        "magento/magento-composer-installer": "*",
-        "magento/module-sales": "*",
-        "magento/module-payment": "*",
-        "magento/module-quote": "*",
+        "php": "~7.3.0|~7.4.0",
         "qenta/checkout-client-library": "4.0.0"
     },
     "autoload": {
