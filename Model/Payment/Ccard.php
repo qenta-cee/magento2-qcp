@@ -40,7 +40,7 @@ class Ccard extends AbstractPayment
     const CODE = 'qenta_checkoutpage_ccard';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::CCARD;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::CCARD;
 
     protected $_logo = 'cc.png';
 

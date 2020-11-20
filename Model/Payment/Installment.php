@@ -39,7 +39,7 @@ class Installment extends AbstractPayment
     const CODE = 'qenta_checkoutpage_installment';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::INSTALLMENT;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::INSTALLMENT;
 
     protected $_autoDepositAllowed = false;
 

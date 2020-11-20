@@ -143,7 +143,7 @@ class ConfigProvider implements ConfigProviderInterface
          * EPS financial institutions
          */
 
-        $fis = \QentaCEE_QPay_PaymentType::getFinancialInstitutions(\QentaCEE_QPay_PaymentType::EPS);
+        $fis = \QentaCEE\QPay\PaymentType::getFinancialInstitutions(\QentaCEE\QPay\PaymentType::EPS);
 
         $epsFinancialInstitutions = [];
         foreach ($fis as $k => $v) {
@@ -157,7 +157,7 @@ class ConfigProvider implements ConfigProviderInterface
          * IDEAL financial institutions
          */
 
-        $fis = \QentaCEE_QPay_PaymentType::getFinancialInstitutions(\QentaCEE_QPay_PaymentType::IDL);
+        $fis = \QentaCEE\QPay\PaymentType::getFinancialInstitutions(\QentaCEE\QPay\PaymentType::IDL);
 
         $idealFinancialInstitutions = [];
         foreach ($fis as $k => $v) {

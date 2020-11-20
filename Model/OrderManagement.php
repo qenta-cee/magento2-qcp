@@ -125,12 +125,12 @@ class OrderManagement
     /**
      * Process order, create/update/cancel/delete order depending on config and order state
      *
-     * @param \QentaCEE_Stdlib_Return_ReturnAbstract $return
+     * @param \QentaCEE\Stdlib\Return\ReturnAbstract $return
      *
      * @return Order|null
      * @throws \Exception
      */
-    public function processOrder(\QentaCEE_Stdlib_Return_ReturnAbstract $return)
+    public function processOrder(\QentaCEE\Stdlib\Return\ReturnAbstract $return)
     {
         $quoteId = $return->mage_quoteId;
         /** @var Quote $quote */
@@ -152,8 +152,8 @@ class OrderManagement
             }
 
             switch ($return->getPaymentState()) {
-                case \QentaCEE_QPay_ReturnFactory::STATE_SUCCESS:
-                case \QentaCEE_QPay_ReturnFactory::STATE_PENDING:
+                case \QentaCEE\QPay\ReturnFactory::STATE_SUCCESS:
+                case \QentaCEE\QPay\ReturnFactory::STATE_PENDING:
                     /* after a pending payment, order might have been processed manually */
                     /* just save transaction but dont update order */
                     if ($this->isOrderProcessed($order)) {
@@ -163,8 +163,8 @@ class OrderManagement
                     }
                     break;
 
-                case \QentaCEE_QPay_ReturnFactory::STATE_CANCEL:
-                case \QentaCEE_QPay_ReturnFactory::STATE_FAILURE:
+                case \QentaCEE\QPay\ReturnFactory::STATE_CANCEL:
+                case \QentaCEE\QPay\ReturnFactory::STATE_FAILURE:
                     // ev. set review state
                     //$order->setState(\Magento\Sales\Model\Order::STATE_PAYMENT_REVIEW);
                     if (!$this->isOrderProcessed($order)) {
@@ -176,8 +176,8 @@ class OrderManagement
         } else if ($return->mage_orderCreation == 'after') {
             switch ($return->getPaymentState()) {
 
-                case \QentaCEE_QPay_ReturnFactory::STATE_SUCCESS:
-                case \QentaCEE_QPay_ReturnFactory::STATE_PENDING:
+                case \QentaCEE\QPay\ReturnFactory::STATE_SUCCESS:
+                case \QentaCEE\QPay\ReturnFactory::STATE_PENDING:
                     $fraudDetected = false;
                     if (!$orderExists) {
                         $order         = $this->submitOrder($quote);
@@ -194,8 +194,8 @@ class OrderManagement
                     }
                     break;
 
-                case \QentaCEE_QPay_ReturnFactory::STATE_CANCEL:
-                case \QentaCEE_QPay_ReturnFactory::STATE_FAILURE:
+                case \QentaCEE\QPay\ReturnFactory::STATE_CANCEL:
+                case \QentaCEE\QPay\ReturnFactory::STATE_FAILURE:
                     if ($orderExists && !$this->isOrderProcessed($order)) {
                         $this->deleteOrder($order);
                     }
@@ -255,7 +255,7 @@ class OrderManagement
      * Keep the failed order
      *
      * @param \Magento\Sales\Model\Order $order
-     * @param \QentaCEE_Stdlib_Return_ReturnAbstract $return
+     * @param \QentaCEE\Stdlib\Return\ReturnAbstract $return
      *
      * @throws \Magento\Framework\Exception\LocalizedException
      */
@@ -302,7 +302,7 @@ class OrderManagement
      * Confirm the payment of an order
      *
      * @param \Magento\Sales\Model\Order $order
-     * @param \QentaCEE_Stdlib_Return_ReturnAbstract $return
+     * @param \QentaCEE\Stdlib\Return\ReturnAbstract $return
      * @param bool $fraudDetected
      *
      * @return Order
@@ -332,12 +332,12 @@ class OrderManagement
 
         $doCapture = false;
         if (!$this->isOrderProcessed($order)) {
-            if ($return->getPaymentState() == \QentaCEE_QPay_ReturnFactory::STATE_PENDING) {
-                /** @var \QentaCEE_QPay_Return_Pending $return */
+            if ($return->getPaymentState() == \QentaCEE\QPay\ReturnFactory::STATE_PENDING) {
+                /** @var \QentaCEE\QPay\Returns\Pending $return */
                 $order->setState(\Magento\Sales\Model\Order::STATE_PENDING_PAYMENT);
                 $message = $this->_dataHelper->__('The payment authorization is pending.');
             } else {
-                /** @var \QentaCEE_QPay_Return_Success $return */
+                /** @var \QentaCEE\QPay\Returns\Success $return */
                 $order->setState(\Magento\Sales\Model\Order::STATE_PROCESSING);
                 $order->setStatus(\Magento\Sales\Model\Order::STATE_PROCESSING);
                 $message = $this->_dataHelper->__('The payment has been successfully completed.');
@@ -357,7 +357,7 @@ class OrderManagement
 
                         $orderDetails = $paymentInstance->getOrderDetails($payment->getAdditionalInformation('orderNumber'));
                         foreach ($orderDetails->getOrder()->getPayments() as $wdPayment) {
-                            /** @var \QentaCEE_QPay_Response_Toolkit_Order_Payment $wdPayment */
+                            /** @var \QentaCEE\QPay\Response\Toolkit\Order\Payment $wdPayment */
 
                             $this->_logger->debug(__METHOD__ . ':payment-state:' . $wdPayment->getState() . ' allowed operations:' . implode(',',
                                     $wdPayment->getOperationsAllowed()));
@@ -404,7 +404,7 @@ class OrderManagement
      * @param $type
      * @param $message
      * @param Order $order
-     * @param \QentaCEE_Stdlib_Return_ReturnAbstract $return
+     * @param \QentaCEE\Stdlib\Return\ReturnAbstract $return
      *
      * @return \Magento\Sales\Api\Data\TransactionInterface|null
      */
@@ -424,7 +424,7 @@ class OrderManagement
         $payment = $order->getPayment();
 
         $tid = '';
-        if ($return instanceof \QentaCEE_Stdlib_Return_Success) {
+        if ($return instanceof \QentaCEE\Stdlib\Returns\Success) {
             $tid = $return->getGatewayReferenceNumber();
         }
         /* generate dummy GwRef for pending payments */

@@ -39,7 +39,7 @@ class Poli extends AbstractPayment
     const CODE = 'qenta_checkoutpage_poli';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::POLI;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::POLI;
 
     protected $_logo = 'poli.png';
 }

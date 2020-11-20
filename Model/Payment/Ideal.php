@@ -39,7 +39,7 @@ class Ideal extends AbstractPayment
     const CODE = 'qenta_checkoutpage_ideal';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::IDL;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::IDL;
 
     protected $_logo = 'ideal.png';
 

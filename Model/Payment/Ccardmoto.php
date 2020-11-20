@@ -40,7 +40,7 @@ class Ccardmoto extends AbstractPayment
     const CODE = 'qenta_checkoutpage_ccardmoto';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::CCARD_MOTO;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::CCARD_MOTO;
 
     protected $_logo = 'ccMoto.png';
 

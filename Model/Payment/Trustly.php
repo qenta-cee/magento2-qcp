@@ -39,7 +39,7 @@ class Trustly extends AbstractPayment
     const CODE = 'qenta_checkoutpage_trustly';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::TRUSTLY;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::TRUSTLY;
 
     protected $_logo = 'trustly.png';
 }

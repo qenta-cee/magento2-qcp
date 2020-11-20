@@ -39,14 +39,14 @@ class Sepa extends AbstractPayment
     const CODE = 'qenta_checkoutpage_sepa';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::SEPADD;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::SEPADD;
 
     protected $_logo = 'sepadd.png';
 
     /**
      * set payment specific request data
      *
-     * @param \QentaCEE_QPay_FrontendClient $init
+     * @param \QentaCEE\QPay\FrontendClient $init
      * @param \Magento\Checkout\Model\Cart $cart
      */
     protected function setAdditionalRequestData($init, $cart)

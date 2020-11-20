@@ -58,7 +58,7 @@ class FundTransfer
     /**
      * @param \Magento\Framework\DataObject $postObject
      *
-     * @return \QentaCEE_QPay_Response_Toolkit_TransferFund
+     * @return \QentaCEE\QPay\Response\Toolkit\TransferFund
      * @throws \Exception
      */
     public function sendrequest($postObject)
@@ -80,8 +80,8 @@ class FundTransfer
         }
 
         switch ($type) {
-            case \QentaCEE_QPay_ToolkitClient::$TRANSFER_FUND_TYPE_EXISTING:
-                /** @var \QentaCEE_QPay_Request_Backend_TransferFund_Existing $client */
+            case \QentaCEE\QPay\ToolkitClient::$TRANSFER_FUND_TYPE_EXISTING:
+                /** @var \QentaCEE\QPay\Request\Backend\TransferFund\Existing $client */
                 if (strlen($postObject['customerStatement'])) {
                     $client->setCustomerStatement($postObject['customerStatement']);
                 }
@@ -90,20 +90,20 @@ class FundTransfer
                     $postObject['sourceOrderNumber']);
                 break;
 
-            case \QentaCEE_QPay_ToolkitClient::$TRANSFER_FUND_TYPE_SKIRLLWALLET:
-                /** @var \QentaCEE_QPay_Request_Backend_TransferFund_SkrillWallet $client */
+            case \QentaCEE\QPay\ToolkitClient::$TRANSFER_FUND_TYPE_SKIRLLWALLET:
+                /** @var \QentaCEE\QPay\Request\Backend\TransferFund\SkrillWallet $client */
                 $ret = $client->send($postObject['amount'], $postObject['currency'], $postObject['orderDescription'],
                     $postObject['customerStatement'], $postObject['consumerEmail']);
                 break;
 
-            case \QentaCEE_QPay_ToolkitClient::$TRANSFER_FUND_TYPE_MONETA:
-                /** @var \QentaCEE_QPay_Request_Backend_TransferFund_Moneta $client */
+            case \QentaCEE\QPay\ToolkitClient::$TRANSFER_FUND_TYPE_MONETA:
+                /** @var \QentaCEE\QPay\Request\Backend\TransferFund\Moneta $client */
                 $ret = $client->send($postObject['amount'], $postObject['currency'], $postObject['orderDescription'],
                     $postObject['customerStatement'], $postObject['consumerWalletId']);
                 break;
 
-            case \QentaCEE_QPay_ToolkitClient::$TRANSFER_FUND_TYPE_SEPACT:
-                /** @var \QentaCEE_QPay_Request_Backend_TransferFund_SepaCT $client */
+            case \QentaCEE\QPay\ToolkitClient::$TRANSFER_FUND_TYPE_SEPACT:
+                /** @var \QentaCEE\QPay\Request\Backend\TransferFund\SepaCT $client */
                 $ret = $client->send($postObject['amount'], $postObject['currency'], $postObject['orderDescription'],
                     $postObject['bankAccountOwner'],
                     $postObject['bankBic'], $postObject['bankAccountIban']);

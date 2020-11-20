@@ -39,7 +39,7 @@ class Maestro extends AbstractPayment
     const CODE = 'qenta_checkoutpage_maestro';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::MAESTRO;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::MAESTRO;
 
     protected $_logo = 'cc.png';
 }

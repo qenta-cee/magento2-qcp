@@ -39,7 +39,7 @@ class Epaybg extends AbstractPayment
     const CODE = 'qenta_checkoutpage_epaybg';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::EPAYBG;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::EPAYBG;
 
     protected $_logo = 'epaybg.png';
 }

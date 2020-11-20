@@ -39,14 +39,14 @@ class Paypal extends AbstractPayment
     const CODE = 'qenta_checkoutpage_paypal';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::PAYPAL;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::PAYPAL;
 
     protected $_logo = 'paypal.png';
 
     /**
      * set payment specific request data
      *
-     * @param \QentaCEE_QPay_FrontendClient $init
+     * @param \QentaCEE\QPay\FrontendClient $init
      * @param \Magento\Checkout\Model\Cart $cart
      */
     protected function setAdditionalRequestData($init, $cart)

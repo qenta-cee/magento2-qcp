@@ -39,7 +39,7 @@ class Paybox extends AbstractPayment
     const CODE = 'qenta_checkoutpage_paybox';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::PBX;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::PBX;
 
     protected $_logo = 'paybox.png';
 }

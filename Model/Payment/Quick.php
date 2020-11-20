@@ -39,7 +39,7 @@ class Quick extends AbstractPayment
     const CODE = 'qenta_checkoutpage_quick';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::QUICK;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::QUICK;
 
     protected $_logo = 'quick.png';
 }

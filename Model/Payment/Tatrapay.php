@@ -39,7 +39,7 @@ class Tatrapay extends AbstractPayment
     const CODE = 'qenta_checkoutpage_tatrapay';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::TATRAPAY;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::TATRAPAY;
 
     protected $_logo = 'tatrapay.png';
 }

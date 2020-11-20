@@ -203,11 +203,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * return client for sending backend operations
      *
-     * @return \QentaCEE_QPay_ToolkitClient
+     * @return \QentaCEE\QPay\ToolkitClient
      */
     public function getBackendClient()
     {
-        return new \QentaCEE_QPay_ToolkitClient($this->getBackendConfigArray());
+        return new \QentaCEE\QPay\ToolkitClient($this->getBackendConfigArray());
     }
 
     /**
@@ -219,7 +219,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
         $versionInfo = $this->getVersionInfo();
 
-        return \QentaCEE_QPay_FrontendClient::generatePluginVersion($versionInfo['product'],
+        return \QentaCEE\QPay\FrontendClient::generatePluginVersion($versionInfo['product'],
             $versionInfo['productVersion'], $versionInfo['pluginName'], $versionInfo['pluginVersion']);
     }
 

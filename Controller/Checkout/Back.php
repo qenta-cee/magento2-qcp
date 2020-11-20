@@ -138,7 +138,7 @@ class Back extends \Magento\Framework\App\Action\Action
                 throw new \Exception('Not a post request');
             }
 
-            $return = \QentaCEE_QPay_ReturnFactory::getInstance($this->_request->getPost()->toArray(),
+            $return = \QentaCEE\QPay\ReturnFactory::getInstance($this->_request->getPost()->toArray(),
                 $this->_dataHelper->getConfigData('basicdata/secret'));
 
             if (!$return->validate()) {
@@ -174,7 +174,7 @@ class Back extends \Magento\Framework\App\Action\Action
             if ($return->mage_orderCreation == 'after') {
 
                 if (!$orderExists &&
-                    ( $return->getPaymentState() == \QentaCEE_QPay_ReturnFactory::STATE_SUCCESS || $return->getPaymentState() == \QentaCEE_QPay_ReturnFactory::STATE_PENDING )
+                    ( $return->getPaymentState() == \QentaCEE\QPay\ReturnFactory::STATE_SUCCESS || $return->getPaymentState() == \QentaCEE\QPay\ReturnFactory::STATE_PENDING )
                 ) {
                     $this->_logger->debug(__METHOD__ . ':order not processed via confirm server2server request, check your packetfilter!');
                     $order = $this->_orderManagement->processOrder($return);
@@ -182,10 +182,10 @@ class Back extends \Magento\Framework\App\Action\Action
             }
 
             switch ($return->getPaymentState()) {
-                case \QentaCEE_QPay_ReturnFactory::STATE_SUCCESS:
-                case \QentaCEE_QPay_ReturnFactory::STATE_PENDING:
+                case \QentaCEE\QPay\ReturnFactory::STATE_SUCCESS:
+                case \QentaCEE\QPay\ReturnFactory::STATE_PENDING:
 
-                    if ($return->getPaymentState() == \QentaCEE_QPay_ReturnFactory::STATE_PENDING) {
+                    if ($return->getPaymentState() == \QentaCEE\QPay\ReturnFactory::STATE_PENDING) {
                         $this->messageManager->addNoticeMessage($this->_dataHelper->__('Your order will be processed as soon as we receive the payment confirmation from your bank.'));
                     }
 
@@ -199,8 +199,8 @@ class Back extends \Magento\Framework\App\Action\Action
                     $redirectTo = 'checkout/onepage/success';
                     break;
 
-                case \QentaCEE_QPay_ReturnFactory::STATE_CANCEL:
-                    /** @var \QentaCEE_QPay_Return_Cancel $return */
+                case \QentaCEE\QPay\ReturnFactory::STATE_CANCEL:
+                    /** @var \QentaCEE\QPay\Returns\Cancel $return */
                     $this->messageManager->addNoticeMessage($this->_dataHelper->__('You have canceled the payment process!'));
                     if ($return->mage_orderCreation == 'before') {
                         $quote = $this->_orderManagement->reOrder($return->mage_quoteId);
@@ -208,8 +208,8 @@ class Back extends \Magento\Framework\App\Action\Action
                     }
                     break;
 
-                case \QentaCEE_QPay_ReturnFactory::STATE_FAILURE:
-                    /** @var \QentaCEE_QPay_Return_Failure $return */
+                case \QentaCEE\QPay\ReturnFactory::STATE_FAILURE:
+                    /** @var \QentaCEE\QPay\Returns\Failure $return */
                     $msg = $return->getErrors()->getConsumerMessage();
                     if (!strlen($msg)) {
                         $msg = $defaultErrorMessage;

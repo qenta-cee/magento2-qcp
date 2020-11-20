@@ -39,7 +39,7 @@ class Moneta extends AbstractPayment
     const CODE = 'qenta_checkoutpage_moneta';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::MONETA;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::MONETA;
 
     protected $_logo = 'moneta.png';
 }

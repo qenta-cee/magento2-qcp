@@ -39,7 +39,7 @@ class Eps extends AbstractPayment
     const CODE = 'qenta_checkoutpage_eps';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::EPS;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::EPS;
 
     protected $_logo = 'eps.png';
 

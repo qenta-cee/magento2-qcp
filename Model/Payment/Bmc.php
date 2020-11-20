@@ -40,7 +40,7 @@ class Bmc extends AbstractPayment
     const CODE = 'qenta_checkoutpage_bmc';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::BMC;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::BMC;
 
     protected $_logo = 'bmc.png';
 }

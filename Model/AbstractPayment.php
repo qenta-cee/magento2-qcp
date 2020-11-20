@@ -44,7 +44,7 @@ abstract class AbstractPayment extends AbstractMethod
 {
     const CODE = 'qenta_checkoutpage_select';
     protected $_code = self::CODE;
-    protected $_paymentMethod = \QentaCEE_QPay_PaymentType::SELECT;
+    protected $_paymentMethod = \QentaCEE\QPay\PaymentType::SELECT;
     protected $_logo = false;
     protected $_isGateway = true;
     protected $_canCapture = true;
@@ -131,14 +131,14 @@ abstract class AbstractPayment extends AbstractMethod
      * @param $urls
      * @param \Magento\Framework\DataObject $data
      *
-     * @return \QentaCEE_QPay_Response_Initiation
+     * @return \QentaCEE\QPay\Response\Initiation
      * @throws \Exception
      */
     public function initPaymentByCart(CheckoutCart $cart, $urls, \Magento\Framework\DataObject $data)
     {
         $quote = $cart->getQuote();
 
-        $init = new \QentaCEE_QPay_FrontendClient($this->_dataHelper->getConfigArray());
+        $init = new \QentaCEE\QPay\FrontendClient($this->_dataHelper->getConfigArray());
         $init->setPluginVersion($this->_dataHelper->getPluginVersion());
         $init->setConfirmUrl($urls['confirm']);
 
@@ -162,7 +162,7 @@ abstract class AbstractPayment extends AbstractMethod
              ->setConsumerData($this->_getConsumerData($quote))
              ->setMaxRetries($this->_dataHelper->getConfigData('options/maxretries'));
 
-        if ($this->_paymentMethod == \QentaCEE_QMore_PaymentType::MASTERPASS) {
+        if ($this->_paymentMethod == \QentaCEE\QMore\PaymentType::MASTERPASS) {
             $init->setShippingProfile('NO_SHIPPING');
         }
 
@@ -173,12 +173,12 @@ abstract class AbstractPayment extends AbstractMethod
         $init->generateCustomerStatement($this->_dataHelper->getConfigData('options/shopname'), sprintf('%010s', substr($orderId, -10)));
 
         if ($this->_dataHelper->getConfigData('options/sendbasketinformation') || $this->forceSendingBasket()) {
-            $basket = new \QentaCEE_Stdlib_Basket();
+            $basket = new \QentaCEE\Stdlib\Basket();
 
 	        foreach ( $quote->getAllVisibleItems() as $item ) {
 		        /** @var \Magento\Quote\Model\Quote\Item $item */
 
-		        $bitem = new \QentaCEE_Stdlib_Basket_Item();
+		        $bitem = new \QentaCEE\Stdlib\Basket\Item();
 		        $bitem->setDescription( $item->getProduct()->getName() );
 		        $bitem->setName( $item->getProduct()->getName() );
 		        $bitem->setArticleNumber( $item->getSku() );
@@ -192,7 +192,7 @@ abstract class AbstractPayment extends AbstractMethod
 	        }
 
 	        if($quote->getShippingAddress()->getShippingAmount() != 0) {
-		        $bitem = new \QentaCEE_Stdlib_Basket_Item();
+		        $bitem = new \QentaCEE\Stdlib\Basket\Item();
 		        $bitem->setArticleNumber( 'shipping' );
 
 		        $bitem->setUnitGrossAmount(
@@ -252,7 +252,7 @@ abstract class AbstractPayment extends AbstractMethod
         }
 
         if ($this->_dataHelper->getConfigData('options/mobiledetect')) {
-            $detect = new \QentaCEE_QPay_MobileDetect();
+            $detect = new \QentaCEE\QPay\MobileDetect();
 
             if ($detect->isTablet()) {
                 $layout = 'TABLET';
@@ -284,7 +284,7 @@ abstract class AbstractPayment extends AbstractMethod
             throw new $e;
         }
 
-        if ($initResponse->getStatus() == \QentaCEE_QPay_Response_Initiation::STATE_FAILURE) {
+        if ($initResponse->getStatus() == \QentaCEE\QPay\Response\Initiation::STATE_FAILURE) {
             $error   = $initResponse->getError();
             $message = $this->_dataHelper->__('An error occurred during the payment process');
             if ($error !== false) {
@@ -304,7 +304,7 @@ abstract class AbstractPayment extends AbstractMethod
     /**
      * set payment specific request data
      *
-     * @param \QentaCEE_QPay_FrontendClient $init
+     * @param \QentaCEE\QPay\FrontendClient $init
      * @param CheckoutCart $cart
      */
     protected function setAdditionalRequestData($init, $cart)
@@ -372,11 +372,11 @@ abstract class AbstractPayment extends AbstractMethod
     /**
      * @param Quote $quote
      *
-     * @return \QentaCEE_Stdlib_ConsumerData
+     * @return \QentaCEE\Stdlib\ConsumerData
      */
     protected function _getConsumerData($quote)
     {
-        $consumerData = new \QentaCEE_Stdlib_ConsumerData();
+        $consumerData = new \QentaCEE\Stdlib\ConsumerData();
         $consumerData->setIpAddress($this->_dataHelper->getClientIp());
         $consumerData->setUserAgent($this->_dataHelper->getUserAgent());
 
@@ -415,17 +415,17 @@ abstract class AbstractPayment extends AbstractMethod
      * @param \Magento\Quote\Model\Quote\Address $source
      * @param string $type
      *
-     * @return \QentaCEE_Stdlib_ConsumerData_Address
+     * @return \QentaCEE\Stdlib\ConsumerData\Address
      */
     protected function _getAddress($source, $type = 'billing')
     {
         switch ($type) {
             case 'shipping':
-                $address = new \QentaCEE_Stdlib_ConsumerData_Address(\QentaCEE_Stdlib_ConsumerData_Address::TYPE_SHIPPING);
+                $address = new \QentaCEE\Stdlib\ConsumerData\Address(\QentaCEE\Stdlib\ConsumerData\Address::TYPE_SHIPPING);
                 break;
 
             default:
-                $address = new \QentaCEE_Stdlib_ConsumerData_Address(\QentaCEE_Stdlib_ConsumerData_Address::TYPE_BILLING);
+                $address = new \QentaCEE\Stdlib\ConsumerData\Address(\QentaCEE\Stdlib\ConsumerData\Address::TYPE_BILLING);
                 break;
         }
 
@@ -648,7 +648,7 @@ abstract class AbstractPayment extends AbstractMethod
      */
     public function getDisplayMode()
     {
-        $detectLayout = new \QentaCEE_QPay_MobileDetect();
+        $detectLayout = new \QentaCEE\QPay\MobileDetect();
 
         if ($this->_dataHelper->getConfigData('options/mobiledetect') && $detectLayout->isMobile()) {
             return 'redirect';
@@ -743,7 +743,7 @@ abstract class AbstractPayment extends AbstractMethod
      *
      * @param $orderNumber
      *
-     * @return \QentaCEE_QPay_Response_Toolkit_GetOrderDetails
+     * @return \QentaCEE\QPay\Response\Toolkit\GetOrderDetails
      */
     public function getOrderDetails($orderNumber)
     {
@@ -794,7 +794,7 @@ abstract class AbstractPayment extends AbstractMethod
                     $orderDetails->getOrder()->getOperationsAllowed()));
 
             foreach ($orderDetails->getOrder()->getPayments() as $wdPayment) {
-                /** @var \QentaCEE_QPay_Response_Toolkit_Order_Payment $wdPayment */
+                /** @var \QentaCEE\QPay\Response\Toolkit\Order\Payment $wdPayment */
 
                 $this->_logger->debug(__METHOD__ . ':operations allowed:' . implode(',',
                         $wdPayment->getOperationsAllowed()));
@@ -923,7 +923,7 @@ abstract class AbstractPayment extends AbstractMethod
         $ret           = $backendClient->refundReversal($addInfo['orderNumber'], $addInfo['creditNumber']);
         if ($ret->hasFailed()) {
             $msg = implode(',', array_map(function ($e) {
-                /** @var \QentaCEE_QMore_Error $e */
+                /** @var \QentaCEE\QMore\Error $e */
                 return $e->getConsumerMessage();
             }, $ret->getErrors()));
             $this->_logger->debug(__METHOD__ . ':' . $msg);
@@ -983,7 +983,7 @@ abstract class AbstractPayment extends AbstractMethod
 
         $approveDone = false;
         foreach ($orderDetails->getOrder()->getPayments() as $wdPayment) {
-            /** @var \QentaCEE_QPay_Response_Toolkit_Order_Payment $wdPayment */
+            /** @var \QentaCEE\QPay\Response\Toolkit\Order\Payment $wdPayment */
 
             $this->_logger->debug(__METHOD__ . ':operations allowed:' . implode(',',
                     $wdPayment->getOperationsAllowed()));
@@ -1066,7 +1066,7 @@ abstract class AbstractPayment extends AbstractMethod
 
         } else {
             foreach ($orderDetails->getOrder()->getPayments() as $payment) {
-                /** @var \QentaCEE_QPay_Response_Toolkit_Order_Payment $payment */
+                /** @var \QentaCEE\QPay\Response\Toolkit\Order\Payment $payment */
 
                 if (in_array('DEPOSITREVERSAL', $payment->getOperationsAllowed())) {
                     $log .= " action:DEPOSITREVERSAL APPROVEREVERSAL";

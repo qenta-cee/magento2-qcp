@@ -39,7 +39,7 @@ class Voucher extends AbstractPayment
     const CODE = 'qenta_checkoutpage_voucher';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::VOUCHER;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::VOUCHER;
 
     protected $_logo = 'voucher.png';
 }

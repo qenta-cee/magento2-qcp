@@ -39,7 +39,7 @@ class Paysafecard extends AbstractPayment
     const CODE = 'qenta_checkoutpage_paysafecard';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::PSC;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::PSC;
 
     protected $_logo = 'paysafecard.png';
 }

@@ -39,7 +39,7 @@ class Sofortbanking extends AbstractPayment
     const CODE = 'qenta_checkoutpage_sofortbanking';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::SOFORTUEBERWEISUNG;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::SOFORTUEBERWEISUNG;
 
     protected $_logo = 'sofortbanking.png';
 }

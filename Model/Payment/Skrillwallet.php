@@ -39,7 +39,7 @@ class Skrillwallet extends AbstractPayment
     const CODE = 'qenta_checkoutpage_skrillwallet';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::SKRILLWALLET;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::SKRILLWALLET;
 
     protected $_logo = 'skrillwallet.png';
 }

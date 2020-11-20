@@ -105,7 +105,7 @@ class Select extends AbstractPayment
     /**
      * set payment specific request data
      *
-     * @param \QentaCEE_QPay_FrontendClient $init
+     * @param \QentaCEE\QPay\FrontendClient $init
      * @param \Magento\Checkout\Model\Cart $cart
      */
     protected function setAdditionalRequestData($init, $cart)

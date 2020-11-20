@@ -105,7 +105,7 @@ class Confirm extends \Magento\Framework\App\Action\Action
 
         try {
 
-            $return = \QentaCEE_QPay_ReturnFactory::getInstance($this->_request->getPost()->toArray(),
+            $return = \QentaCEE\QPay\ReturnFactory::getInstance($this->_request->getPost()->toArray(),
                 $this->_dataHelper->getConfigData('basicdata/secret'));
 
             if (!$return->validate()) {
@@ -122,12 +122,12 @@ class Confirm extends \Magento\Framework\App\Action\Action
 
             $this->_orderManagement->processOrder($return);
 
-            die( \QentaCEE_QPay_ReturnFactory::generateConfirmResponseString() );
+            die( \QentaCEE\QPay\ReturnFactory::generateConfirmResponseString() );
         } catch (\Exception $e) {
             $this->_logger->debug(__METHOD__ . ':' . $e->getMessage());
             $this->_logger->debug(__METHOD__ . ':' . $e->getTraceAsString());
 
-            die( \QentaCEE_QPay_ReturnFactory::generateConfirmResponseString($e->getMessage()) );
+            die( \QentaCEE\QPay\ReturnFactory::generateConfirmResponseString($e->getMessage()) );
         }
     }
 }

@@ -39,7 +39,7 @@ class Giropay extends AbstractPayment
     const CODE = 'qenta_checkoutpage_giropay';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::GIROPAY;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::GIROPAY;
 
     protected $_logo = 'giropay.png';
 }

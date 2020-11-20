@@ -39,7 +39,7 @@ class Trustpay extends AbstractPayment
     const CODE = 'qenta_checkoutpage_trustpay';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE_Stdlib_PaymentTypeAbstract::TRUSTPAY;
+    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::TRUSTPAY;
 
     protected $_logo = 'trustpay.png';
 }
