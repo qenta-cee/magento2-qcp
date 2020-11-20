@@ -71,7 +71,7 @@ class Test
 
         $returnUrl = $urls['return'];
 
-        $init = new \QentaCEE_QPay_FrontendClient($this->_dataHelper->getConfigArray());
+        $init = new \QentaCEE\QPay\FrontendClient($this->_dataHelper->getConfigArray());
         $init->setPluginVersion($this->_dataHelper->getPluginVersion());
 
         $init->setOrderReference('Configtest #' . uniqid());
@@ -80,13 +80,13 @@ class Test
             $init->setConfirmMail($this->_dataHelper->getStoreConfigData('trans_email/ident_general/email'));
         }
 
-        $consumerData = new \QentaCEE_Stdlib_ConsumerData();
+        $consumerData = new \QentaCEE\Stdlib\ConsumerData();
         $consumerData->setIpAddress($this->_dataHelper->getClientIp());
         $consumerData->setUserAgent($this->_dataHelper->getUserAgent());
 
         $init->setAmount(10)
              ->setCurrency('EUR')
-             ->setPaymentType(\QentaCEE_QPay_PaymentType::SELECT)
+             ->setPaymentType(\QentaCEE\QPay\PaymentType::SELECT)
              ->setOrderDescription('Configtest #' . uniqid())
              ->setSuccessUrl($returnUrl)
              ->setPendingUrl($returnUrl)
@@ -111,7 +111,7 @@ class Test
 
         $initResponse = $init->initiate();
 
-        if ($initResponse->getStatus() == \QentaCEE_QPay_Response_Initiation::STATE_FAILURE) {
+        if ($initResponse->getStatus() == \QentaCEE\QPay\Response\Initiation::STATE_FAILURE) {
             $msg = $initResponse->getError()->getConsumerMessage();
             if (!strlen($msg)) {
                 $msg = $initResponse->getError()->getMessage();
