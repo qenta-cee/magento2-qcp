@@ -125,12 +125,12 @@ class OrderManagement
     /**
      * Process order, create/update/cancel/delete order depending on config and order state
      *
-     * @param \QentaCEE\Stdlib\Return\ReturnAbstract $return
+     * @param \QentaCEE\Stdlib\Returns\ReturnAbstract $return
      *
      * @return Order|null
      * @throws \Exception
      */
-    public function processOrder(\QentaCEE\Stdlib\Return\ReturnAbstract $return)
+    public function processOrder(\QentaCEE\Stdlib\Returns\ReturnAbstract $return)
     {
         $quoteId = $return->mage_quoteId;
         /** @var Quote $quote */
@@ -255,7 +255,7 @@ class OrderManagement
      * Keep the failed order
      *
      * @param \Magento\Sales\Model\Order $order
-     * @param \QentaCEE\Stdlib\Return\ReturnAbstract $return
+     * @param \QentaCEE\Stdlib\Returns\ReturnAbstract $return
      *
      * @throws \Magento\Framework\Exception\LocalizedException
      */
@@ -302,7 +302,7 @@ class OrderManagement
      * Confirm the payment of an order
      *
      * @param \Magento\Sales\Model\Order $order
-     * @param \QentaCEE\Stdlib\Return\ReturnAbstract $return
+     * @param \QentaCEE\Stdlib\Returns\ReturnAbstract $return
      * @param bool $fraudDetected
      *
      * @return Order
@@ -404,7 +404,7 @@ class OrderManagement
      * @param $type
      * @param $message
      * @param Order $order
-     * @param \QentaCEE\Stdlib\Return\ReturnAbstract $return
+     * @param \QentaCEE\Stdlib\Returns\ReturnAbstract $return
      *
      * @return \Magento\Sales\Api\Data\TransactionInterface|null
      */
