@@ -77,6 +77,10 @@ define(
                 };
             }
 
+            if (Object.prototype.hasOwnProperty.call(paymentData, '__disableTmpl')) { 
+                delete paymentData.__disableTmpl; 
+            }
+
             fullScreenLoader.startLoader();
 
             return storage.post(
