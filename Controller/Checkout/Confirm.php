@@ -35,7 +35,7 @@ namespace Qenta\CheckoutPage\Controller\Checkout;
 use Magento\Checkout\Model\Cart as CheckoutCart;
 use Magento\Framework\Exception\InputException;
 
-class Confirm extends extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
+class Confirm extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
 {
 
     /**
