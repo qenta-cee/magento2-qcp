@@ -34,7 +34,7 @@ namespace Qenta\CheckoutPage\Controller\Checkout;
 
 use Magento\Checkout\Model\Cart as CheckoutCart;
 
-class Start extends \Magento\Framework\App\Action\Action
+class Start extends extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
 {
     /**
      * @var \Qenta\CheckoutPage\Helper\Data

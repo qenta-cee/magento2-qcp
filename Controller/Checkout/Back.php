@@ -35,7 +35,7 @@ namespace Qenta\CheckoutPage\Controller\Checkout;
 use Magento\Checkout\Model\Cart as CheckoutCart;
 use Magento\Sales\Model\Order\Email\Sender\OrderSender;
 
-class Back extends \Magento\Framework\App\Action\Action
+class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
 {
     /**
      * @var \Magento\Framework\HTTP\PhpEnvironment\Request

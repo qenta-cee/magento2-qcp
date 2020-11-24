@@ -32,7 +32,7 @@
 
 namespace Qenta\CheckoutPage\Controller\Checkout;
 
-class Failed extends \Magento\Framework\App\Action\Action
+class Failed extends extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
 {
     /**
      * @var \Magento\Framework\HTTP\PhpEnvironment\Request
