@@ -11,7 +11,7 @@
         "docs": "https://guides.wirecard.com"
     },
     "require": {
-        "php": "~7.3.0",
+        "php": "~7.2.5|~7.3.0|~7.4.0",
         "qenta/checkout-client-library": "5.0.0"
     },
     "autoload": {
