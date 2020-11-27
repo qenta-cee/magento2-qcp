@@ -2,8 +2,8 @@
 /**
  * Shop System Plugins - Terms of Use
  *
- * The plugins offered are provided free of charge by Wirecard Central Eastern Europe GmbH
- * (abbreviated to Wirecard CEE) and are explicitly not part of the Wirecard CEE range of
+ * The plugins offered are provided free of charge by Qenta Payment CEE GmbH
+ * (abbreviated to Qenta CEE) and are explicitly not part of the Qenta CEE range of
  * products and services.
  *
  * They have been tested and approved for full functionality in the standard configuration
@@ -11,15 +11,15 @@
  * License Version 2 (GPLv2) and can be used, developed and passed on to third parties under
  * the same terms.
  *
- * However, Wirecard CEE does not provide any guarantee or accept any liability for any errors
+ * However, Qenta CEE does not provide any guarantee or accept any liability for any errors
  * occurring when used in an enhanced, customized shop system configuration.
  *
  * Operation in an enhanced, customized configuration is at your own risk and requires a
  * comprehensive test phase by the user of the plugin.
  *
- * Customers use the plugins at their own risk. Wirecard CEE does not guarantee their full
- * functionality neither does Wirecard CEE assume liability for any disadvantages related to
- * the use of the plugins. Additionally, Wirecard CEE does not guarantee the full functionality
+ * Customers use the plugins at their own risk. Qenta CEE does not guarantee their full
+ * functionality neither does Qenta CEE assume liability for any disadvantages related to
+ * the use of the plugins. Additionally, Qenta CEE does not guarantee the full functionality
  * for customized shop systems or installed plugins of other vendors of plugins within the same
  * shop system.
  *
@@ -30,13 +30,13 @@
  * Please do not use the plugin if you do not agree to these terms of use!
  */
 
-namespace Wirecard\CheckoutPage\Model;
+namespace Qenta\CheckoutPage\Model;
 
 class Test
 {
 
     /**
-     * @var \Wirecard\CheckoutPage\Helper\Data
+     * @var \Qenta\CheckoutPage\Helper\Data
      */
     protected $_dataHelper;
 
@@ -51,12 +51,12 @@ class Test
     protected $_url;
 
     /**
-     * @param \Wirecard\CheckoutPage\Helper\Data $dataHelper
+     * @param \Qenta\CheckoutPage\Helper\Data $dataHelper
      * @param \Psr\Log\LoggerInterface $logger
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
-        \Wirecard\CheckoutPage\Helper\Data $dataHelper,
+        \Qenta\CheckoutPage\Helper\Data $dataHelper,
         \Psr\Log\LoggerInterface $logger
     ) {
 
@@ -67,11 +67,11 @@ class Test
     public function config($urls)
     {
 
-        //$returnUrl = $this->getUrl('wirecard_checkoutpage/processing/return', array('_secure' => true, '_nosid' => true));
+        //$returnUrl = $this->getUrl('qenta_checkoutpage/processing/return', array('_secure' => true, '_nosid' => true));
 
         $returnUrl = $urls['return'];
 
-        $init = new \WirecardCEE_QPay_FrontendClient($this->_dataHelper->getConfigArray());
+        $init = new \QentaCEE\QPay\FrontendClient($this->_dataHelper->getConfigArray());
         $init->setPluginVersion($this->_dataHelper->getPluginVersion());
 
         $init->setOrderReference('Configtest #' . uniqid());
@@ -80,19 +80,19 @@ class Test
             $init->setConfirmMail($this->_dataHelper->getStoreConfigData('trans_email/ident_general/email'));
         }
 
-        $consumerData = new \WirecardCEE_Stdlib_ConsumerData();
+        $consumerData = new \QentaCEE\Stdlib\ConsumerData();
         $consumerData->setIpAddress($this->_dataHelper->getClientIp());
         $consumerData->setUserAgent($this->_dataHelper->getUserAgent());
 
         $init->setAmount(10)
              ->setCurrency('EUR')
-             ->setPaymentType(\WirecardCEE_QPay_PaymentType::SELECT)
+             ->setPaymentType(\QentaCEE\QPay\PaymentType::SELECT)
              ->setOrderDescription('Configtest #' . uniqid())
              ->setSuccessUrl($returnUrl)
              ->setPendingUrl($returnUrl)
              ->setCancelUrl($returnUrl)
              ->setFailureUrl($returnUrl)
-            //->setConfirmUrl(Mage::getUrl('wirecard_checkoutpage/processing/confirm', array('_secure' => true, '_nosid' => true)))
+            //->setConfirmUrl(Mage::getUrl('qenta_checkoutpage/processing/confirm', array('_secure' => true, '_nosid' => true)))
              ->setConfirmUrl($urls['confirm'])
              ->setServiceUrl($this->_dataHelper->getConfigData('options/service_url'))
              ->setConsumerData($consumerData);
@@ -111,7 +111,7 @@ class Test
 
         $initResponse = $init->initiate();
 
-        if ($initResponse->getStatus() == \WirecardCEE_QPay_Response_Initiation::STATE_FAILURE) {
+        if ($initResponse->getStatus() == \QentaCEE\QPay\Response\Initiation::STATE_FAILURE) {
             $msg = $initResponse->getError()->getConsumerMessage();
             if (!strlen($msg)) {
                 $msg = $initResponse->getError()->getMessage();

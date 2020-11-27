@@ -3,7 +3,7 @@
  * Copyright © 2013-2017 Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Wirecard\CheckoutPage\Model\App\Config;
+namespace Qenta\CheckoutPage\Model\App\Config;
 
 class ReaderPool
 {

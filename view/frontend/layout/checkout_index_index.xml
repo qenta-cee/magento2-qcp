@@ -2,8 +2,8 @@
 /**
 * Shop System Plugins - Terms of Use
 *
-* The plugins offered are provided free of charge by Wirecard Central Eastern Europe GmbH
-* (abbreviated to Wirecard CEE) and are explicitly not part of the Wirecard CEE range of
+* The plugins offered are provided free of charge by Qenta Payment CEE GmbH
+* (abbreviated to Qenta CEE) and are explicitly not part of the Qenta CEE range of
 * products and services.
 *
 * They have been tested and approved for full functionality in the standard configuration
@@ -11,15 +11,15 @@
 * License Version 2 (GPLv2) and can be used, developed and passed on to third parties under
 * the same terms.
 *
-* However, Wirecard CEE does not provide any guarantee or accept any liability for any errors
+* However, Qenta CEE does not provide any guarantee or accept any liability for any errors
 * occurring when used in an enhanced, customized shop system configuration.
 *
 * Operation in an enhanced, customized configuration is at your own risk and requires a
 * comprehensive test phase by the user of the plugin.
 *
-* Customers use the plugins at their own risk. Wirecard CEE does not guarantee their full
-* functionality neither does Wirecard CEE assume liability for any disadvantages related to
-* the use of the plugins. Additionally, Wirecard CEE does not guarantee the full functionality
+* Customers use the plugins at their own risk. Qenta CEE does not guarantee their full
+* functionality neither does Qenta CEE assume liability for any disadvantages related to
+* the use of the plugins. Additionally, Qenta CEE does not guarantee the full functionality
 * for customized shop systems or installed plugins of other vendors of plugins within the same
 * shop system.
 *
@@ -49,76 +49,76 @@
                                                         <item name="renders" xsi:type="array">
                                                             <!-- merge payment method renders here -->
                                                             <item name="children" xsi:type="array">
-                                                                <item name="wirecard-checkoutpage-payments" xsi:type="array">
-                                                                    <item name="component" xsi:type="string">Wirecard_CheckoutPage/js/view/payment/method-renderer</item>
+                                                                <item name="qenta-checkoutpage-payments" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Qenta_CheckoutPage/js/view/payment/method-renderer</item>
                                                                     <item name="methods" xsi:type="array">
-                                                                        <item name="wirecard_checkoutpage_select" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_select" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_ccard" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_ccard" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_masterpass" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_masterpass" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_ccardmoto" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_ccardmoto" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_bmc" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_bmc" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_ekonto" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_ekonto" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_eps" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_eps" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_giropay" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_giropay" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_poli" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_poli" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_p24" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_p24" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_sofortbanking" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_sofortbanking" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_tatrapay" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_tatrapay" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_trustly" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_trustly" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_trustpay" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_trustpay" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_epaybg" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_epaybg" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_moneta" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_moneta" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_paypal" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_paypal" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_paysafecard" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_paysafecard" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_quick" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_quick" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_skrillwallet" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_skrillwallet" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_sepa" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_sepa" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_paybox" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_paybox" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="wirecard_checkoutpage_voucher" xsi:type="array">
+                                                                        <item name="qenta_checkoutpage_voucher" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
                                                                     </item>

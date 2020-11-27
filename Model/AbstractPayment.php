@@ -2,8 +2,8 @@
 /**
  * Shop System Plugins - Terms of Use
  *
- * The plugins offered are provided free of charge by Wirecard Central Eastern Europe GmbH
- * (abbreviated to Wirecard CEE) and are explicitly not part of the Wirecard CEE range of
+ * The plugins offered are provided free of charge by Qenta Payment CEE GmbH
+ * (abbreviated to Qenta CEE) and are explicitly not part of the Qenta CEE range of
  * products and services.
  *
  * They have been tested and approved for full functionality in the standard configuration
@@ -11,15 +11,15 @@
  * License Version 2 (GPLv2) and can be used, developed and passed on to third parties under
  * the same terms.
  *
- * However, Wirecard CEE does not provide any guarantee or accept any liability for any errors
+ * However, Qenta CEE does not provide any guarantee or accept any liability for any errors
  * occurring when used in an enhanced, customized shop system configuration.
  *
  * Operation in an enhanced, customized configuration is at your own risk and requires a
  * comprehensive test phase by the user of the plugin.
  *
- * Customers use the plugins at their own risk. Wirecard CEE does not guarantee their full
- * functionality neither does Wirecard CEE assume liability for any disadvantages related to
- * the use of the plugins. Additionally, Wirecard CEE does not guarantee the full functionality
+ * Customers use the plugins at their own risk. Qenta CEE does not guarantee their full
+ * functionality neither does Qenta CEE assume liability for any disadvantages related to
+ * the use of the plugins. Additionally, Qenta CEE does not guarantee the full functionality
  * for customized shop systems or installed plugins of other vendors of plugins within the same
  * shop system.
  *
@@ -30,7 +30,7 @@
  * Please do not use the plugin if you do not agree to these terms of use!
  */
 
-namespace Wirecard\CheckoutPage\Model;
+namespace Qenta\CheckoutPage\Model;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Model\Quote;
@@ -42,9 +42,9 @@ use \Magento\Sales\Model\Order\Payment\Transaction;
 
 abstract class AbstractPayment extends AbstractMethod
 {
-    const CODE = 'wirecard_checkoutpage_select';
+    const CODE = 'qenta_checkoutpage_select';
     protected $_code = self::CODE;
-    protected $_paymentMethod = \WirecardCEE_QPay_PaymentType::SELECT;
+    protected $_paymentMethod = \QentaCEE\QPay\PaymentType::SELECT;
     protected $_logo = false;
     protected $_isGateway = true;
     protected $_canCapture = true;
@@ -59,7 +59,7 @@ abstract class AbstractPayment extends AbstractMethod
 
     protected $_autoDepositAllowed = true;
 
-    /** @var \Wirecard\CheckoutPage\Helper\Data */
+    /** @var \Qenta\CheckoutPage\Helper\Data */
     protected $_dataHelper = null;
 
     /**
@@ -85,7 +85,7 @@ abstract class AbstractPayment extends AbstractMethod
         \Magento\Payment\Helper\Data $paymentData,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Payment\Model\Method\Logger $logger,
-        \Wirecard\CheckoutPage\Helper\Data $helper,
+        \Qenta\CheckoutPage\Helper\Data $helper,
         \Magento\Sales\Model\Order\Payment\Transaction\BuilderInterface $transactionBuilder,
         \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender,
         \Magento\Sales\Api\TransactionRepositoryInterface $transactionRepository,
@@ -131,14 +131,14 @@ abstract class AbstractPayment extends AbstractMethod
      * @param $urls
      * @param \Magento\Framework\DataObject $data
      *
-     * @return \WirecardCEE_QPay_Response_Initiation
+     * @return \QentaCEE\QPay\Response\Initiation
      * @throws \Exception
      */
     public function initPaymentByCart(CheckoutCart $cart, $urls, \Magento\Framework\DataObject $data)
     {
         $quote = $cart->getQuote();
 
-        $init = new \WirecardCEE_QPay_FrontendClient($this->_dataHelper->getConfigArray());
+        $init = new \QentaCEE\QPay\FrontendClient($this->_dataHelper->getConfigArray());
         $init->setPluginVersion($this->_dataHelper->getPluginVersion());
         $init->setConfirmUrl($urls['confirm']);
 
@@ -162,7 +162,7 @@ abstract class AbstractPayment extends AbstractMethod
              ->setConsumerData($this->_getConsumerData($quote))
              ->setMaxRetries($this->_dataHelper->getConfigData('options/maxretries'));
 
-        if ($this->_paymentMethod == \WirecardCEE_QMore_PaymentType::MASTERPASS) {
+        if ($this->_paymentMethod == \QentaCEE\QMore\PaymentType::MASTERPASS) {
             $init->setShippingProfile('NO_SHIPPING');
         }
 
@@ -173,12 +173,12 @@ abstract class AbstractPayment extends AbstractMethod
         $init->generateCustomerStatement($this->_dataHelper->getConfigData('options/shopname'), sprintf('%010s', substr($orderId, -10)));
 
         if ($this->_dataHelper->getConfigData('options/sendbasketinformation') || $this->forceSendingBasket()) {
-            $basket = new \WirecardCEE_Stdlib_Basket();
+            $basket = new \QentaCEE\Stdlib\Basket();
 
 	        foreach ( $quote->getAllVisibleItems() as $item ) {
 		        /** @var \Magento\Quote\Model\Quote\Item $item */
 
-		        $bitem = new \WirecardCEE_Stdlib_Basket_Item();
+		        $bitem = new \QentaCEE\Stdlib\Basket\Item();
 		        $bitem->setDescription( $item->getProduct()->getName() );
 		        $bitem->setName( $item->getProduct()->getName() );
 		        $bitem->setArticleNumber( $item->getSku() );
@@ -192,7 +192,7 @@ abstract class AbstractPayment extends AbstractMethod
 	        }
 
 	        if($quote->getShippingAddress()->getShippingAmount() != 0) {
-		        $bitem = new \WirecardCEE_Stdlib_Basket_Item();
+		        $bitem = new \QentaCEE\Stdlib\Basket\Item();
 		        $bitem->setArticleNumber( 'shipping' );
 
 		        $bitem->setUnitGrossAmount(
@@ -252,7 +252,7 @@ abstract class AbstractPayment extends AbstractMethod
         }
 
         if ($this->_dataHelper->getConfigData('options/mobiledetect')) {
-            $detect = new \WirecardCEE_QPay_MobileDetect();
+            $detect = new \QentaCEE\QPay\MobileDetect();
 
             if ($detect->isTablet()) {
                 $layout = 'TABLET';
@@ -284,7 +284,7 @@ abstract class AbstractPayment extends AbstractMethod
             throw new $e;
         }
 
-        if ($initResponse->getStatus() == \WirecardCEE_QPay_Response_Initiation::STATE_FAILURE) {
+        if ($initResponse->getStatus() == \QentaCEE\QPay\Response\Initiation::STATE_FAILURE) {
             $error   = $initResponse->getError();
             $message = $this->_dataHelper->__('An error occurred during the payment process');
             if ($error !== false) {
@@ -304,7 +304,7 @@ abstract class AbstractPayment extends AbstractMethod
     /**
      * set payment specific request data
      *
-     * @param \WirecardCEE_QPay_FrontendClient $init
+     * @param \QentaCEE\QPay\FrontendClient $init
      * @param CheckoutCart $cart
      */
     protected function setAdditionalRequestData($init, $cart)
@@ -312,7 +312,7 @@ abstract class AbstractPayment extends AbstractMethod
     }
 
     /**
-     * Returns desription of customer - will be displayed in Wirecard backend
+     * Returns desription of customer - will be displayed in Qenta backend
      *
      * @param Quote $quote
      *
@@ -372,11 +372,11 @@ abstract class AbstractPayment extends AbstractMethod
     /**
      * @param Quote $quote
      *
-     * @return \WirecardCEE_Stdlib_ConsumerData
+     * @return \QentaCEE\Stdlib\ConsumerData
      */
     protected function _getConsumerData($quote)
     {
-        $consumerData = new \WirecardCEE_Stdlib_ConsumerData();
+        $consumerData = new \QentaCEE\Stdlib\ConsumerData();
         $consumerData->setIpAddress($this->_dataHelper->getClientIp());
         $consumerData->setUserAgent($this->_dataHelper->getUserAgent());
 
@@ -415,17 +415,17 @@ abstract class AbstractPayment extends AbstractMethod
      * @param \Magento\Quote\Model\Quote\Address $source
      * @param string $type
      *
-     * @return \WirecardCEE_Stdlib_ConsumerData_Address
+     * @return \QentaCEE\Stdlib\ConsumerData\Address
      */
     protected function _getAddress($source, $type = 'billing')
     {
         switch ($type) {
             case 'shipping':
-                $address = new \WirecardCEE_Stdlib_ConsumerData_Address(\WirecardCEE_Stdlib_ConsumerData_Address::TYPE_SHIPPING);
+                $address = new \QentaCEE\Stdlib\ConsumerData\Address(\QentaCEE\Stdlib\ConsumerData\Address::TYPE_SHIPPING);
                 break;
 
             default:
-                $address = new \WirecardCEE_Stdlib_ConsumerData_Address(\WirecardCEE_Stdlib_ConsumerData_Address::TYPE_BILLING);
+                $address = new \QentaCEE\Stdlib\ConsumerData\Address(\QentaCEE\Stdlib\ConsumerData\Address::TYPE_BILLING);
                 break;
         }
 
@@ -611,7 +611,7 @@ abstract class AbstractPayment extends AbstractMethod
      *
      * @return bool
      */
-    protected function _isAvailableWirecard($quote)
+    protected function _isAvailableQenta($quote)
     {
         return $this->_isAvailableRatePay($quote);
     }
@@ -648,7 +648,7 @@ abstract class AbstractPayment extends AbstractMethod
      */
     public function getDisplayMode()
     {
-        $detectLayout = new \WirecardCEE_QPay_MobileDetect();
+        $detectLayout = new \QentaCEE\QPay\MobileDetect();
 
         if ($this->_dataHelper->getConfigData('options/mobiledetect') && $detectLayout->isMobile()) {
             return 'redirect';
@@ -743,7 +743,7 @@ abstract class AbstractPayment extends AbstractMethod
      *
      * @param $orderNumber
      *
-     * @return \WirecardCEE_QPay_Response_Toolkit_GetOrderDetails
+     * @return \QentaCEE\QPay\Response\Toolkit\GetOrderDetails
      */
     public function getOrderDetails($orderNumber)
     {
@@ -794,7 +794,7 @@ abstract class AbstractPayment extends AbstractMethod
                     $orderDetails->getOrder()->getOperationsAllowed()));
 
             foreach ($orderDetails->getOrder()->getPayments() as $wdPayment) {
-                /** @var \WirecardCEE_QPay_Response_Toolkit_Order_Payment $wdPayment */
+                /** @var \QentaCEE\QPay\Response\Toolkit\Order\Payment $wdPayment */
 
                 $this->_logger->debug(__METHOD__ . ':operations allowed:' . implode(',',
                         $wdPayment->getOperationsAllowed()));
@@ -923,7 +923,7 @@ abstract class AbstractPayment extends AbstractMethod
         $ret           = $backendClient->refundReversal($addInfo['orderNumber'], $addInfo['creditNumber']);
         if ($ret->hasFailed()) {
             $msg = implode(',', array_map(function ($e) {
-                /** @var \WirecardCEE_QMore_Error $e */
+                /** @var \QentaCEE\QMore\Error $e */
                 return $e->getConsumerMessage();
             }, $ret->getErrors()));
             $this->_logger->debug(__METHOD__ . ':' . $msg);
@@ -983,7 +983,7 @@ abstract class AbstractPayment extends AbstractMethod
 
         $approveDone = false;
         foreach ($orderDetails->getOrder()->getPayments() as $wdPayment) {
-            /** @var \WirecardCEE_QPay_Response_Toolkit_Order_Payment $wdPayment */
+            /** @var \QentaCEE\QPay\Response\Toolkit\Order\Payment $wdPayment */
 
             $this->_logger->debug(__METHOD__ . ':operations allowed:' . implode(',',
                     $wdPayment->getOperationsAllowed()));
@@ -1066,7 +1066,7 @@ abstract class AbstractPayment extends AbstractMethod
 
         } else {
             foreach ($orderDetails->getOrder()->getPayments() as $payment) {
-                /** @var \WirecardCEE_QPay_Response_Toolkit_Order_Payment $payment */
+                /** @var \QentaCEE\QPay\Response\Toolkit\Order\Payment $payment */
 
                 if (in_array('DEPOSITREVERSAL', $payment->getOperationsAllowed())) {
                     $log .= " action:DEPOSITREVERSAL APPROVEREVERSAL";
