@@ -5,12 +5,6 @@
 [![Magento v2.3.6](https://img.shields.io/badge/magento-v2.3.6-green.svg)](https://magento.com/)
 
 ----
-**IMPORTANT INFORMATION**  
-You are visiting a shop extension which will become obsolete in the near future. It has been replaced by a new one with new features and enhanced functionality.   
-Please use our new shop extension available on [guides.wirecard.com](https://guides.wirecard.com), which will be maintained, updated and supported on a regular basis.  
-If you have any questions, please contact support@qenta.com
-
-----
 
 Qenta Checkout Page extension for Magento 2.3.6
 
