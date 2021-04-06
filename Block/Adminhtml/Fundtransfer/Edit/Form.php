@@ -98,7 +98,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic implements TabInte
             ),
         ]);
 
-        $fieldNoteFmt = sprintf('<a href="https://guides.wirecard.com/doku.php%%s" target="_blank" class="docref">%s</a>',
+        $fieldNoteFmt = sprintf('<a href="https://guides.qenta.com/doku.php%%s" target="_blank" class="docref">%s</a>',
             $this->_dataHelper->__('See documentation'));
 
         $fieldset->addField('currency', 'select', [
