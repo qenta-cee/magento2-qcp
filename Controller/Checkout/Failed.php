@@ -32,7 +32,7 @@
 
 namespace Qenta\CheckoutPage\Controller\Checkout;
 
-class Failed extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
+class Failed extends \Magento\Framework\App\Action\Action implements \Magento\Framework\App\CsrfAwareActionInterface
 {
     /**
      * @var \Magento\Framework\HTTP\PhpEnvironment\Request
@@ -76,6 +76,22 @@ class Failed extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
             $this->_redirect($redirectTo);
         }
     }
+    
+    /**
+     * @inheritDoc
+     */
+    public function createCsrfValidationException(
+        RequestInterface $request
+    ): ?InvalidRequestException {
+        return null;
+    }
 
+    /**
+     * @inheritDoc
+     */
+    public function validateForCsrf(RequestInterface $request): ?bool
+    {
+        return true;
+    }
 
 }

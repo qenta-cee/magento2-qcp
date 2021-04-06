@@ -35,7 +35,7 @@ namespace Qenta\CheckoutPage\Controller\Checkout;
 use Magento\Checkout\Model\Cart as CheckoutCart;
 use Magento\Sales\Model\Order\Email\Sender\OrderSender;
 
-class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
+class Back extends \Magento\Framework\App\Action\Action implements \Magento\Framework\App\CsrfAwareActionInterface
 {
     /**
      * @var \Magento\Framework\HTTP\PhpEnvironment\Request
@@ -228,7 +228,7 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
             }
 
             if ($this->_request->getPost('iframeUsed')) {
-                $redirectUrl = $this->_url->getUrl($redirectTo);
+                $redirectUrl = $this->_url->getUrl($redirectTo, ['_secure' => $this->_request->isSecure()]);
 
                 $page = $this->_resultPageFactory->create();
                 $page->getLayout()->getBlock('checkout.back')->addData(['redirectUrl' => $redirectUrl]);
@@ -248,5 +248,20 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
         }
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function createCsrfValidationException(
+        RequestInterface $request
+    ): ?InvalidRequestException {
+        return null;
+    }
 
+    /**
+     * @inheritDoc
+     */
+    public function validateForCsrf(RequestInterface $request): ?bool
+    {
+        return true;
+    }
 }

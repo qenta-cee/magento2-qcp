@@ -34,7 +34,7 @@ namespace Qenta\CheckoutPage\Controller\Checkout;
 
 use Magento\Checkout\Model\Cart as CheckoutCart;
 
-class Start extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
+class Start extends \Magento\Framework\App\Action\Action implements \Magento\Framework\App\CsrfAwareActionInterface
 {
     /**
      * @var \Qenta\CheckoutPage\Helper\Data
@@ -179,5 +179,22 @@ class Start extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
         }
 
         return $this->_cart->getQuote()->getCheckoutMethod();
+    }
+
+        /**
+     * @inheritDoc
+     */
+    public function createCsrfValidationException(
+        RequestInterface $request
+    ): ?InvalidRequestException {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function validateForCsrf(RequestInterface $request): ?bool
+    {
+        return true;
     }
 }

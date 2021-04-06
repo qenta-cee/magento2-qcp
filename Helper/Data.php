@@ -38,7 +38,7 @@ namespace Qenta\CheckoutPage\Helper;
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
 
-    protected $_pluginVersion = '2.0.0';
+    protected $_pluginVersion = '2.0.1';
     protected $_pluginName = 'Qenta/CheckoutPage';
 
     /**

@@ -35,7 +35,7 @@ namespace Qenta\CheckoutPage\Controller\Checkout;
 use Magento\Checkout\Model\Cart as CheckoutCart;
 use Magento\Framework\Exception\InputException;
 
-class Confirm extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
+class Confirm extends \Magento\Framework\App\Action\Action implements \Magento\Framework\App\CsrfAwareActionInterface
 {
 
     /**
@@ -129,5 +129,22 @@ class Confirm extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
 
             die( \QentaCEE\QPay\ReturnFactory::generateConfirmResponseString($e->getMessage()) );
         }
+    }
+
+       /**
+     * @inheritDoc
+     */
+    public function createCsrfValidationException(
+        RequestInterface $request
+    ): ?InvalidRequestException {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function validateForCsrf(RequestInterface $request): ?bool
+    {
+        return true;
     }
 }
