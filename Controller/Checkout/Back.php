@@ -120,6 +120,14 @@ class Back extends \Magento\Framework\App\Action\Action implements \Magento\Fram
         $this->_checkoutSession   = $checkoutSession;
         $this->_quoteManagement   = $quoteManagement;
         $this->_orderManagement   = $orderManagement;
+
+        if (interface_exists(\Magento\Framework\App\CsrfAwareActionInterface::class)) {
+            $request = $this->getRequest();
+            if ($request instanceof Http && $request->isPost()) {
+                $request->setParam('isAjax', true);
+                $request->getHeaders()->addHeaderLine('X_REQUESTED_WITH', 'XMLHttpRequest');
+            }
+        }
     }
 
     public function execute()
@@ -252,15 +260,15 @@ class Back extends \Magento\Framework\App\Action\Action implements \Magento\Fram
      * @inheritDoc
      */
     public function createCsrfValidationException(
-        RequestInterface $request
-    ): ?InvalidRequestException {
+        \Magento\Framework\App\RequestInterface $request
+    ): ?\Magento\Framework\App\Request\InvalidRequestException {
         return null;
     }
 
     /**
      * @inheritDoc
      */
-    public function validateForCsrf(RequestInterface $request): ?bool
+    public function validateForCsrf(\Magento\Framework\App\RequestInterface $request): ?bool
     {
         return true;
     }

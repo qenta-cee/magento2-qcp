@@ -185,15 +185,15 @@ class Start extends \Magento\Framework\App\Action\Action implements \Magento\Fra
      * @inheritDoc
      */
     public function createCsrfValidationException(
-        RequestInterface $request
-    ): ?InvalidRequestException {
+        \Magento\Framework\App\RequestInterface $request
+    ): ?\Magento\Framework\App\Request\InvalidRequestException {
         return null;
     }
 
     /**
      * @inheritDoc
      */
-    public function validateForCsrf(RequestInterface $request): ?bool
+    public function validateForCsrf(\Magento\Framework\App\RequestInterface $request): ?bool
     {
         return true;
     }
