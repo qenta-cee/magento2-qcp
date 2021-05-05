@@ -27,8 +27,8 @@ class FixSession
     ) {
         if ($metadata && method_exists($metadata, 'getSameSite') && ($name == 'PHPSESSID')) {
             if ($metadata->getSameSite() != 'None') {
-                $metadata->setSameSite('None');
                 $metadata->setSecure(true);
+                $metadata->setSameSite('None');
             }
         }
         return [$name, $value, $metadata];
