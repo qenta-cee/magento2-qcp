@@ -137,7 +137,7 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
 
     public function execute()
     {
-        $redirectTo = 'checkout/cart';
+        $redirectTo = '/checkout/cart';
 
         $defaultErrorMessage = $this->_dataHelper->__('An error occurred during the payment process.');
 
@@ -211,7 +211,7 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
                     $this->_checkoutSession->setLastRealOrderId($order->getIncrementId());
                     $this->_checkoutSession->setLastOrderStatus($order->getStatus());
 
-                    $redirectTo = 'checkout/onepage/success';
+                    $redirectTo = '/checkout/onepage/success';
                     break;
 
                 case \QentaCEE\QPay\ReturnFactory::STATE_CANCEL:
@@ -243,7 +243,8 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
             }
 
             if ($this->_request->getPost('iframeUsed')) {
-                $redirectUrl = $this->_url->getUrl($redirectTo);
+
+                $redirectUrl = '/checkout/onepage/success';
 
                 $page = $this->_resultPageFactory->create();
                 $page->getLayout()->getBlock('checkout.back')->addData(['redirectUrl' => $redirectUrl]);
@@ -251,12 +252,9 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
                 return $page;
             } else {
 
-                $this->_customerSession->regenerateId();
-
-                $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-                $resultRedirect->setUrl($redirectTo);
-                return $resultRedirect;
-                //$this->_redirect($redirectTo);
+                return $this->resultFactory
+                        ->create(ResultFactory::TYPE_REDIRECT)
+                        ->setUrl($redirectTo, ['_current' => true]);
             }
         } catch (\Exception $e) {
             if (!$this->messageManager->getMessages()->getCount()) {
