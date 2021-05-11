@@ -49,9 +49,9 @@
  </script>
 
 <div>
-    <p>Weiterleitung</p>
-    <p>Sie werden nun weitergeleitet.</p>
-    <p>Falls Sie nicht weitergeleitet werden, klicken Sie bitte
+    <p><?= __('Redirect') ?></p>
+    <p><?= __('You will now be redirected') ?></p>
+    <p><?= __('If you are not redirected, please click') ?>
         <a href="#" onclick="iframeBreakout(<?php echo json_encode($block->getData('redirectUrl')); ?>)">
             hier.
         </a>

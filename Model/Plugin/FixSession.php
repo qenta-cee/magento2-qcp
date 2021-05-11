@@ -1,4 +1,5 @@
-<?xml version="1.0"?>
+<?php
+
 <!--
 /**
  * Shop System Plugins - Terms of Use
@@ -31,17 +32,38 @@
  * Please do not use the plugin if you do not agree to these terms of use!
  */
  -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Magento\Checkout\Model\CompositeConfigProvider">
-        <arguments>
-            <argument name="configProviders" xsi:type="array">
-                <item name="qenta_checkoutpage_config_provider" xsi:type="object">Qenta\CheckoutPage\Model\ConfigProvider</item>
-            </argument>
-        </arguments>
-    </type>
 
-    <type name="Magento\Framework\Stdlib\Cookie\PhpCookieManager">
-        <plugin name="fixSession" type="Qenta\CheckoutPage\Model\Plugin\FixSession" />
-    </type>
-</config>
+namespace Qenta\CheckoutPage\Model\Plugin;
+
+use Magento\Framework\HTTP\Header;
+use Magento\Framework\Stdlib\Cookie\PhpCookieManager;
+use Magento\Framework\Stdlib\Cookie\PublicCookieMetadata;
+
+
+class FixSession
+{
+    /**
+     * @var Header
+     */
+    protected $header;
+
+    public function __construct(Header $header)
+    {
+        $this->header = $header;
+    }
+
+    public function beforeSetPublicCookie(
+        PhpCookieManager $subject,
+        $name,
+        $value,
+        PublicCookieMetadata $metadata = null
+    ) {
+        if ($metadata && method_exists($metadata, 'getSameSite') && ($name == 'PHPSESSID')) {
+            if ($metadata->getSameSite() != 'None') {
+                $metadata->setSecure(true);
+                $metadata->setSameSite('None');
+            }
+        }
+        return [$name, $value, $metadata];
+    }
+}
