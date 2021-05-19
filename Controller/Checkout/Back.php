@@ -39,7 +39,7 @@ use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Customer\Model\Session;
 
-class Back extends \Magento\Framework\App\Action\Action implements \Magento\Framework\App\CsrfAwareActionInterface
+class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
 {
     /**
      * @var \Magento\Framework\HTTP\PhpEnvironment\Request
