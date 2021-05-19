@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Shop System Plugins - Terms of Use
  *
@@ -34,6 +35,9 @@ namespace Qenta\CheckoutPage\Controller\Checkout;
 
 use Magento\Checkout\Model\Cart as CheckoutCart;
 use Magento\Sales\Model\Order\Email\Sender\OrderSender;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
+use Magento\Framework\Controller\ResultFactory;
+use Magento\Customer\Model\Session;
 
 class Back extends \Magento\Framework\App\Action\Action implements \Magento\Framework\App\CsrfAwareActionInterface
 {
@@ -87,6 +91,12 @@ class Back extends \Magento\Framework\App\Action\Action implements \Magento\Fram
      */
     protected $_orderManagement;
 
+
+    /**
+     * @var Magento\Customer\Model\Session
+     */
+    protected $_customerSession;
+
     /**
      * @param \Magento\Framework\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
@@ -97,6 +107,7 @@ class Back extends \Magento\Framework\App\Action\Action implements \Magento\Fram
      * @param \Magento\Checkout\Model\Session $checkoutSession
      * @param \Magento\Quote\Api\CartManagementInterface $quoteManagement
      * @param \Qenta\CheckoutPage\Model\OrderManagement $orderManagement
+     * @param \Magento\Customer\Model\Session $customerSession
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
@@ -108,7 +119,8 @@ class Back extends \Magento\Framework\App\Action\Action implements \Magento\Fram
         \Psr\Log\LoggerInterface $logger,
         \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Quote\Api\CartManagementInterface $quoteManagement,
-        \Qenta\CheckoutPage\Model\OrderManagement $orderManagement
+        \Qenta\CheckoutPage\Model\OrderManagement $orderManagement,
+        \Magento\Customer\Model\Session $customerSession
     ) {
         parent::__construct($context);
         $this->_resultPageFactory = $resultPageFactory;
@@ -132,7 +144,7 @@ class Back extends \Magento\Framework\App\Action\Action implements \Magento\Fram
 
     public function execute()
     {
-        $redirectTo = 'checkout/cart';
+        $redirectTo = '/checkout/cart';
 
         $defaultErrorMessage = $this->_dataHelper->__('An error occurred during the payment process.');
 
@@ -146,8 +158,10 @@ class Back extends \Magento\Framework\App\Action\Action implements \Magento\Fram
                 throw new \Exception('Not a post request');
             }
 
-            $return = \QentaCEE\QPay\ReturnFactory::getInstance($this->_request->getPost()->toArray(),
-                $this->_dataHelper->getConfigData('basicdata/secret'));
+            $return = \QentaCEE\QPay\ReturnFactory::getInstance(
+                $this->_request->getPost()->toArray(),
+                $this->_dataHelper->getConfigData('basicdata/secret')
+            );
 
             if (!$return->validate()) {
                 throw new \Exception('Validation error: invalid response');
@@ -181,8 +195,9 @@ class Back extends \Magento\Framework\App\Action\Action implements \Magento\Fram
 
             if ($return->mage_orderCreation == 'after') {
 
-                if (!$orderExists &&
-                    ( $return->getPaymentState() == \QentaCEE\QPay\ReturnFactory::STATE_SUCCESS || $return->getPaymentState() == \QentaCEE\QPay\ReturnFactory::STATE_PENDING )
+                if (
+                    !$orderExists &&
+                    ($return->getPaymentState() == \QentaCEE\QPay\ReturnFactory::STATE_SUCCESS || $return->getPaymentState() == \QentaCEE\QPay\ReturnFactory::STATE_PENDING)
                 ) {
                     $this->_logger->debug(__METHOD__ . ':order not processed via confirm server2server request, check your packetfilter!');
                     $order = $this->_orderManagement->processOrder($return);
@@ -196,7 +211,6 @@ class Back extends \Magento\Framework\App\Action\Action implements \Magento\Fram
                     if ($return->getPaymentState() == \QentaCEE\QPay\ReturnFactory::STATE_PENDING) {
                         $this->messageManager->addNoticeMessage($this->_dataHelper->__('Your order will be processed as soon as we receive the payment confirmation from your bank.'));
                     }
-
                     /* needed for success page otherwise magento redirects to cart */
                     $this->_checkoutSession->setLastQuoteId($order->getQuoteId());
                     $this->_checkoutSession->setLastSuccessQuoteId($order->getQuoteId());
@@ -204,7 +218,7 @@ class Back extends \Magento\Framework\App\Action\Action implements \Magento\Fram
                     $this->_checkoutSession->setLastRealOrderId($order->getIncrementId());
                     $this->_checkoutSession->setLastOrderStatus($order->getStatus());
 
-                    $redirectTo = 'checkout/onepage/success';
+                    $redirectTo = '/checkout/onepage/success';
                     break;
 
                 case \QentaCEE\QPay\ReturnFactory::STATE_CANCEL:
@@ -236,16 +250,18 @@ class Back extends \Magento\Framework\App\Action\Action implements \Magento\Fram
             }
 
             if ($this->_request->getPost('iframeUsed')) {
-                $redirectUrl = $this->_url->getUrl($redirectTo, ['_secure' => $this->_request->isSecure()]);
+
+                $redirectUrl = '/checkout/onepage/success';
 
                 $page = $this->_resultPageFactory->create();
                 $page->getLayout()->getBlock('checkout.back')->addData(['redirectUrl' => $redirectUrl]);
 
                 return $page;
-
             } else {
 
-                $this->_redirect($redirectTo);
+                return $this->resultFactory
+                        ->create(ResultFactory::TYPE_REDIRECT)
+                        ->setUrl($redirectTo, ['_current' => true]);
             }
         } catch (\Exception $e) {
             if (!$this->messageManager->getMessages()->getCount()) {
@@ -254,22 +270,5 @@ class Back extends \Magento\Framework\App\Action\Action implements \Magento\Fram
             $this->_logger->debug(__METHOD__ . ':' . $e->getMessage());
             $this->_redirect($redirectTo);
         }
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function createCsrfValidationException(
-        \Magento\Framework\App\RequestInterface $request
-    ): ?\Magento\Framework\App\Request\InvalidRequestException {
-        return null;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function validateForCsrf(\Magento\Framework\App\RequestInterface $request): ?bool
-    {
-        return true;
     }
 }

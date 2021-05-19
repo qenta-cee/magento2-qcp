@@ -31,6 +31,14 @@
 require([
     'Magento_Customer/js/customer-data'
 ], function (customerData) {
-    var sections = ['cart'];
-    customerData.invalidate(sections);
+    return function () {
+
+        var cartData = customerData.get('cart');
+
+        customerData.getInitCustomerData().done(function () {
+            if (cartData().items && cartData().items.length !== 0) {
+                customerData.reload(['cart'], false);
+            }
+        });
+    }
 });
