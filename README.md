@@ -3,10 +3,9 @@
 [![License](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://raw.githubusercontent.com/qenta-cee/magento-qcp/master/LICENSE)
 [![PHP v7.3](https://img.shields.io/badge/php-v7.3-yellow.svg)](http://www.php.net)
 [![Magento v2.3.6](https://img.shields.io/badge/magento-v2.3.6-green.svg)](https://magento.com/)
+[![Magento v2.4.2](https://img.shields.io/badge/magento-v2.4.2-green.svg)](https://magento.com/)
 
 ----
-
-Qenta Checkout Page extension for Magento 2.3.6
 
 Our [Online Guides](https://guides.wirecard.com/) provide further information on payment methods and additional features. Please observe our [terms of use](https://guides.wirecard.com/shop_plugins:info#terms_of_use) regarding plugins.
 
