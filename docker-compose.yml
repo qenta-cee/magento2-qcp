@@ -1,0 +1,48 @@
+services:
+  magento2_db_qcp:
+    image: mariadb:10.2
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MAGENTO2_DB_ROOTPASS:-ABC123}
+      MYSQL_DATABASE: ${MAGENTO2_DB_NAME:-magento}
+      MYSQL_USER: ${MAGENTO2_DB_USER:-magento}
+      MYSQL_PASSWORD: ${MAGENTO2_DB_PASS:-magento}
+  magento2_elasticsearch_qcp:
+    image: docker.io/bitnami/elasticsearch:7
+    logging:
+      driver: none
+  magento2_qcp:
+    container_name: magento2_qcp
+    build:
+      context: .docker/magento2/
+      dockerfile: Dockerfile
+    depends_on:
+      - magento2_db_qcp
+      - magento2_elasticsearch_qcp
+    ports:
+      - ${PORT_HTTP:-8005}:80
+      - ${PORT_SSL:-8445}:443
+    volumes:
+      - ./:/tmp/plugin:ro
+    environment:
+      MAGENTO2_DB_HOST: ${MAGENTO2_DB_HOST:-magento2_db_qcp}
+      MAGENTO2_DB_NAME: ${MAGENTO2_DB_NAME:-magento}
+      MAGENTO2_DB_USER: ${MAGENTO2_DB_USER:-magento}
+      MAGENTO2_DB_PASS: ${MAGENTO2_DB_PASS:-magento}
+      MAGENTO2_TABLE_PREFIX: "m2_qcp_"
+      MAGENTO2_LOCALE: ${MAGENTO2_LOCALE:-en_US}
+      MAGENTO2_TITLE: ${MAGENTO2_TITLE:-QSHOP}
+      MAGENTO2_ADMIN_USER: ${MAGENTO2_ADMIN_USER:-admin}
+      MAGENTO2_ADMIN_PASS: ${MAGENTO2_ADMIN_PASS:-admin123}
+      MAGENTO2_ADMIN_EMAIL: ${MAGENTO2_ADMIN_EMAIL:-admin@admin.com}
+      MAGENTO2_BASEURL: ${MAGENTO2_BASEURL}
+      MAGENTO2_VERSION: ${MAGENTO2_VERSION:-2.4-develop}
+      PLUGIN_VERSION: ${PLUGIN_VERSION}
+      PLUGIN_URL: ${PLUGIN_URL:-local}
+      NGROK_TOKEN: ${NGROK_TOKEN}
+      DEFAULT_COUNTRY_CODE: ${DEFAULT_COUNTRY_CODE:-AT}
+      GITHUB_SERVER_URL: ${GITHUB_SERVER_URL}
+      GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}
+      GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}
+      GITHUB_SHA: ${GITHUB_SHA}
+      GITHUB_REF: ${GITHUB_REF}
