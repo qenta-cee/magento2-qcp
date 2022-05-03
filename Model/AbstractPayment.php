@@ -243,9 +243,8 @@ abstract class AbstractPayment extends AbstractMethod
             $init->setLayout($this->_dataHelper->getConfigData('options/layout'));
         }
 
-        if ($this->_dataHelper->getConfigData('options/autodeposit') && $this->_autoDepositAllowed) {
-            $init->setAutoDeposit(true);
-        }
+        // always set to false. QMP-67
+        $init->setAutoDeposit(false);
 
         if ($this->_dataHelper->getConfigData('options/duplicaterequestcheck')) {
             $init->setDuplicateRequestCheck($this->_dataHelper->getConfigData('options/duplicaterequestcheck'));

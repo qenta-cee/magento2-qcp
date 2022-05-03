@@ -166,14 +166,6 @@
                             ]]></comment>
                 </field>
 
-                <field id="autodeposit" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="80">
-                    <label>Automated deposit</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment><![CDATA[
-                                Enabling an automated deposit of payments. <a href="https://guides.wirecard.com/request_parameters#autodeposit" target="_blank">More information</a>. Please contact our <a href="https://guides.wirecard.com/sales" target="_blank">sales teams</a> to activate this feature.
-                            ]]></comment>
-                </field>
-
                 <field id="sendbasketinformation" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="90">
                     <label>Forward basket data</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
