@@ -69,17 +69,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             'basicdata/secret'      => 'B8AKTPWBRMNBV455FG6M2DANE99WU2',
             'basicdata/backendpw'   => 'jcv45z'
         ),
-        'test_no3d' => array(
-            'basicdata/customer_id' => 'D200411',
-            'basicdata/shop_id'     => '',
-            'basicdata/secret'      => 'CHCSH7UGHVVX2P7EHDHSY4T2S4CGYK4QBE4M5YUUG2ND5BEZWNRZW5EJYVJQ',
-            'basicdata/backendpw'   => '2g4f9q2m'
-        ),
         'test_3d'   => array(
-            'basicdata/customer_id' => 'D200411',
-            'basicdata/shop_id'     => '3D',
-            'basicdata/secret'      => 'DP4TMTPQQWFJW34647RM798E9A5X7E8ATP462Z4VGZK53YEJ3JWXS98B9P4F',
-            'basicdata/backendpw'   => '2g4f9q2m'
+            'basicdata/customer_id' => 'D200410',
+            'basicdata/shop_id'     => 'page',
+            'basicdata/secret'      => 'UVNWUCQ7AGE9F5837YW53JBWDP77PWDHS2DMC3TMJ8VYB42G2WM4FWYTK5Z9',
+            'basicdata/backendpw'   => '9p3a0m5f'
         )
     );
 
