@@ -54,8 +54,6 @@ function install_sample_data() {
   git checkout ${MAGENTO2_VERSION}
   cd ..
   php -f magento2-sample-data/dev/tools/build-sample-data.php -- --ce-source="/var/www/magento2/"
-  bin/magento setup:upgrade
-  bin/magento cache:flush
 }
 
 function install_language_pack() {
@@ -63,12 +61,26 @@ function install_language_pack() {
   cd /var/www/magento2
   composer require splendidinternet/mage2-locale-de-de
   bin/magento config:set general/locale/code de_DE
+  bin/magento config:set general/country/default at
 }
 
 function install_plugin() {
-  STR_PLUGIN=$(get_plugin.sh ${PLUGIN_URL} ${PLUGIN_VERSION})
-  PLUGIN_NAME=$(echo ${STR_PLUGIN} | cut -d'^' -f1)
-  PATH_TO_ZIP=$(echo ${STR_PLUGIN} | cut -d'^' -f2)
+  echo "Installing Extension"
+  local PLUGIN_DIR=/tmp/plugin/
+  if [[ -n ${PLUGIN_URL} && ${PLUGIN_URL} != 'local' ]]; then
+    PLUGIN_DIR=$(mktemp -d)
+    if [[ -z ${PLUGIN_VERSION} || ${PLUGIN_VERSION} == 'latest' ]]; then
+      git clone -b ${PLUGIN_VERSION} ${PLUGIN_URL} ${PLUGIN_DIR}
+    else
+      git clone ${PLUGIN_URL} ${PLUGIN_DIR}
+    fi 
+  fi
+  cd /var/www/magento2
+  composer config minimum-stability dev
+  composer config repositories.qenta path ${PLUGIN_DIR}
+  composer require qenta/magento2-qcp
+  bin/magento setup:upgrade
+  bin/magento cache:disable
 }
 
 function setup_store() {
@@ -97,7 +109,6 @@ function print_info() {
   echo
   echo "Shop: https://${MAGENTO2_BASEURL}"
   echo "Admin Panel: https://${MAGENTO2_BASEURL}/admin_qenta/"
-  echo "Plugin Config: https://${MAGENTO2_BASEURL}/"
   echo "User: ${MAGENTO2_ADMIN_USER}"
   echo "Password: ${MAGENTO2_ADMIN_PASS}"
   echo
