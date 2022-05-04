@@ -72,7 +72,7 @@ define(
                 return window.checkoutConfig.payment[this.getCode()].min_age
             },
             isB2B: function() {
-                return this.getCode() == 'qenta_checkoutpage_invoiceb2b';
+                return false;
             },
             validate: function () {
                 minAgeValidator.minage = this.getMinAge();

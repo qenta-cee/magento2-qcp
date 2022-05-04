@@ -41,7 +41,6 @@
             </basicdata>
             <options>
                 <order_creation>after</order_creation>
-                <mobiledetect>0</mobiledetect>
                 <maxretries>-1</maxretries>
                 <sendbillingdata>1</sendbillingdata>
                 <sendshippingdata>1</sendshippingdata>
@@ -231,23 +230,6 @@
                 <model>Qenta\CheckoutPage\Model\Payment\Invoice</model>
                 <sort_order>270</sort_order>
             </qenta_checkoutpage_invoice>
-
-            <qenta_checkoutpage_invoiceb2b>
-                <active>0</active>
-                <title>Qenta Checkout Page Invoice B2B</title>
-                <instructions>You will be redirected to Qenta Checkout Page when you place an order.</instructions>
-                <payolution_terms>1</payolution_terms>
-                <displaymode>iframe</displaymode>
-                <currency>EUR</currency>
-                <allowspecific>1</allowspecific>
-                <specificcountry>AT,DE,CH</specificcountry>
-                <shippingcountry>AT,DE,CH</shippingcountry>
-                <billing_shipping_address_identical>1</billing_shipping_address_identical>
-                <min_order_total>25</min_order_total>
-                <max_order_total>3500</max_order_total>
-                <model>Qenta\CheckoutPage\Model\Payment\Invoiceb2b</model>
-                <sort_order>280</sort_order>
-            </qenta_checkoutpage_invoiceb2b>
 
             <qenta_checkoutpage_installment>
                 <active>0</active>

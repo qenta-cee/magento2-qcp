@@ -115,7 +115,6 @@ class Select extends AbstractPayment
 
         $blacklist = [
             'qenta_checkoutpage_ccardmoto',
-            'qenta_checkoutpage_invoiceb2b'
         ];
         $map = [
             'TRUSTLY' => 'INSTANTBANK'

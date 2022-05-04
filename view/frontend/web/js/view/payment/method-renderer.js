@@ -137,10 +137,6 @@ define(
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/invoiceinstallment'
             },
             {
-                type: 'qenta_checkoutpage_invoiceb2b',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/invoiceinstallment'
-            },
-            {
                 type: 'qenta_checkoutpage_installment',
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/invoiceinstallment'
             },

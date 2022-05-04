@@ -69,7 +69,6 @@ class ConfigProvider implements ConfigProviderInterface
         Payment\Epaybg::CODE,
         Payment\Sepa::CODE,
         Payment\Invoice::CODE,
-        Payment\Invoiceb2b::CODE,
         Payment\Installment::CODE,
         Payment\Voucher::CODE,
         Payment\Trustpay::CODE,
@@ -173,7 +172,6 @@ class ConfigProvider implements ConfigProviderInterface
          */
 
         $config['payment'][Payment\Invoice::CODE]['provider']     = $this->methods[Payment\Invoice::CODE]->getProvider();
-        $config['payment'][Payment\Invoiceb2b::CODE]['provider']  = $this->methods[Payment\Invoiceb2b::CODE]->getProvider();
         $config['payment'][Payment\Installment::CODE]['provider'] = $this->methods[Payment\Installment::CODE]->getProvider();
 
         $txt =
@@ -182,7 +180,6 @@ class ConfigProvider implements ConfigProviderInterface
         $payolutionLink = $this->_dataHelper->getPayolutionLink($this->methods[Payment\Invoice::CODE]->getConfigData('payolution_mid'));
         if ($this->methods[Payment\Invoice::CODE]->getProvider() == 'payolution' && $this->methods[Payment\Invoice::CODE]->getConfigData('payolution_terms')) {
             $config['payment'][Payment\Invoice::CODE]['consenttxt']    = sprintf($txt, $payolutionLink);
-            $config['payment'][Payment\Invoiceb2b::CODE]['consenttxt'] = sprintf($txt, $payolutionLink);
         }
 
         $config['payment'][Payment\Invoice::CODE]['min_age']     = (int) $this->methods[Payment\Invoice::CODE]->getConfigData('min_age');
