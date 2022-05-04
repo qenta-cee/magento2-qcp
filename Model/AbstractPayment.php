@@ -250,19 +250,7 @@ abstract class AbstractPayment extends AbstractMethod
             $init->setDuplicateRequestCheck($this->_dataHelper->getConfigData('options/duplicaterequestcheck'));
         }
 
-        if ($this->_dataHelper->getConfigData('options/mobiledetect')) {
-            $detect = new \QentaCEE\QPay\MobileDetect();
-
-            if ($detect->isTablet()) {
-                $layout = 'TABLET';
-            } elseif ($detect->isMobile()) {
-                $layout = 'SMARTPHONE';
-            } else {
-                $layout = 'DESKTOP';
-            }
-
-            $init->setLayout($layout);
-        }
+        $init->setLayout('DESKTOP');
 
         if (strlen($data->getData('financialInstitution'))) {
             $init->setFinancialInstitution($data->getData('financialInstitution'));
@@ -647,13 +635,8 @@ abstract class AbstractPayment extends AbstractMethod
      */
     public function getDisplayMode()
     {
-        $detectLayout = new \QentaCEE\QPay\MobileDetect();
-
-        if ($this->_dataHelper->getConfigData('options/mobiledetect') && $detectLayout->isMobile()) {
-            return 'redirect';
-        }
-
-        return $this->getConfigData('displaymode');
+        // we always want redirect in this plugin to avoid issues with popups and iframes in modern browsers
+        return 'redirect';
     }
 
     /**

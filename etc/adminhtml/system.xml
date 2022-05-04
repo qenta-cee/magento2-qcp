@@ -174,15 +174,6 @@
                             ]]></comment>
                 </field>
 
-                <field id="mobiledetect" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="100">
-                    <label>Device detection</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment><![CDATA[
-                                Detecting mobile browsers and setting "layout" request parameter accordingly. Forcing page redirect for mobile devices instead of iframe based checkout.
-                                <br/>Has to be enabled by Qenta on your behalf.
-                            ]]></comment>
-                </field>
-
                 <field id="layout" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="110">
                     <label>Device type optimization</label>
                     <source_model>Qenta\CheckoutPage\Model\Config\Source\Layouts</source_model>
