@@ -56,7 +56,6 @@ class ConfigProvider implements ConfigProviderInterface
         Payment\Sepa::CODE,
         Payment\Invoice::CODE,
         Payment\Installment::CODE,
-        Payment\Voucher::CODE,
         Payment\Sofortbanking::CODE,
     ];
 

@@ -76,9 +76,6 @@
                                                                         <item name="qenta_checkoutpage_sepa" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="qenta_checkoutpage_voucher" xsi:type="array">
-                                                                            <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
-                                                                        </item>
                                                                     </item>
                                                                 </item>
                                                             </item>

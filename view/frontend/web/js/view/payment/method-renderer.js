@@ -83,10 +83,6 @@ define(
             {
                 type: 'qenta_checkoutpage_installment',
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/invoiceinstallment'
-            },
-            {
-                type: 'qenta_checkoutpage_voucher',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             }
         );
 
