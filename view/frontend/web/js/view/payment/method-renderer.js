@@ -53,10 +53,6 @@ define(
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/eps'
             },
             {
-                type: 'qenta_checkoutpage_ideal',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/ideal'
-            },
-            {
                 type: 'qenta_checkoutpage_sofortbanking',
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },

@@ -49,7 +49,6 @@ class ConfigProvider implements ConfigProviderInterface
         Payment\Select::CODE,
         Payment\Ccard::CODE,
         Payment\Eps::CODE,
-        Payment\Ideal::CODE,
         Payment\P24::CODE,
         Payment\Paysafecard::CODE,
         Payment\Paypal::CODE,
@@ -135,21 +134,6 @@ class ConfigProvider implements ConfigProviderInterface
         array_unshift($epsFinancialInstitutions, ['value' => '', 'label' => $this->_dataHelper->__('Choose your bank...')]);
 
         $config['payment'][Payment\Eps::CODE]['financialinstitutions'] = $epsFinancialInstitutions;
-
-        /*
-         * IDEAL financial institutions
-         */
-
-        $fis = \QentaCEE\QPay\PaymentType::getFinancialInstitutions(\QentaCEE\QPay\PaymentType::IDL);
-
-        $idealFinancialInstitutions = [];
-        foreach ($fis as $k => $v) {
-            $idealFinancialInstitutions[] = ['value' => $k, 'label' => htmlspecialchars_decode($v)];
-        }
-        array_unshift($idealFinancialInstitutions,
-            ['value' => '', 'label' => $this->_dataHelper->__('Choose your bank...')]);
-
-        $config['payment'][Payment\Ideal::CODE]['financialinstitutions'] = $idealFinancialInstitutions;
 
         /*
          * Invoice/installment
