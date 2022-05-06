@@ -105,15 +105,6 @@
                 <sort_order>130</sort_order>
             </qenta_checkoutpage_bmc>
 
-            <qenta_checkoutpage_ekonto>
-                <active>0</active>
-                <title>Qenta Checkout Page eKonto</title>
-                <instructions>You will be redirected to Qenta Checkout Page when you place an order.</instructions>
-                <displaymode>iframe</displaymode>
-                <model>Qenta\CheckoutPage\Model\Payment\Ekonto</model>
-                <sort_order>140</sort_order>
-            </qenta_checkoutpage_ekonto>
-
             <qenta_checkoutpage_eps>
                 <active>0</active>
                 <title>Qenta Checkout Page eps-Überweisung</title>

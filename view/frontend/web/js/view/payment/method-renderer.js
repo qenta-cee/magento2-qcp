@@ -93,10 +93,6 @@ define(
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },
             {
-                type: 'qenta_checkoutpage_ekonto',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
                 type: 'qenta_checkoutpage_paybox',
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },
