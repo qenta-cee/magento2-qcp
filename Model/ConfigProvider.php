@@ -52,7 +52,6 @@ class ConfigProvider implements ConfigProviderInterface
         Payment\Maestro::CODE,
         Payment\Eps::CODE,
         Payment\Ideal::CODE,
-        Payment\Giropay::CODE,
         Payment\Tatrapay::CODE,
         Payment\P24::CODE,
         Payment\Paysafecard::CODE,

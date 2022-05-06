@@ -96,15 +96,6 @@
                 <sort_order>150</sort_order>
             </qenta_checkoutpage_eps>
 
-            <qenta_checkoutpage_giropay>
-                <active>0</active>
-                <title>Qenta Checkout Page giropay</title>
-                <instructions>You will be redirected to Qenta Checkout Page when you place an order.</instructions>
-                <displaymode>iframe</displaymode>
-                <model>Qenta\CheckoutPage\Model\Payment\Giropay</model>
-                <sort_order>160</sort_order>
-            </qenta_checkoutpage_giropay>
-
             <qenta_checkoutpage_ideal>
                 <active>0</active>
                 <title>Qenta Checkout Page iDEAL</title>
