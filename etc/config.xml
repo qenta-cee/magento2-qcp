@@ -243,15 +243,6 @@
                 <txident>SINGLE</txident>
             </qenta_checkoutpage_sepa>
 
-            <qenta_checkoutpage_paybox>
-                <active>0</active>
-                <title>Qenta Checkout Page paybox</title>
-                <instructions>You will be redirected to Qenta Checkout Page when you place an order.</instructions>
-                <displaymode>iframe</displaymode>
-                <model>Qenta\CheckoutPage\Model\Payment\Paybox</model>
-                <sort_order>360</sort_order>
-            </qenta_checkoutpage_paybox>
-
             <qenta_checkoutpage_voucher>
                 <active>0</active>
                 <title>Qenta Checkout Page My Voucher</title>
