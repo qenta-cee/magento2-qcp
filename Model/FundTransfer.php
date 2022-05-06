@@ -90,12 +90,6 @@ class FundTransfer
                     $postObject['sourceOrderNumber']);
                 break;
 
-            case \QentaCEE\QPay\ToolkitClient::$TRANSFER_FUND_TYPE_SKIRLLWALLET:
-                /** @var \QentaCEE\QPay\Request\Backend\TransferFund\SkrillWallet $client */
-                $ret = $client->send($postObject['amount'], $postObject['currency'], $postObject['orderDescription'],
-                    $postObject['customerStatement'], $postObject['consumerEmail']);
-                break;
-
             case \QentaCEE\QPay\ToolkitClient::$TRANSFER_FUND_TYPE_MONETA:
                 /** @var \QentaCEE\QPay\Request\Backend\TransferFund\Moneta $client */
                 $ret = $client->send($postObject['amount'], $postObject['currency'], $postObject['orderDescription'],

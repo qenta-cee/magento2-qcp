@@ -55,7 +55,6 @@ class ConfigProvider implements ConfigProviderInterface
         Payment\Ideal::CODE,
         Payment\Giropay::CODE,
         Payment\Tatrapay::CODE,
-        Payment\Skrillwallet::CODE,
         Payment\Bmc::CODE,
         Payment\P24::CODE,
         Payment\Poli::CODE,

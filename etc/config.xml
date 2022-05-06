@@ -277,15 +277,6 @@
                 <sort_order>320</sort_order>
             </qenta_checkoutpage_quick>
 
-            <qenta_checkoutpage_skrillwallet>
-                <active>0</active>
-                <title>Qenta Checkout Page Skrill Digital Wallet</title>
-                <instructions>You will be redirected to Qenta Checkout Page when you place an order.</instructions>
-                <displaymode>iframe</displaymode>
-                <model>Qenta\CheckoutPage\Model\Payment\Skrillwallet</model>
-                <sort_order>330</sort_order>
-            </qenta_checkoutpage_skrillwallet>
-
             <qenta_checkoutpage_sepa>
                 <active>1</active>
                 <title>Qenta Checkout Page SEPA Direct Debit</title>

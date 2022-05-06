@@ -93,8 +93,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic implements TabInte
                 ''              => $this->_dataHelper->__('Please select the fund transfer type'),
                 'existingorder' => $this->_dataHelper->__('Existing order'),
                 'moneta'        => 'moneta.ru',
-                'sepa-ct'       => 'SEPA-CT',
-                'skrillwallet'  => 'Skrill Digital Wallet'
+                'sepa-ct'       => 'SEPA-CT'
             ),
         ]);
 
@@ -205,12 +204,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic implements TabInte
         ));
 
 
-        /* skrillwallet fields */
-        $fieldsetExistingOrder = $form->addFieldset('fields-skrillwallet',
-            array(
-                'legend' => $this->_dataHelper->__('Skrill Digital Wallet data'),
-                'class'  => 'transferfund-fieldset'
-            ));
         $fieldsetExistingOrder->addField('consumerEmail', 'text', array(
             'name'     => 'consumerEmail',
             'label'    => $this->_dataHelper->__('Consumer e-mail address'),
