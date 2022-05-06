@@ -81,10 +81,6 @@ define(
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },
             {
-                type: 'qenta_checkoutpage_bmc',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
                 type: 'qenta_checkoutpage_p24',
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },
