@@ -79,9 +79,6 @@
                                                                         <item name="qenta_checkoutpage_tatrapay" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>
-                                                                        <item name="qenta_checkoutpage_epaybg" xsi:type="array">
-                                                                            <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
-                                                                        </item>
                                                                         <item name="qenta_checkoutpage_paypal" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
                                                                         </item>

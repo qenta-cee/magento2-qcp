@@ -58,7 +58,6 @@ class ConfigProvider implements ConfigProviderInterface
         Payment\P24::CODE,
         Payment\Paysafecard::CODE,
         Payment\Paypal::CODE,
-        Payment\Epaybg::CODE,
         Payment\Sepa::CODE,
         Payment\Invoice::CODE,
         Payment\Installment::CODE,
