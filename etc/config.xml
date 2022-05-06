@@ -204,14 +204,6 @@
                 <sort_order>250</sort_order>
             </qenta_checkoutpage_epaybg>
 
-            <qenta_checkoutpage_moneta>
-                <active>0</active>
-                <title>Qenta Checkout Page moneta.ru</title>
-                <instructions>You will be redirected to Qenta Checkout Page when you place an order.</instructions>
-                <displaymode>iframe</displaymode>
-                <model>Qenta\CheckoutPage\Model\Payment\Moneta</model>
-                <sort_order>260</sort_order>
-            </qenta_checkoutpage_moneta>
 
             <qenta_checkoutpage_invoice>
                 <active>1</active>

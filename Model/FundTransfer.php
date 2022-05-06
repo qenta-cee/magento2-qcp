@@ -90,12 +90,6 @@ class FundTransfer
                     $postObject['sourceOrderNumber']);
                 break;
 
-            case \QentaCEE\QPay\ToolkitClient::$TRANSFER_FUND_TYPE_MONETA:
-                /** @var \QentaCEE\QPay\Request\Backend\TransferFund\Moneta $client */
-                $ret = $client->send($postObject['amount'], $postObject['currency'], $postObject['orderDescription'],
-                    $postObject['customerStatement'], $postObject['consumerWalletId']);
-                break;
-
             case \QentaCEE\QPay\ToolkitClient::$TRANSFER_FUND_TYPE_SEPACT:
                 /** @var \QentaCEE\QPay\Request\Backend\TransferFund\SepaCT $client */
                 $ret = $client->send($postObject['amount'], $postObject['currency'], $postObject['orderDescription'],

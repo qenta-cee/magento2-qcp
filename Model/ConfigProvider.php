@@ -58,7 +58,6 @@ class ConfigProvider implements ConfigProviderInterface
         Payment\Bmc::CODE,
         Payment\P24::CODE,
         Payment\Poli::CODE,
-        Payment\Moneta::CODE,
         Payment\Ekonto::CODE,
         Payment\Trustly::CODE,
         Payment\Paybox::CODE,

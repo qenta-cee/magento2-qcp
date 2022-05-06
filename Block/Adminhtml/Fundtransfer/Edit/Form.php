@@ -92,7 +92,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic implements TabInte
             'options'  => array(
                 ''              => $this->_dataHelper->__('Please select the fund transfer type'),
                 'existingorder' => $this->_dataHelper->__('Existing order'),
-                'moneta'        => 'moneta.ru',
                 'sepa-ct'       => 'SEPA-CT'
             ),
         ]);
@@ -211,22 +210,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic implements TabInte
             'required' => true,
             'style'    => 'width: 400px',
             'note'     => sprintf($fieldNoteFmt, '/request_parameters#consumer_billing_data')
-        ));
-
-
-        /* moneta.ru fields */
-        $fieldsetExistingOrder = $form->addFieldset('fields-moneta',
-            array(
-                'legend' => $this->_dataHelper->__('moneta.ru data'),
-                'class'  => 'transferfund-fieldset'
-            ));
-        $fieldsetExistingOrder->addField('consumerWalletId', 'text', array(
-            'name'     => 'consumerWalletId',
-            'label'    => $this->_dataHelper->__('Consumer wallet ID'),
-            'class'    => 'required-entry fundtransfer-required',
-            'required' => true,
-            'style'    => 'width: 400px',
-            'note'     => sprintf($fieldNoteFmt, '/back-end_operations:functional_wcp_wcs:transaction-based_operations:transferfund#fund_transfer_typemoneta')
         ));
 
         $form->setValues(['currency' => 'EUR']);
