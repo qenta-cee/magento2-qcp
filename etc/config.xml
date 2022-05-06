@@ -132,15 +132,6 @@
                 <sort_order>170</sort_order>
             </qenta_checkoutpage_ideal>
 
-            <qenta_checkoutpage_poli>
-                <active>0</active>
-                <title>Qenta Checkout Page POLi</title>
-                <instructions>You will be redirected to Qenta Checkout Page when you place an order.</instructions>
-                <displaymode>iframe</displaymode>
-                <model>Qenta\CheckoutPage\Model\Payment\Poli</model>
-                <sort_order>180</sort_order>
-            </qenta_checkoutpage_poli>
-
             <qenta_checkoutpage_p24>
                 <active>0</active>
                 <title>Qenta Checkout Page Przelewy24</title>
