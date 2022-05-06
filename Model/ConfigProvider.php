@@ -69,7 +69,6 @@ class ConfigProvider implements ConfigProviderInterface
         Payment\Invoice::CODE,
         Payment\Installment::CODE,
         Payment\Voucher::CODE,
-        Payment\Trustpay::CODE,
         Payment\Sofortbanking::CODE,
     ];
 

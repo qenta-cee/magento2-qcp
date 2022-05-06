@@ -186,15 +186,6 @@
                 <sort_order>230</sort_order>
             </qenta_checkoutpage_trustly>
 
-            <qenta_checkoutpage_trustpay>
-                <active>0</active>
-                <title>Qenta Checkout Page Trustpay</title>
-                <instructions>You will be redirected to Qenta Checkout Page when you place an order.</instructions>
-                <displaymode>iframe</displaymode>
-                <model>Qenta\CheckoutPage\Model\Payment\Trustpay</model>
-                <sort_order>240</sort_order>
-            </qenta_checkoutpage_trustpay>
-
             <qenta_checkoutpage_epaybg>
                 <active>0</active>
                 <title>Qenta Checkout Page ePay.bg</title>
