@@ -57,7 +57,6 @@ class ConfigProvider implements ConfigProviderInterface
         Payment\Tatrapay::CODE,
         Payment\P24::CODE,
         Payment\Paysafecard::CODE,
-        Payment\Quick::CODE,
         Payment\Paypal::CODE,
         Payment\Epaybg::CODE,
         Payment\Sepa::CODE,
