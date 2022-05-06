@@ -53,10 +53,6 @@ define(
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },
             {
-                type: 'qenta_checkoutpage_ccardmoto',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
                 type: 'qenta_checkoutpage_maestro',
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },

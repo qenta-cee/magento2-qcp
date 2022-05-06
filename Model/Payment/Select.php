@@ -114,7 +114,7 @@ class Select extends AbstractPayment
             return;
 
         $blacklist = [
-            'qenta_checkoutpage_ccardmoto',
+            'qenta_checkoutpage_DUMMY',
         ];
 
         // payment type overrides
