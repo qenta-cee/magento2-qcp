@@ -69,15 +69,6 @@
                 <sort_order>110</sort_order>
             </qenta_checkoutpage_ccard>
 
-            <qenta_checkoutpage_masterpass>
-                <active>1</active>
-                <title>Qenta Checkout Page Masterpass</title>
-                <instructions>You will be redirected to Qenta Checkout Page when you place an order.</instructions>
-                <displaymode>iframe</displaymode>
-                <model>Qenta\CheckoutPage\Model\Payment\Masterpass</model>
-                <sort_order>115</sort_order>
-            </qenta_checkoutpage_masterpass>
-
             <qenta_checkoutpage_eps>
                 <active>0</active>
                 <title>Qenta Checkout Page eps-Überweisung</title>

@@ -48,7 +48,6 @@ class ConfigProvider implements ConfigProviderInterface
     protected $methodCodes = [
         Payment\Select::CODE,
         Payment\Ccard::CODE,
-        Payment\Masterpass::CODE,
         Payment\Eps::CODE,
         Payment\Ideal::CODE,
         Payment\Tatrapay::CODE,
