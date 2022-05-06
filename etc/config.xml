@@ -105,15 +105,6 @@
                 <sort_order>210</sort_order>
             </qenta_checkoutpage_sofortbanking>
 
-            <qenta_checkoutpage_tatrapay>
-                <active>0</active>
-                <title>Qenta Checkout Page TatraPay</title>
-                <instructions>You will be redirected to Qenta Checkout Page when you place an order.</instructions>
-                <displaymode>iframe</displaymode>
-                <model>Qenta\CheckoutPage\Model\Payment\Tatrapay</model>
-                <sort_order>220</sort_order>
-            </qenta_checkoutpage_tatrapay>
-
             <qenta_checkoutpage_invoice>
                 <active>1</active>
                 <title>Qenta Checkout Page Invoice</title>

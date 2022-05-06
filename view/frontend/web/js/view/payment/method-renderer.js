@@ -57,10 +57,6 @@ define(
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/ideal'
             },
             {
-                type: 'qenta_checkoutpage_tatrapay',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
                 type: 'qenta_checkoutpage_sofortbanking',
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },
