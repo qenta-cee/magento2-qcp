@@ -54,7 +54,6 @@ class ConfigProvider implements ConfigProviderInterface
         Payment\Paypal::CODE,
         Payment\Sepa::CODE,
         Payment\Invoice::CODE,
-        Payment\Installment::CODE,
         Payment\Sofortbanking::CODE,
     ];
 
@@ -136,11 +135,10 @@ class ConfigProvider implements ConfigProviderInterface
         $config['payment'][Payment\Eps::CODE]['financialinstitutions'] = $epsFinancialInstitutions;
 
         /*
-         * Invoice/installment
+         * Invoice
          */
 
         $config['payment'][Payment\Invoice::CODE]['provider']     = $this->methods[Payment\Invoice::CODE]->getProvider();
-        $config['payment'][Payment\Installment::CODE]['provider'] = $this->methods[Payment\Installment::CODE]->getProvider();
 
         $txt =
             $this->_dataHelper->__('I agree that the data which are necessary for the liquidation of purchase on account and which are used to complete the identy and credit check are transmitted to payolution. My %s can be revoked at any time with effect for the future.');
@@ -151,19 +149,9 @@ class ConfigProvider implements ConfigProviderInterface
         }
 
         $config['payment'][Payment\Invoice::CODE]['min_age']     = (int) $this->methods[Payment\Invoice::CODE]->getConfigData('min_age');
-        $config['payment'][Payment\Installment::CODE]['min_age'] = (int) $this->methods[Payment\Installment::CODE]->getConfigData('min_age');
 
         if ($this->methods[Payment\Invoice::CODE]->getProvider() == 'payolution') {
             $config['payment'][Payment\Invoice::CODE]['min_age'] = 18;
-        }
-
-        if ($this->methods[Payment\Installment::CODE]->getProvider() == 'payolution') {
-            $config['payment'][Payment\Installment::CODE]['min_age'] = 18;
-        }
-
-        $payolutionLink = $this->_dataHelper->getPayolutionLink($this->methods[Payment\Installment::CODE]->getConfigData('payolution_mid'));
-        if ($this->methods[Payment\Installment::CODE]->getProvider() == 'payolution' && $this->methods[Payment\Installment::CODE]->getConfigData('payolution_terms')) {
-            $config['payment'][Payment\Installment::CODE]['consenttxt'] = sprintf($txt, $payolutionLink);
         }
 
         return $config;
