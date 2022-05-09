@@ -85,13 +85,11 @@ class Installment extends AbstractPayment
             return false;
         }
 
-        if ($quote === null)
+        if ($quote === null) {
             return false;
-
-        if ($this->getConfigData('provider') == 'ratepay') {
-            return $this->_isAvailableRatePay($quote);
         }
-        elseif ($this->getConfigData('provider') == 'payolution') {
+
+        if ($this->getConfigData('provider') == 'payolution') {
             return $this->_isAvailablePayolution($quote);
         }
 

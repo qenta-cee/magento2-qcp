@@ -466,12 +466,6 @@
                     <source_model>Magento\Config\Model\Config\Source\Locale\Currency</source_model>
                     <can_be_empty>1</can_be_empty>
                 </field>
-                <field id="min_age" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Minimum age</label>
-                    <validate>validate-greater-than-zero</validate>
-                    <can_be_empty>1</can_be_empty>
-                    <comment>Only applicable for RatePAY.</comment>
-                </field>
                 <field id="billing_shipping_address_identical" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Billing and shipping address must be identical</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>

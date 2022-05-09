@@ -47,8 +47,7 @@ class InstallmentProviders implements \Magento\Framework\Option\ArrayInterface
     public function toOptionArray()
     {
         $list = array(
-            array('value' => 'payolution', 'label' => 'payolution'),
-            array('value' => 'ratepay', 'label' => 'RatePay'),
+            array('value' => 'payolution', 'label' => 'payolution')
         );
 
         return $list;
