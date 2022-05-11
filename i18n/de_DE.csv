@@ -64,6 +64,7 @@ Provider,Provider
 "Qenta Checkout Page Fund Transfer","Qenta Checkout Page Auszahlung"
 "Qenta Checkout Page Credit Card - Mail Order / Telephone Order","Qenta Checkout Page Kreditkarte - Post-/Telefonbestellung"
 "Qenta Checkout Page Credit Card","Qenta Checkout Page Kreditkarte"
+"Qenta Checkout Page AfterPay","Qenta Checkout Page AfterPay Rechnung und Ratenzahlung"
 "Qenta Checkout Page eps Online-Überweisung","Qenta Checkout Page eps-Überweisung"
 "Qenta Checkout Page Invoice","Qenta Checkout Page Rechnung"
 "Qenta Checkout Page PayPal","Qenta Checkout Page PayPal"

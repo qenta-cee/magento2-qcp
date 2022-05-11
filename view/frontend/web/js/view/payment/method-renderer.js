@@ -49,6 +49,10 @@ define(
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },
             {
+              type: 'qenta_checkoutpage_afterpay',
+              component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
+            },
+            {
                 type: 'qenta_checkoutpage_eps',
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/eps'
             },

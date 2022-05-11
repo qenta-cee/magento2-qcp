@@ -174,15 +174,6 @@
                             ]]></comment>
                 </field>
 
-                <field id="layout" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="110">
-                    <label>Device type optimization</label>
-                    <source_model>Qenta\CheckoutPage\Model\Config\Source\Layouts</source_model>
-                    <comment><![CDATA[
-                                Device type for which Qenta Checkout Page should be optimized ("desktop", "tablet" or "smartphone"; parameter <a href="https://guides.wirecard.com/request_parameters#layout" target="_blank">layout</a>).
-                                <br/>Has to be enabled by Qenta on your behalf.
-                            ]]></comment>
-                </field>
-
                 <field id="duplicaterequestcheck" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="125">
                     <label>Check for duplicate requests</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -296,6 +287,47 @@
 
             <group id="qenta_checkoutpage_eps" translate="label" type="text" sortOrder="1070" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Qenta Checkout Page eps-Überweisung</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="allowed_carrier" translate="label" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Available shipping methods</label>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allmethods</source_model>
+                </field>
+                <field id="allowspecific" translate="label" type="allowspecific" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment method available for</label>
+                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Specific countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="instructions" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Instructions</label>
+                </field>
+                <field id="displaymode" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Display mode</label>
+                    <source_model>Qenta\CheckoutPage\Model\Config\Source\DisplayModes</source_model>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort order</label>
+                    <frontend_class>validate-number</frontend_class>
+                </field>
+                <field id="min_order_total" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Minimum order total</label>
+                </field>
+                <field id="max_order_total" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Maximum order total</label>
+                </field>
+            </group>
+
+            <group id="qenta_checkoutpage_afterpay" translate="label" type="text" sortOrder="1230" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Qenta Checkout Page AfterPay</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -496,7 +528,6 @@
                     <label>Maximum basket size</label>
                     <validate>validate-greater-than-zero</validate>
                 </field>
-
             </group>
 
             <group id="qenta_checkoutpage_paypal" translate="label" type="text" sortOrder="1220" showInDefault="1" showInWebsite="1" showInStore="1">

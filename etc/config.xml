@@ -44,8 +44,9 @@
                 <maxretries>-1</maxretries>
                 <sendbillingdata>1</sendbillingdata>
                 <sendshippingdata>1</sendshippingdata>
+                <sendbasketinformation>1</sendbasketinformation>
                 <paymenttypesortorder>0</paymenttypesortorder>
-                <duplicaterequestcheck>1</duplicaterequestcheck>
+                <duplicaterequestcheck>0</duplicaterequestcheck>
             </options>
 
         </qenta_checkoutpage>
@@ -68,6 +69,15 @@
                 <model>Qenta\CheckoutPage\Model\Payment\Ccard</model>
                 <sort_order>110</sort_order>
             </qenta_checkoutpage_ccard>
+
+            <qenta_checkoutpage_afterpay>
+                <active>0</active>
+                <title>Qenta Checkout Page AfterPay</title>
+                <instructions>You will be redirected to Qenta Checkout Page when you place an order.</instructions>
+                <displaymode>iframe</displaymode>
+                <model>Qenta\CheckoutPage\Model\Payment\Afterpay</model>
+                <sort_order>120</sort_order>
+            </qenta_checkoutpage_afterpay>
 
             <qenta_checkoutpage_eps>
                 <active>0</active>
