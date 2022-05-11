@@ -55,9 +55,9 @@ abstract class AbstractPayment extends AbstractMethod
     protected $_canRefundInvoicePartial = true;
     protected $_minAmount = null;
     protected $_maxAmount = null;
-    protected $_forceSendAdditionalData = false;
+    protected $_forceSendAdditionalData = true;
 
-    protected $_autoDepositAllowed = true;
+    protected $_autoDepositAllowed = false;
 
     /** @var \Qenta\CheckoutPage\Helper\Data */
     protected $_dataHelper = null;
@@ -138,6 +138,12 @@ abstract class AbstractPayment extends AbstractMethod
     {
         $quote = $cart->getQuote();
 
+        $urls['service'] = $this->_dataHelper->getConfigData('options/service_url') ?: join(array(
+          parse_url($this->_dataHelper->getReturnUrl(), PHP_URL_SCHEME),
+          '://',
+          parse_url($this->_dataHelper->getReturnUrl(), PHP_URL_HOST)
+        ));
+
         $init = new \QentaCEE\QPay\FrontendClient($this->_dataHelper->getConfigArray());
         $init->setPluginVersion($this->_dataHelper->getPluginVersion());
         $init->setConfirmUrl($urls['confirm']);
@@ -158,7 +164,7 @@ abstract class AbstractPayment extends AbstractMethod
              ->setCancelUrl($urls['return'])
              ->setFailureUrl($urls['return'])
              ->createConsumerMerchantCrmId($quote->getCustomerEmail())
-             ->setServiceUrl($this->_dataHelper->getConfigData('options/service_url'))
+             ->setServiceUrl($urls['service'])
              ->setConsumerData($this->_getConsumerData($quote))
              ->setMaxRetries($this->_dataHelper->getConfigData('options/maxretries'));
 
