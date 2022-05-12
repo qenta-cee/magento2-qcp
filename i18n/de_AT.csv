@@ -63,6 +63,7 @@ Provider,Provider
 "Void not possible anymore for this payment, please try cancel instead!","Das Aufheben der Authorisierung ist nicht mehr möglich."
 "Qenta Checkout Page Fund Transfer","Qenta Checkout Page Auszahlung"
 "Qenta Checkout Page AfterPay","Qenta Checkout Page AfterPay Rechnung und Ratenzahlung"
+"Qenta Checkout Page Salamantex","Qenta Checkout Page Salamantex (Crypto)"
 "Qenta Checkout Page Credit Card - Mail Order / Telephone Order","Qenta Checkout Page Kreditkarte - Post-/Telefonbestellung"
 "Qenta Checkout Page Credit Card","Qenta Checkout Page Kreditkarte"
 "Qenta Checkout Page eps Online-Überweisung","Qenta Checkout Page eps-Überweisung"

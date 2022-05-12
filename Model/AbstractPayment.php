@@ -151,6 +151,12 @@ abstract class AbstractPayment extends AbstractMethod
         $quote->reserveOrderId();
         $quote->save();
 
+        $customerId = $this->_dataHelper->getConfigData('basicdata/customer_id');
+        $orderDescription = $this->getUserDescription($quote);
+        if(strtoupper($customerId) == 'D200410' && strtoupper($this->_paymentMethod) == 'CCARD') {
+          $orderDescription = 'Test:0000';
+        }
+
         $orderId = $quote->getReservedOrderId();
         $init->setOrderReference(sprintf('%010s', substr($orderId, -10)));
         $init->uniqueId = $this->_getUniqueId($cart);
@@ -158,7 +164,7 @@ abstract class AbstractPayment extends AbstractMethod
         $init->setAmount(round($cart->getQuote()->getBaseGrandTotal(), $this->_dataHelper->getPrecision()))
              ->setCurrency($quote->getCurrency()->getBaseCurrencyCode())
              ->setPaymentType($this->_paymentMethod)
-             ->setOrderDescription($this->getUserDescription($quote))
+             ->setOrderDescription($orderDescription)
              ->setSuccessUrl($urls['return'])
              ->setPendingUrl($urls['return'])
              ->setCancelUrl($urls['return'])
