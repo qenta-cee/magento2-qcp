@@ -123,20 +123,6 @@ class ConfigProvider implements ConfigProviderInterface
         }
 
         /*
-         * EPS financial institutions
-         */
-
-        $fis = \QentaCEE\QPay\PaymentType::getFinancialInstitutions(\QentaCEE\QPay\PaymentType::EPS);
-
-        $epsFinancialInstitutions = [];
-        foreach ($fis as $k => $v) {
-            $epsFinancialInstitutions[] = ['value' => $k, 'label' => html_entity_decode($v)];
-        }
-        array_unshift($epsFinancialInstitutions, ['value' => '', 'label' => $this->_dataHelper->__('Choose your bank...')]);
-
-        $config['payment'][Payment\Eps::CODE]['financialinstitutions'] = $epsFinancialInstitutions;
-
-        /*
          * Invoice
          */
 

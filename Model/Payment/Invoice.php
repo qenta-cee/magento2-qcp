@@ -93,10 +93,6 @@ class Invoice extends AbstractPayment
         if ($this->getConfigData('provider') == 'payolution') {
             return $this->_isAvailablePayolution($quote);
         }
-        
-        if ($this->getConfigData('provider') == 'qenta') {
-            return $this->_isAvailableQenta($quote);
-        }
 
         return true;
     }
