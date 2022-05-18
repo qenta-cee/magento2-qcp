@@ -55,7 +55,7 @@ abstract class AbstractPayment extends AbstractMethod
     protected $_canRefundInvoicePartial = true;
     protected $_minAmount = null;
     protected $_maxAmount = null;
-    protected $_forceSendAdditionalData = true;
+    protected $_forceSendAdditionalData = false;
 
     protected $_autoDepositAllowed = false;
 

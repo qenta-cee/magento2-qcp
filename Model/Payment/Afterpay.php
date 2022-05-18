@@ -44,4 +44,6 @@ class Afterpay extends AbstractPayment
     protected $_paymentMethod = 'AFTERPAY';
 
     protected $_logo = 'afterpay.png';
+
+    protected $_forceSendAdditionalData = true;
 }
