@@ -54,6 +54,8 @@ function install_sample_data() {
   git checkout ${MAGENTO2_VERSION}
   cd ..
   php -f magento2-sample-data/dev/tools/build-sample-data.php -- --ce-source="/var/www/magento2/"
+  bin/magento cache:clean
+  bin/magento setup:upgrade
 }
 
 function install_language_pack() {
@@ -79,8 +81,15 @@ function install_plugin() {
   composer config minimum-stability dev
   composer config repositories.qenta path ${PLUGIN_DIR}
   composer require qenta/magento2-qcp
+  bin/magento cache:clean
   bin/magento setup:upgrade
-  bin/magento cache:disable
+
+  (sleep 10; bin/magento cache:flush >&/dev/null)&
+}
+
+function run_periodic_flush() {
+  local INTERVAL=${1:-60}
+  while sleep ${INTERVAL}; do bin/magento cache:clean >& /dev/null & done &
 }
 
 function setup_store() {
@@ -101,6 +110,8 @@ function setup_store() {
   --language=de_DE \
   --elasticsearch-host=magento2_elasticsearch_qcp \
   --backend-frontname=admin_qenta
+  bin/magento cron:run
+  bin/magento setup:upgrade
 }
 
 function print_info() {
@@ -152,6 +163,8 @@ fi
 if [[ ${CI} != 'true' ]]; then
   (sleep 1; print_info) &
 fi
+
+run_periodic_flush 3m
 
 _log "url=https://${MAGENTO2_BASEURL}"
 _log "ready"
