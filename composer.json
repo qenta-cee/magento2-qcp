@@ -4,7 +4,7 @@
     "type": "magento2-module",
     "description": "QENTA Checkout Page extension for Magento 2",
     "keywords": ["Qenta", "checkout", "page", "payment", "magento2"],
-    "homepage": "https://www.qenta-cee.at",
+    "homepage": "https://www.qenta.com",
     "support": {
         "email": "support@qenta.com",
         "docs": "https://guides.qenta.com"

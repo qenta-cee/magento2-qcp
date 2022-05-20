@@ -57,7 +57,7 @@ abstract class AbstractPayment extends AbstractMethod
     protected $_maxAmount = null;
     protected $_forceSendAdditionalData = false;
 
-    protected $_autoDepositAllowed = true;
+    protected $_autoDepositAllowed = false;
 
     /** @var \Qenta\CheckoutPage\Helper\Data */
     protected $_dataHelper = null;
@@ -138,12 +138,24 @@ abstract class AbstractPayment extends AbstractMethod
     {
         $quote = $cart->getQuote();
 
+        $urls['service'] = $this->_dataHelper->getConfigData('options/service_url') ?: join(array(
+          parse_url($this->_dataHelper->getReturnUrl(), PHP_URL_SCHEME),
+          '://',
+          parse_url($this->_dataHelper->getReturnUrl(), PHP_URL_HOST)
+        ));
+
         $init = new \QentaCEE\QPay\FrontendClient($this->_dataHelper->getConfigArray());
         $init->setPluginVersion($this->_dataHelper->getPluginVersion());
         $init->setConfirmUrl($urls['confirm']);
 
         $quote->reserveOrderId();
         $quote->save();
+
+        $customerId = $this->_dataHelper->getConfigData('basicdata/customer_id');
+        $orderDescription = $this->getUserDescription($quote);
+        if(strtoupper($customerId) == 'D200410' && strtoupper($this->_paymentMethod) == 'CCARD') {
+          $orderDescription = 'Test:0000';
+        }
 
         $orderId = $quote->getReservedOrderId();
         $init->setOrderReference(sprintf('%010s', substr($orderId, -10)));
@@ -152,19 +164,15 @@ abstract class AbstractPayment extends AbstractMethod
         $init->setAmount(round($cart->getQuote()->getBaseGrandTotal(), $this->_dataHelper->getPrecision()))
              ->setCurrency($quote->getCurrency()->getBaseCurrencyCode())
              ->setPaymentType($this->_paymentMethod)
-             ->setOrderDescription($this->getUserDescription($quote))
+             ->setOrderDescription($orderDescription)
              ->setSuccessUrl($urls['return'])
              ->setPendingUrl($urls['return'])
              ->setCancelUrl($urls['return'])
              ->setFailureUrl($urls['return'])
              ->createConsumerMerchantCrmId($quote->getCustomerEmail())
-             ->setServiceUrl($this->_dataHelper->getConfigData('options/service_url'))
+             ->setServiceUrl($urls['service'])
              ->setConsumerData($this->_getConsumerData($quote))
              ->setMaxRetries($this->_dataHelper->getConfigData('options/maxretries'));
-
-        if ($this->_paymentMethod == \QentaCEE\QMore\PaymentType::MASTERPASS) {
-            $init->setShippingProfile('NO_SHIPPING');
-        }
 
         $init->mage_orderId       = $orderId;
         $init->mage_quoteId       = $quote->getId();
@@ -243,27 +251,14 @@ abstract class AbstractPayment extends AbstractMethod
             $init->setLayout($this->_dataHelper->getConfigData('options/layout'));
         }
 
-        if ($this->_dataHelper->getConfigData('options/autodeposit') && $this->_autoDepositAllowed) {
-            $init->setAutoDeposit(true);
-        }
+        // always set to false. QMP-67
+        $init->setAutoDeposit(false);
 
         if ($this->_dataHelper->getConfigData('options/duplicaterequestcheck')) {
             $init->setDuplicateRequestCheck($this->_dataHelper->getConfigData('options/duplicaterequestcheck'));
         }
 
-        if ($this->_dataHelper->getConfigData('options/mobiledetect')) {
-            $detect = new \QentaCEE\QPay\MobileDetect();
-
-            if ($detect->isTablet()) {
-                $layout = 'TABLET';
-            } elseif ($detect->isMobile()) {
-                $layout = 'SMARTPHONE';
-            } else {
-                $layout = 'DESKTOP';
-            }
-
-            $init->setLayout($layout);
-        }
+        $init->setLayout('DESKTOP');
 
         if (strlen($data->getData('financialInstitution'))) {
             $init->setFinancialInstitution($data->getData('financialInstitution'));
@@ -544,79 +539,6 @@ abstract class AbstractPayment extends AbstractMethod
     }
 
     /**
-     * @param Quote|\Magento\Quote\Api\Data\CartInterface $quote
-     *
-     * @return bool
-     */
-    protected function _isAvailableRatePay($quote)
-    {
-        $dob    = $quote->getCustomer()->getDob();
-        $minAge = (int) $this->getConfigData('min_age');
-
-        if ($minAge <= 0) {
-            $this->_logger->debug(__METHOD__ . ':warning min-age not set for ratepay');
-            return false;
-        }
-
-        //we only need to check the dob if it's set. Else we ask for dob on payment selection page.
-        if ($dob) {
-            $dobObject      = new \DateTime($dob);
-            $currentYear    = date('Y');
-            $currentMonth   = date('m');
-            $currentDay     = date('d');
-            $ageCheckDate   = ( $currentYear - $minAge ) . '-' . $currentMonth . '-' . $currentDay;
-            $ageCheckObject = new \DateTime($ageCheckDate);
-            if ($ageCheckObject < $dobObject) {
-                return false;
-            }
-        }
-
-        if ($quote->hasVirtualItems()) {
-            return false;
-        }
-
-        if ($this->getConfigData('billing_shipping_address_identical') && !$this->compareAddresses($quote)) {
-            return false;
-        }
-
-        $currencies = explode(',', $this->getConfigData('currency'));
-        if (!in_array($quote->getQuoteCurrencyCode(), $currencies)) {
-            return false;
-        }
-
-        if (strlen($this->getConfigData('shippingcountry'))) {
-            $countries = explode(',', $this->getConfigData('shippingcountry'));
-            if (!in_array($quote->getShippingAddress()->getCountry(), $countries)) {
-                return false;
-            }
-        }
-
-        if (strlen($this->getConfigData('max_basket_size'))) {
-            if ($quote->getItemsQty() > $this->getConfigData('max_basket_size')) {
-                return false;
-            }
-        }
-
-        if (strlen($this->getConfigData('min_basket_size'))) {
-            if ($quote->getItemsQty() < $this->getConfigData('min_basket_size')) {
-                return false;
-            }
-        }
-
-        return parent::isAvailable($quote);
-    }
-
-    /**
-     * @param Quote|\Magento\Quote\Api\Data\CartInterface $quote
-     *
-     * @return bool
-     */
-    protected function _isAvailableQenta($quote)
-    {
-        return $this->_isAvailableRatePay($quote);
-    }
-
-    /**
      * force transmitting the basket data
      *
      * @return bool
@@ -648,13 +570,8 @@ abstract class AbstractPayment extends AbstractMethod
      */
     public function getDisplayMode()
     {
-        $detectLayout = new \QentaCEE\QPay\MobileDetect();
-
-        if ($this->_dataHelper->getConfigData('options/mobiledetect') && $detectLayout->isMobile()) {
-            return 'redirect';
-        }
-
-        return $this->getConfigData('displaymode');
+        // we always want redirect in this plugin to avoid issues with popups and iframes in modern browsers
+        return 'redirect';
     }
 
     /**

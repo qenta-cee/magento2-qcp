@@ -49,8 +49,7 @@ class Configurations implements \Magento\Framework\Option\ArrayInterface
         $configs = array(
             array('value' => 'prod', 'label' => $this->_dataHelper->__('Production')),
             array('value' => 'demo', 'label' => $this->_dataHelper->__('Demo')),
-            array('value' => 'test_no3d', 'label' => $this->_dataHelper->__('Test without 3-D Secure')),
-            array('value' => 'test_3d', 'label' => $this->_dataHelper->__('Test with 3-D Secure'))
+            array('value' => 'test_3d', 'label' => $this->_dataHelper->__('Test'))
         );
 
         return $configs;

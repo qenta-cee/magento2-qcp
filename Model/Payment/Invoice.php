@@ -90,12 +90,8 @@ class Invoice extends AbstractPayment
             return false;
         }
 
-        if ($this->getConfigData('provider') == 'ratepay') {
-            return $this->_isAvailableRatePay($quote);
-        } elseif ($this->getConfigData('provider') == 'payolution') {
+        if ($this->getConfigData('provider') == 'payolution') {
             return $this->_isAvailablePayolution($quote);
-        } elseif ($this->getConfigData('provider') == 'qenta') {
-            return $this->_isAvailableQenta($quote);
         }
 
         return true;
@@ -108,7 +104,7 @@ class Invoice extends AbstractPayment
      */
     protected function forceSendingBasket()
     {
-        return $this->getConfigData('provider') == 'ratepay' || $this->getConfigData('provider') == 'qenta';
+        return $this->getConfigData('provider') == 'qenta';
     }
 
 

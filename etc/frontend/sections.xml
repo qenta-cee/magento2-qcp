@@ -1,3 +1,5 @@
+<?xml version="1.0"?>
+<!--
 /**
  * Shop System Plugins - Terms of Use
  *
@@ -28,40 +30,10 @@
  * By installing the plugin into the shop system the customer agrees to these terms of use.
  * Please do not use the plugin if you do not agree to these terms of use!
  */
-
-define(
-    [
-        'Qenta_CheckoutPage/js/view/payment/method-renderer/standard',
-        'Qenta_CheckoutPage/js/action/set-payment-method',
-        'mage/url',
-        'jquery'
-    ],
-    function (Component, setPaymentMethodAction, url, $) {
-        return Component.extend({
-            defaults: {
-                template: 'Qenta_CheckoutPage/payment/method-ideal'
-            },
-            initObservable: function () {
-                this._super()
-                    .observe('financialInstitution');
-                return this;
-            },
-            getData: function () {
-                var parent = this._super(),
-                    additionalData = {};
-
-                additionalData.financialInstitution = this.financialInstitution();
-
-                return $.extend(true, parent, {'additional_data': additionalData});
-            },
-            validate: function () {
-                var frm = $('#' + this.getCode() + '-form');
-                return frm.validation() && frm.validation('isValid');
-            },
-
-            getFinancialInstitutions: function () {
-                return window.checkoutConfig.payment[this.getCode()].financialinstitutions;
-            }
-        });
-    }
-);
+ -->
+<!-- to clear shopping cart after successful return -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Customer:etc/sections.xsd">
+  <action name="checkout/onepage/success">
+    <section name="cart"/>
+  </action>
+</config>

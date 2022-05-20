@@ -49,31 +49,11 @@ define(
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },
             {
-                type: 'qenta_checkoutpage_masterpass',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
-                type: 'qenta_checkoutpage_ccardmoto',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
-                type: 'qenta_checkoutpage_maestro',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
+              type: 'qenta_checkoutpage_afterpay',
+              component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },
             {
                 type: 'qenta_checkoutpage_eps',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/eps'
-            },
-            {
-                type: 'qenta_checkoutpage_ideal',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/ideal'
-            },
-            {
-                type: 'qenta_checkoutpage_giropay',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
-                type: 'qenta_checkoutpage_tatrapay',
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },
             {
@@ -81,35 +61,7 @@ define(
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },
             {
-                type: 'qenta_checkoutpage_skrillwallet',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
-                type: 'qenta_checkoutpage_bmc',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
                 type: 'qenta_checkoutpage_p24',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
-                type: 'qenta_checkoutpage_poli',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
-                type: 'qenta_checkoutpage_moneta',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
-                type: 'qenta_checkoutpage_ekonto',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
-                type: 'qenta_checkoutpage_trustly',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
-                type: 'qenta_checkoutpage_paybox',
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },
             {
@@ -117,16 +69,12 @@ define(
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },
             {
-                type: 'qenta_checkoutpage_quick',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
                 type: 'qenta_checkoutpage_paypal',
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },
             {
-                type: 'qenta_checkoutpage_epaybg',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
+              type: 'qenta_checkoutpage_salamantex',
+              component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             },
             {
                 type: 'qenta_checkoutpage_sepa',
@@ -135,22 +83,6 @@ define(
             {
                 type: 'qenta_checkoutpage_invoice',
                 component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/invoiceinstallment'
-            },
-            {
-                type: 'qenta_checkoutpage_invoiceb2b',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/invoiceinstallment'
-            },
-            {
-                type: 'qenta_checkoutpage_installment',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/invoiceinstallment'
-            },
-            {
-                type: 'qenta_checkoutpage_voucher',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
-            },
-            {
-                type: 'qenta_checkoutpage_trustpay',
-                component: 'Qenta_CheckoutPage/js/view/payment/method-renderer/standard'
             }
         );
 

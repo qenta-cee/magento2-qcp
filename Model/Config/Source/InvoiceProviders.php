@@ -48,7 +48,6 @@ class InvoiceProviders implements \Magento\Framework\Option\ArrayInterface
     {
         $list = array(
             array('value' => 'payolution', 'label' => 'payolution'),
-            array('value' => 'ratepay', 'label' => 'RatePay'),
             array('value' => 'qenta', 'label' => 'Qenta'),
         );
 

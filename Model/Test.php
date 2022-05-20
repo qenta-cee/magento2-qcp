@@ -69,7 +69,11 @@ class Test
 
         //$returnUrl = $this->getUrl('qenta_checkoutpage/processing/return', array('_secure' => true, '_nosid' => true));
 
-        $returnUrl = $urls['return'];
+        $urls['service'] = $this->_dataHelper->getConfigData('options/service_url') ?: join(array(
+          parse_url($this->_dataHelper->getReturnUrl(), PHP_URL_SCHEME),
+          '://',
+          parse_url($this->_dataHelper->getReturnUrl(), PHP_URL_HOST)
+        ));
 
         $init = new \QentaCEE\QPay\FrontendClient($this->_dataHelper->getConfigArray());
         $init->setPluginVersion($this->_dataHelper->getPluginVersion());
@@ -88,13 +92,13 @@ class Test
              ->setCurrency('EUR')
              ->setPaymentType(\QentaCEE\QPay\PaymentType::SELECT)
              ->setOrderDescription('Configtest #' . uniqid())
-             ->setSuccessUrl($returnUrl)
-             ->setPendingUrl($returnUrl)
-             ->setCancelUrl($returnUrl)
-             ->setFailureUrl($returnUrl)
+             ->setSuccessUrl($urls['return'])
+             ->setPendingUrl($urls['return'])
+             ->setCancelUrl($urls['return'])
+             ->setFailureUrl($urls['return'])
             //->setConfirmUrl(Mage::getUrl('qenta_checkoutpage/processing/confirm', array('_secure' => true, '_nosid' => true)))
              ->setConfirmUrl($urls['confirm'])
-             ->setServiceUrl($this->_dataHelper->getConfigData('options/service_url'))
+             ->setServiceUrl($urls['service'])
              ->setConsumerData($consumerData);
 
         if (strlen($this->_dataHelper->getConfigData('options/bgcolor'))) {

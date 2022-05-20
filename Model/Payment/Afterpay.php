@@ -30,27 +30,20 @@
  * Please do not use the plugin if you do not agree to these terms of use!
  */
 
-namespace Qenta\CheckoutPage\Model\Config\Source;
+namespace Qenta\CheckoutPage\Model\Payment;
 
-class InstallmentProviders implements \Magento\Framework\Option\ArrayInterface
+use Qenta\CheckoutPage\Model\AbstractPayment;
+
+class Afterpay extends AbstractPayment
 {
-    /**
-     * @var \Qenta\CheckoutPage\Helper\Data
-     */
-    protected $_dataHelper;
+    const CODE = 'qenta_checkoutpage_afterpay';
+    protected $_code = self::CODE;
 
-    public function __construct(\Qenta\CheckoutPage\Helper\Data $helper)
-    {
-        $this->_dataHelper = $helper;
-    }
+    // hardcoded  until implemented in checkout-client-library
+    // protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::AFTERPAY;
+    protected $_paymentMethod = 'AFTERPAY';
 
-    public function toOptionArray()
-    {
-        $list = array(
-            array('value' => 'payolution', 'label' => 'payolution'),
-            array('value' => 'ratepay', 'label' => 'RatePay'),
-        );
+    protected $_logo = 'afterpay.png';
 
-        return $list;
-    }
+    protected $_forceSendAdditionalData = true;
 }

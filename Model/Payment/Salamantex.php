@@ -34,12 +34,16 @@ namespace Qenta\CheckoutPage\Model\Payment;
 
 use Qenta\CheckoutPage\Model\AbstractPayment;
 
-class Quick extends AbstractPayment
+class Salamantex extends AbstractPayment
 {
-    const CODE = 'qenta_checkoutpage_quick';
+    const CODE = 'qenta_checkoutpage_salamantex';
     protected $_code = self::CODE;
 
-    protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::QUICK;
+    // hardcoded  until implemented in checkout-client-library
+    // protected $_paymentMethod = \QentaCEE\Stdlib\PaymentTypeAbstract::CRYPTO;
 
-    protected $_logo = 'quick.png';
+    // Salamantex uses paymentType CRYPTO
+    protected $_paymentMethod = 'CRYPTO';
+
+    protected $_logo = 'salamantex.png';
 }

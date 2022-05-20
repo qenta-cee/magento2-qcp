@@ -43,14 +43,14 @@ class Eps extends AbstractPayment
 
     protected $_logo = 'eps.png';
 
-    /**
-     * Assign data to info model instance
-     *
-     * @param array|\Magento\Framework\DataObject $data
-     * @return $this
-     * @throws \Magento\Framework\Exception\LocalizedException
-     * @api
-     */
+  /**
+   * Assign data to info model instance
+   *
+   * @param array|\Magento\Framework\DataObject $data
+   * @return $this
+   * @throws \Magento\Framework\Exception\LocalizedException
+   * @api
+   */
     public function assignData(\Magento\Framework\DataObject $data)
     {
         parent::assignData($data);
@@ -60,7 +60,7 @@ class Eps extends AbstractPayment
 
         /** @var \Magento\Quote\Model\Quote\Payment $infoInstance */
         $infoInstance = $this->getInfoInstance();
-        $infoInstance->setAdditionalInformation('financialInstitution', $data->getDataByPath('additional_data/financialInstitution'));
+        $infoInstance->setAdditionalInformation('financialInstitution', 'EPS-SO');
 
         return $this;
     }

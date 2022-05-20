@@ -47,32 +47,15 @@ class ConfigProvider implements ConfigProviderInterface
      */
     protected $methodCodes = [
         Payment\Select::CODE,
+        Payment\Afterpay::CODE,
         Payment\Ccard::CODE,
-        Payment\Masterpass::CODE,
-        Payment\Ccardmoto::CODE,
-        Payment\Maestro::CODE,
         Payment\Eps::CODE,
-        Payment\Ideal::CODE,
-        Payment\Giropay::CODE,
-        Payment\Tatrapay::CODE,
-        Payment\Skrillwallet::CODE,
-        Payment\Bmc::CODE,
         Payment\P24::CODE,
-        Payment\Poli::CODE,
-        Payment\Moneta::CODE,
-        Payment\Ekonto::CODE,
-        Payment\Trustly::CODE,
-        Payment\Paybox::CODE,
         Payment\Paysafecard::CODE,
-        Payment\Quick::CODE,
         Payment\Paypal::CODE,
-        Payment\Epaybg::CODE,
+        Payment\Salamantex::CODE,
         Payment\Sepa::CODE,
         Payment\Invoice::CODE,
-        Payment\Invoiceb2b::CODE,
-        Payment\Installment::CODE,
-        Payment\Voucher::CODE,
-        Payment\Trustpay::CODE,
         Payment\Sofortbanking::CODE,
     ];
 
@@ -140,41 +123,10 @@ class ConfigProvider implements ConfigProviderInterface
         }
 
         /*
-         * EPS financial institutions
-         */
-
-        $fis = \QentaCEE\QPay\PaymentType::getFinancialInstitutions(\QentaCEE\QPay\PaymentType::EPS);
-
-        $epsFinancialInstitutions = [];
-        foreach ($fis as $k => $v) {
-            $epsFinancialInstitutions[] = ['value' => $k, 'label' => html_entity_decode($v)];
-        }
-        array_unshift($epsFinancialInstitutions, ['value' => '', 'label' => $this->_dataHelper->__('Choose your bank...')]);
-
-        $config['payment'][Payment\Eps::CODE]['financialinstitutions'] = $epsFinancialInstitutions;
-
-        /*
-         * IDEAL financial institutions
-         */
-
-        $fis = \QentaCEE\QPay\PaymentType::getFinancialInstitutions(\QentaCEE\QPay\PaymentType::IDL);
-
-        $idealFinancialInstitutions = [];
-        foreach ($fis as $k => $v) {
-            $idealFinancialInstitutions[] = ['value' => $k, 'label' => htmlspecialchars_decode($v)];
-        }
-        array_unshift($idealFinancialInstitutions,
-            ['value' => '', 'label' => $this->_dataHelper->__('Choose your bank...')]);
-
-        $config['payment'][Payment\Ideal::CODE]['financialinstitutions'] = $idealFinancialInstitutions;
-
-        /*
-         * Invoice/installment
+         * Invoice
          */
 
         $config['payment'][Payment\Invoice::CODE]['provider']     = $this->methods[Payment\Invoice::CODE]->getProvider();
-        $config['payment'][Payment\Invoiceb2b::CODE]['provider']  = $this->methods[Payment\Invoiceb2b::CODE]->getProvider();
-        $config['payment'][Payment\Installment::CODE]['provider'] = $this->methods[Payment\Installment::CODE]->getProvider();
 
         $txt =
             $this->_dataHelper->__('I agree that the data which are necessary for the liquidation of purchase on account and which are used to complete the identy and credit check are transmitted to payolution. My %s can be revoked at any time with effect for the future.');
@@ -182,23 +134,12 @@ class ConfigProvider implements ConfigProviderInterface
         $payolutionLink = $this->_dataHelper->getPayolutionLink($this->methods[Payment\Invoice::CODE]->getConfigData('payolution_mid'));
         if ($this->methods[Payment\Invoice::CODE]->getProvider() == 'payolution' && $this->methods[Payment\Invoice::CODE]->getConfigData('payolution_terms')) {
             $config['payment'][Payment\Invoice::CODE]['consenttxt']    = sprintf($txt, $payolutionLink);
-            $config['payment'][Payment\Invoiceb2b::CODE]['consenttxt'] = sprintf($txt, $payolutionLink);
         }
 
         $config['payment'][Payment\Invoice::CODE]['min_age']     = (int) $this->methods[Payment\Invoice::CODE]->getConfigData('min_age');
-        $config['payment'][Payment\Installment::CODE]['min_age'] = (int) $this->methods[Payment\Installment::CODE]->getConfigData('min_age');
 
         if ($this->methods[Payment\Invoice::CODE]->getProvider() == 'payolution') {
             $config['payment'][Payment\Invoice::CODE]['min_age'] = 18;
-        }
-
-        if ($this->methods[Payment\Installment::CODE]->getProvider() == 'payolution') {
-            $config['payment'][Payment\Installment::CODE]['min_age'] = 18;
-        }
-
-        $payolutionLink = $this->_dataHelper->getPayolutionLink($this->methods[Payment\Installment::CODE]->getConfigData('payolution_mid'));
-        if ($this->methods[Payment\Installment::CODE]->getProvider() == 'payolution' && $this->methods[Payment\Installment::CODE]->getConfigData('payolution_terms')) {
-            $config['payment'][Payment\Installment::CODE]['consenttxt'] = sprintf($txt, $payolutionLink);
         }
 
         return $config;
