@@ -1,12 +1,20 @@
 # Qenta Checkout Page extension for Magento 2
 
 [![License](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://raw.githubusercontent.com/qenta-cee/magento2-qcp/master/LICENSE)
-[![PHP v7.4](https://img.shields.io/badge/php-v7.4-yellow.svg)](http://www.php.net)
+[![PHP v7.4](https://img.shields.io/badge/php-v7.4-green.svg)](http://www.php.net)
 [![Magento v2.4.3](https://img.shields.io/badge/magento-v2.4.3-green.svg)](https://magento.com/)
 
 ----
 
 Our [Online Guides](https://guides.qenta.com/) provide further information on payment methods and additional features. Please observe our [terms of use](https://guides.qenta.com/plugins/#legalNotice) regarding plugins.
+
+## Try with Docker
+You can run a Magento 2 test shop with Qenta Checkout Page module installed and pre-configured for Demo Mode.
+- Add your [ngrok token](https://ngrok.com/) to `.env`
+- Launch `docker-compose up; docker-compose down`
+
+## Installation Guide
+Take a look at our [installation guide](https://guides.qenta.com/plugins/magento2-installation-page/) for installing Qenta Checkout Page in your Magento 2 shop.
 
 ## Qenta Checkout Page
 Qenta Checkout Page is designed to meet the ambitious demands of merchants offering a wide range of payment methods while at the same time fulfilling PCI DSS compliance.
