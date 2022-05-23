@@ -100,10 +100,10 @@ function setup_store() {
   --admin-user=${MAGENTO2_ADMIN_USER} \
   --admin-password=${MAGENTO2_ADMIN_PASS} \
   --base-url=https://${MAGENTO2_BASEURL} \
-  --db-host=magento2_db_qcp \
-  --db-name=$MAGENTO2_DB_NAME \
-  --db-user=$MAGENTO2_DB_USER \
-  --db-password=$MAGENTO2_DB_PASS \
+  --db-host=${MAGENTO2_DB_HOST} \
+  --db-name=${MAGENTO2_DB_NAME} \
+  --db-user=${MAGENTO2_DB_USER} \
+  --db-password=${MAGENTO2_DB_PASS} \
   --db-prefix=qcp \
   --currency=EUR \
   --timezone=Europe/Vienna \
