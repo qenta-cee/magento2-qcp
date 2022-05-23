@@ -70,9 +70,6 @@ RUN cd /var/www/magento2/magento2-sample-data && for BRANCH in $(git branch -a |
 # copy entrypoint script
 COPY init.sh /usr/local/bin/init.sh
 
-# copy plugin fetch script
-COPY get_plugin.sh /usr/local/bin/get_plugin.sh
-
 # copy ngrok script
 COPY ngrok.sh /usr/local/bin/ngrok.sh
 
