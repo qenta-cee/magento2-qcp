@@ -1,8 +1,8 @@
 # Qenta Checkout Page extension for Magento 2
 
 [![License](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://raw.githubusercontent.com/qenta-cee/magento2-qcp/master/LICENSE)
-[![PHP v7.4](https://img.shields.io/badge/php-v7.4-green.svg)](http://www.php.net)
-[![Magento v2.4.3](https://img.shields.io/badge/magento-v2.4.3-green.svg)](https://magento.com/)
+[![PHP v8.2](https://img.shields.io/badge/php-v8.2-green.svg)](http://www.php.net)
+[![Magento v2.4.6](https://img.shields.io/badge/magento-v2.4.6-green.svg)](https://magento.com/)
 
 ----
 
