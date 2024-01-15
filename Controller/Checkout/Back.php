@@ -160,11 +160,11 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
                 throw new \Exception('Validation error: invalid response');
             }
 
-            if (!strlen($return->mage_orderId)) {
+            if (!strlen($return->mage_orderId ?? '')) {
                 throw new \Exception('Magento OrderId is missing');
             }
 
-            if (!strlen($return->mage_quoteId)) {
+            if (!strlen($return->mage_quoteId ?? '')) {
                 throw new \Exception('Magento QuoteId is missing');
             }
 
@@ -180,7 +180,7 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
                 }
 
                 $payment = $order->getPayment();
-                if (!strlen($payment->getAdditionalInformation('paymentState'))) {
+                if (!strlen($payment->getAdditionalInformation('paymentState') ?? '')) {
                     $this->_logger->debug(__METHOD__ . ':order not processed via confirm server2server request, check your packetfilter!');
                     $order = $this->_orderManagement->processOrder($return);
                 }
@@ -226,7 +226,7 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
                 case \QentaCEE\QPay\ReturnFactory::STATE_FAILURE:
                     /** @var \QentaCEE\QPay\Returns\Failure $return */
                     $msg = $return->getErrors()->getConsumerMessage();
-                    if (!strlen($msg)) {
+                    if (!strlen($msg ?? '')) {
                         $msg = $defaultErrorMessage;
                     }
 

@@ -216,7 +216,7 @@ class Support
             throw new \Exception($this->_dataHelper->__('Please enter a valid e-mail address.'));
         }
 
-        if (strlen(trim($postObject->getData('replyto')))) {
+        if (strlen(trim($postObject->getData('replyto') ?? ''))) {
             if (!filter_var($postObject->getData('replyto'), FILTER_VALIDATE_EMAIL)) {
                 throw new \Exception($this->_dataHelper->__('Please enter a valid e-mail address (reply to).'));
             }
@@ -228,7 +228,7 @@ class Support
             'email' => $this->_dataHelper->getStoreConfigData('trans_email/ident_general/email'),
         ];
 
-        if (!strlen($sender['email'])) {
+        if (!strlen($sender['email'] ?? '')) {
             throw new \Exception('Please set your shop e-mail address!');
         }
 

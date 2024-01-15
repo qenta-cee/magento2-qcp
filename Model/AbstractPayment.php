@@ -147,6 +147,7 @@ abstract class AbstractPayment extends AbstractMethod
         $init = new \QentaCEE\QPay\FrontendClient($this->_dataHelper->getConfigArray());
         $init->setPluginVersion($this->_dataHelper->getPluginVersion());
         $init->setConfirmUrl($urls['confirm']);
+//        $init->setConfirmUrl("https://webhook.site/bc267cac-1527-47fa-8a3b-f73bbc9c0004");
 
         $quote->reserveOrderId();
         $quote->save();
@@ -221,8 +222,15 @@ abstract class AbstractPayment extends AbstractMethod
 				        ''
 			        )
 		        );
-		        $bitem->setUnitTaxAmount( number_format( $quote->getShippingAddress()->getShippingTax(),
-		                                                 $this->_dataHelper->getPrecision(), '.', '' ) );
+                $bitem->setUnitTaxAmount(
+                    number_format(
+                        $quote->getShippingAddress()->getShippingTax() ?? 0,
+                        $this->_dataHelper->getPrecision(),
+                        '.',
+                        ''
+                    )
+                );
+
 		        $bitem->setDescription( $quote->getShippingAddress()->getShippingDescription() );
 		        $bitem->setName( $quote->getShippingAddress()->getShippingDescription() );
 		        $basket->addItem( $bitem );
@@ -235,19 +243,19 @@ abstract class AbstractPayment extends AbstractMethod
             $init->setConfirmMail($this->_dataHelper->getStoreConfigData('trans_email/ident_general/email'));
         }
 
-        if (strlen($this->_dataHelper->getConfigData('options/bgcolor'))) {
+        if (strlen($this->_dataHelper->getConfigData('options/bgcolor') ?? '')) {
             $init->setBackgroundColor($this->_dataHelper->getConfigData('options/bgcolor'));
         }
 
-        if (strlen($this->_dataHelper->getConfigData('options/displaytext'))) {
+        if (strlen($this->_dataHelper->getConfigData('options/displaytext') ?? '')) {
             $init->setDisplayText($this->_dataHelper->getConfigData('options/displaytext'));
         }
 
-        if (strlen($this->_dataHelper->getConfigData('options/imageurl'))) {
+        if (strlen($this->_dataHelper->getConfigData('options/imageurl') ?? '')) {
             $init->setImageUrl($this->_dataHelper->getConfigData('options/imageurl'));
         }
 
-        if (strlen($this->_dataHelper->getConfigData('options/layout'))) {
+        if (strlen($this->_dataHelper->getConfigData('options/layout') ?? '')) {
             $init->setLayout($this->_dataHelper->getConfigData('options/layout'));
         }
 
@@ -260,7 +268,7 @@ abstract class AbstractPayment extends AbstractMethod
 
         $init->setLayout('DESKTOP');
 
-        if (strlen($data->getData('financialInstitution'))) {
+        if (strlen($data->getData('financialInstitution') ?? '')) {
             $init->setFinancialInstitution($data->getData('financialInstitution'));
         }
 
@@ -273,8 +281,13 @@ abstract class AbstractPayment extends AbstractMethod
         $this->_logger->debug(__METHOD__ . ':' . print_r($init->getRequestData(), true));
 
         try {
+            
             $initResponse = $init->initiate();
+
         } catch (\Exception $e) {
+            $stackTrace = $e->getTrace();
+            $this->_logger->debug(__METHOD__ . ':' . print_r($stackTrace, true));
+
             $this->_logger->debug(__METHOD__ . ':' . $e->getMessage());
             throw new $e;
         }
@@ -283,7 +296,7 @@ abstract class AbstractPayment extends AbstractMethod
             $error   = $initResponse->getError();
             $message = $this->_dataHelper->__('An error occurred during the payment process');
             if ($error !== false) {
-                if (strlen($error->getConsumerMessage())) {
+                if (strlen($error->getConsumerMessage() ?? '')) {
                     $message = $error->getConsumerMessage();
                 }
 
@@ -329,7 +342,7 @@ abstract class AbstractPayment extends AbstractMethod
     protected function _getUniqueId($cart)
     {
         $uniqueId = $cart->getCustomerSession()->getUniqueId();
-        if (!strlen($uniqueId)) {
+        if (!strlen($uniqueId ?? '')) {
             $uniqueId = $this->_generateUniqString();
             $cart->getCustomerSession()->setUniqueId($uniqueId);
         }
@@ -349,7 +362,7 @@ abstract class AbstractPayment extends AbstractMethod
         $tid = '';
         $alphabet = "023456789abcdefghikmnopqrstuvwxyzABCDEFGHIKMNOPQRSTUVWXYZ";
         for ($i = 0; $i < $length; $i ++) {
-            $c = substr($alphabet, mt_rand(0, strlen($alphabet) - 1), 1);
+            $c = substr($alphabet, mt_rand(0, strlen($alphabet ?? '') - 1), 1);
             if (( ( $i % 2 ) == 0 ) && !is_numeric($c)) {
                 $i --;
                 continue;
@@ -382,17 +395,17 @@ abstract class AbstractPayment extends AbstractMethod
         $consumerData->setEmail($quote->getCustomerEmail());
         $dob = $quote->getPayment()->getAdditionalInformation('customerDob');
 
-	    if (strlen($dob)) {
+	    if (strlen($dob ?? '')) {
 		    $consumerData->setBirthDate(new \DateTime($dob));
 	    } elseif ($userDob !== false) {
 		    $consumerData->setBirthdate($userDob);
 	    }
 
-        if (strlen($billingAddress->getCompany())) {
+        if (strlen($billingAddress->getCompany() ?? '')) {
             $consumerData->setCompanyName($billingAddress->getCompany());
         }
 
-        if (strlen($billingAddress->getVatId())) {
+        if (strlen($billingAddress->getVatId() ?? '')) {
             $consumerData->setCompanyVatId($billingAddress->getVatId());
         }
 
@@ -516,20 +529,20 @@ abstract class AbstractPayment extends AbstractMethod
             return false;
         }
 
-        if (strlen($this->getConfigData('shippingcountry'))) {
+        if (strlen($this->getConfigData('shippingcountry') ?? '')) {
             $countries = explode(',', $this->getConfigData('shippingcountry'));
             if (!in_array($quote->getShippingAddress()->getCountry(), $countries)) {
                 return false;
             }
         }
 
-        if (strlen($this->getConfigData('max_basket_size'))) {
+        if (strlen($this->getConfigData('max_basket_size') ?? '')) {
             if ($quote->getItemsQty() > $this->getConfigData('max_basket_size')) {
                 return false;
             }
         }
 
-        if (strlen($this->getConfigData('min_basket_size'))) {
+        if (strlen($this->getConfigData('min_basket_size') ?? '')) {
             if ($quote->getItemsQty() < $this->getConfigData('min_basket_size')) {
                 return false;
             }
@@ -699,7 +712,7 @@ abstract class AbstractPayment extends AbstractMethod
         if ($this->_dataHelper->isBackendAvailable()) {
 
             $orderNumber = $payment->getAdditionalInformation('orderNumber');
-            if (!strlen($orderNumber)) {
+            if (!strlen($orderNumber ?? '')) {
                 /* dont throw an exception here, might be a pending payment */
                 $this->_logger->debug(__METHOD__ . ':No order number found.');
                 return $this;
@@ -774,7 +787,7 @@ abstract class AbstractPayment extends AbstractMethod
         }
 
         $orderNumber = $payment->getAdditionalInformation('orderNumber');
-        if (!strlen($orderNumber)) {
+        if (!strlen($orderNumber ?? '')) {
             throw new \Magento\Framework\Exception\LocalizedException(__('No order number found.'));
         }
 
@@ -888,7 +901,7 @@ abstract class AbstractPayment extends AbstractMethod
         }
 
         $orderNumber = $payment->getAdditionalInformation('orderNumber');
-        if (!strlen($orderNumber)) {
+        if (!strlen($orderNumber ?? '')) {
             /* dont throw an exception here, might be a pending payment */
             $this->_logger->debug(__METHOD__ . ':No order number found.');
             return $this;
@@ -959,7 +972,7 @@ abstract class AbstractPayment extends AbstractMethod
         }
 
         $orderNumber = $payment->getAdditionalInformation('orderNumber');
-        if (!strlen($orderNumber)) {
+        if (!strlen($orderNumber ?? '')) {
             /* dont throw an exception here, might be a pending payment */
             $this->_logger->debug(__METHOD__ . ':No order number found.');
             return $this;
