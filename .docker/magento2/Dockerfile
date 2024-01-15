@@ -20,7 +20,7 @@ RUN apt-get -qq upgrade
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 
 # install dependencies aand tools
-RUN apt-get -qq install git unzip vim mariadb-client zip jq nodejs
+RUN apt-get -q install -y git unzip vim mariadb-client zip jq nodejs
 
 # install php extension dependencies
 RUN apt-get -qq install libmemcached-dev libzip-dev zlib1g-dev libpng-dev libjpeg-dev libfreetype6-dev libwebp-dev libonig-dev libtidy-dev libicu-dev libxml2-dev libxslt-dev
@@ -29,10 +29,10 @@ RUN apt-get -qq install libmemcached-dev libzip-dev zlib1g-dev libpng-dev libjpe
 RUN apt-get -qq autoremove
 
 # install PHP extensions required
-RUN bash -c "pecl install xdebug memcached &> /dev/null"
+RUN bash -c "pecl install xdebug-3.1.6"
 RUN docker-php-ext-configure gd --with-jpeg --with-freetype --with-webp
 RUN docker-php-ext-install -j64 intl sockets soap gd mbstring mysqli pdo pdo_mysql tidy bcmath xsl zip
-RUN docker-php-ext-enable intl sockets xsl zip memcached xdebug gd mbstring mysqli pdo pdo_mysql tidy bcmath
+RUN docker-php-ext-enable intl sockets xsl zip xdebug gd mbstring mysqli pdo pdo_mysql tidy bcmath
 
 # enable apache modules
 RUN a2enmod rewrite headers ext_filter expires

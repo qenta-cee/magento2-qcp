@@ -80,6 +80,9 @@ function install_plugin() {
   cd /var/www/magento2
   composer config minimum-stability dev
   composer config repositories.qenta path ${PLUGIN_DIR}
+  composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+  composer config --no-plugins allow-plugins.laminas/laminas-dependency-plugin true
+  composer config --no-plugins allow-plugins.magento/magento-composer-installer true
   composer require qenta/magento2-qcp
   bin/magento cache:clean
   bin/magento setup:upgrade
