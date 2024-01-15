@@ -112,11 +112,11 @@ class Confirm extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
                 throw new \Exception('Validation error: invalid response');
             }
 
-            if (!strlen($return->mage_orderId)) {
+            if (!strlen($return->mage_orderId ?? '')) {
                 throw new \Exception('Magento OrderId is missing');
             }
 
-            if (!strlen($return->mage_quoteId)) {
+            if (!strlen($return->mage_quoteId ?? '')) {
                 throw new \Exception('Magento QuoteId is missing');
             }
 

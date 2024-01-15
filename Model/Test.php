@@ -101,15 +101,15 @@ class Test
              ->setServiceUrl($urls['service'])
              ->setConsumerData($consumerData);
 
-        if (strlen($this->_dataHelper->getConfigData('options/bgcolor'))) {
+        if (strlen($this->_dataHelper->getConfigData('options/bgcolor') ?? '')) {
             $init->setBackgroundColor($this->_dataHelper->getConfigData('options/bgcolor'));
         }
 
-        if (strlen($this->_dataHelper->getConfigData('options/displaytext'))) {
+        if (strlen($this->_dataHelper->getConfigData('options/displaytext') ?? '')) {
             $init->setDisplayText($this->_dataHelper->getConfigData('options/displaytext'));
         }
 
-        if (strlen($this->_dataHelper->getConfigData('options/imageurl'))) {
+        if (strlen($this->_dataHelper->getConfigData('options/imageurl') ?? '')) {
             $init->setImageUrl($this->_dataHelper->getConfigData('options/imageurl'));
         }
 
@@ -117,7 +117,7 @@ class Test
 
         if ($initResponse->getStatus() == \QentaCEE\QPay\Response\Initiation::STATE_FAILURE) {
             $msg = $initResponse->getError()->getConsumerMessage();
-            if (!strlen($msg)) {
+            if (!strlen($msg ?? '')) {
                 $msg = $initResponse->getError()->getMessage();
             }
 

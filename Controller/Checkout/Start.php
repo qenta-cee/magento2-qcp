@@ -111,7 +111,7 @@ class Start extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
             }
 
             $customerDob = $this->_cart->getQuote()->getPayment()->getAdditionalInformation('customerDob');
-            if (strlen($customerDob)) {
+            if (strlen($customerDob ?? '') > 0){
                 $this->_cart->getQuote()->setCustomerDob($customerDob);
             }
             /** @var \Qenta\CheckoutPage\Model\AbstractPayment $payment */

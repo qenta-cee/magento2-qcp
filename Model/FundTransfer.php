@@ -69,20 +69,20 @@ class FundTransfer
 
         $client = $backendClient->transferfund($type);
 
-        if (strlen($postObject['orderNumber'])) {
+        if (strlen($postObject['orderNumber'] ?? '')) {
             $client->setOrderNumber($postObject['orderNumber']);
         }
-        if (strlen($postObject['orderReference'])) {
+        if (strlen($postObject['orderReference'] ?? '')) {
             $client->setOrderReference($postObject['orderReference']);
         }
-        if (strlen($postObject['creditNumber'])) {
+        if (strlen($postObject['creditNumber'] ?? '')) {
             $client->setCreditNumber($postObject['creditNumber']);
         }
 
         switch ($type) {
             case \QentaCEE\QPay\ToolkitClient::$TRANSFER_FUND_TYPE_EXISTING:
                 /** @var \QentaCEE\QPay\Request\Backend\TransferFund\Existing $client */
-                if (strlen($postObject['customerStatement'])) {
+                if (strlen($postObject['customerStatement'] ?? '')) {
                     $client->setCustomerStatement($postObject['customerStatement']);
                 }
 

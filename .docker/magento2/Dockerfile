@@ -1,4 +1,4 @@
-FROM php:7-apache
+FROM php:8.2.0-apache
 
 # set PATH for composer binaries
 ENV PATH="~/.composer/vendor/bin:${PATH}"
@@ -29,7 +29,8 @@ RUN apt-get -qq install libmemcached-dev libzip-dev zlib1g-dev libpng-dev libjpe
 RUN apt-get -qq autoremove
 
 # install PHP extensions required
-RUN bash -c "pecl install xdebug-3.1.6"
+RUN pecl install xdebug-3.3.1
+
 RUN docker-php-ext-configure gd --with-jpeg --with-freetype --with-webp
 RUN docker-php-ext-install -j64 intl sockets soap gd mbstring mysqli pdo pdo_mysql tidy bcmath xsl zip
 RUN docker-php-ext-enable intl sockets xsl zip xdebug gd mbstring mysqli pdo pdo_mysql tidy bcmath
@@ -62,21 +63,30 @@ USER magento
 
 # clone magento2 base and sample data
 # checkout all branches to have them in the image to speed up checkout in entrypoint
-RUN git clone https://github.com/magento/magento2 /var/www/magento2
-RUN cd /var/www/magento2 && for BRANCH in $(git branch -a | grep remotes | grep -v HEAD | grep -v master); do git branch --track "${BRANCH#remotes/origin/}" "${BRANCH}"; done
-RUN git clone https://github.com/magento/magento2-sample-data /var/www/magento2/magento2-sample-data
-RUN cd /var/www/magento2/magento2-sample-data && for BRANCH in $(git branch -a | grep remotes | grep -v HEAD | grep -v master); do git branch --track "${BRANCH#remotes/origin/}" "${BRANCH}"; done
+RUN git config --global http.version HTTP/1.1
+RUN git config --global http.postBuffer 524288000
 
+RUN git clone --depth=1 https://github.com/magento/magento2 /var/www/magento2
+RUN cd /var/www/magento2 && git fetch --unshallow
+RUN for BRANCH in $(git branch -a | grep remotes | grep -v HEAD | grep -v master); do git branch --track "${BRANCH#remotes/origin/}" "${BRANCH}"; done
+
+RUN git config --global http.version HTTP/1.1
+RUN git config --global http.postBuffer 524288000
+
+RUN git clone --depth=1 https://github.com/magento/magento2-sample-data /var/www/magento2/magento2-sample-data
+RUN cd /var/www/magento2/magento2-sample-data && git fetch --unshallow
+
+RUN for BRANCH in $(git branch -a | grep remotes | grep -v HEAD | grep -v master); do git branch --track "${BRANCH#remotes/origin/}" "${BRANCH}"; done
 # copy entrypoint script
 COPY init.sh /usr/local/bin/init.sh
 
-# copy ngrok script
+# copy ngrok script 
 COPY ngrok.sh /usr/local/bin/ngrok.sh
 
 # copy plugin
 RUN mkdir /tmp/plugin
 COPY . /tmp/plugin/
-
+ 
 # make scripts executable
 USER root
 RUN chmod +x /usr/local/bin/*.sh

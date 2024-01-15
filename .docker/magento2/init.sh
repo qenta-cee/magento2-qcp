@@ -86,7 +86,7 @@ function install_plugin() {
   composer require qenta/magento2-qcp
   bin/magento cache:clean
   bin/magento setup:upgrade
-
+  bin/magento cache:clean
   (sleep 10; bin/magento cache:flush >&/dev/null)&
 }
 
@@ -109,6 +109,7 @@ function setup_store() {
   --db-password=${MAGENTO2_DB_PASS} \
   --db-prefix=qcp \
   --currency=EUR \
+  --search-engine=elasticsearch7 \
   --timezone=Europe/Vienna \
   --language=de_DE \
   --elasticsearch-host=magento2_elasticsearch_qcp \

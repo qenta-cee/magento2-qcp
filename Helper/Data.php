@@ -173,7 +173,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                 if (in_array($field, $exclude)) {
                     continue;
                 }
-                if (strlen($ret)) {
+                if (strlen($ret ?? '')) {
                     $ret .= "\n";
                 }
                 $ret .= sprintf("%s: %s", $field, $value);
@@ -191,7 +191,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function isBackendAvailable()
     {
         //return false;
-        return strlen($this->getConfigData('basicdata/backendpw')) > 0;
+        return strlen($this->getConfigData('basicdata/backendpw') ?? '') > 0;
     }
 
     /**
@@ -300,9 +300,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getPayolutionLink($mId)
     {
-        $mId = urlencode(base64_encode($mId));
-
-        if (strlen($mId)) {
+        if ($mId !== null) {
+            $mId = urlencode(base64_encode($mId));
+        } else {
+            // Handle the case when $mId is null, e.g., provide a default value or log an error.
+            $mId = ''; // Example: Set $mId to an empty string.
+        }
+        if (strlen($mId ?? '')) {
             return sprintf('<a href="https://payment.payolution.com/payolution-payment/infoport/dataprivacyconsent?mId=%s" target="_blank">%s</a>',
                 $mId, $this->__('consent'));
         } else {

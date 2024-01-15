@@ -66,10 +66,10 @@ class CustomerId extends \Magento\Framework\App\Config\Value
     {
         $value = trim($this->getValue());
 
-        if (!strlen($value))
+        if (!strlen($value ?? ''))
             return $this;
 
-        if (strlen($value) != 7)
+        if (strlen($value ?? '') != 7)
             throw new \Magento\Framework\Exception\LocalizedException(__('The Customer ID has a fixed length of 7.'));
 
         $this->setValue(trim($value));

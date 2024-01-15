@@ -428,7 +428,7 @@ class OrderManagement
             $tid = $return->getGatewayReferenceNumber();
         }
         /* generate dummy GwRef for pending payments */
-        if (!strlen($tid)) {
+        if (!strlen($tid ?? '')) {
             $tid = uniqid('tmp_');
         }
 
