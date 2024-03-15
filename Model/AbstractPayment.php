@@ -192,10 +192,10 @@ abstract class AbstractPayment extends AbstractMethod
 		        $bitem->setName( $item->getProduct()->getName() );
 		        $bitem->setArticleNumber( $item->getSku() );
 
-		        $bitem->setUnitGrossAmount( number_format( $item->getPriceInclTax(), $this->_dataHelper->getPrecision(), '.', '' ) );
-		        $bitem->setUnitNetAmount( number_format( $item->getPrice(), $this->_dataHelper->getPrecision(), '.', '' ) );
-		        $bitem->setUnitTaxRate( number_format( $item->getTaxPercent(), $this->_dataHelper->getPrecision(), '.', '' ) );
-		        $bitem->setUnitTaxAmount( number_format( $item->getTaxAmount(), $this->_dataHelper->getPrecision(), '.', '' ) );
+		        $bitem->setUnitGrossAmount( number_format( $item->getPriceInclTax() ?? 0, $this->_dataHelper->getPrecision() ?? 0, '.', '' ) );
+		        $bitem->setUnitNetAmount( number_format( $item->getPrice() ?? 0, $this->_dataHelper->getPrecision() ?? 0, '.', '' ) );
+		        $bitem->setUnitTaxRate( number_format( $item->getTaxPercent() ?? 0, $this->_dataHelper->getPrecision() ?? 0, '.', '' ) );
+		        $bitem->setUnitTaxAmount( number_format( $item->getTaxAmount() ?? 0, $this->_dataHelper->getPrecision() ?? 0, '.', '' ) );
 
 		        $basket->addItem( $bitem, (int) $item->getQty() );
 	        }
@@ -205,19 +205,19 @@ abstract class AbstractPayment extends AbstractMethod
 		        $bitem->setArticleNumber( 'shipping' );
 
 		        $bitem->setUnitGrossAmount(
-			        number_format( $quote->getShippingAddress()->getShippingAmount(),
-			                       $this->_dataHelper->getPrecision(), '.', '' )
+			        number_format( $quote->getShippingAddress()->getShippingAmount() ?? 0,
+			                       $this->_dataHelper->getPrecision() ?? 0, '.', '' )
 			        +
-			        number_format( $quote->getShippingAddress()->getShippingTaxAmount(),
-			                       $this->_dataHelper->getPrecision(), '.', '' )
+			        number_format( $quote->getShippingAddress()->getShippingTaxAmount() ?? 0,
+			                       $this->_dataHelper->getPrecision() ?? 0, '.', '' )
 		        );
-		        $bitem->setUnitNetAmount( number_format( $quote->getShippingAddress()->getShippingAmount(),
-		                                                 $this->_dataHelper->getPrecision(), '.', '' ) );
+		        $bitem->setUnitNetAmount( number_format( $quote->getShippingAddress()->getShippingAmount() ?? 0,
+		                                                 $this->_dataHelper->getPrecision() ?? 0, '.', '' ) );
 
 		        $bitem->setUnitTaxRate(
 			        number_format(
-				        $quote->getShippingAddress()->getShippingTax() / $quote->getShippingAddress()->getShippingAmount(),
-				        $this->_dataHelper->getPrecision(),
+				        $quote->getShippingAddress()->getShippingTax() ?? 0 / $quote->getShippingAddress()->getShippingAmount() ?? 0,
+				        $this->_dataHelper->getPrecision() ?? 0,
 				        '.',
 				        ''
 			        )
@@ -225,7 +225,7 @@ abstract class AbstractPayment extends AbstractMethod
                 $bitem->setUnitTaxAmount(
                     number_format(
                         $quote->getShippingAddress()->getShippingTax() ?? 0,
-                        $this->_dataHelper->getPrecision(),
+                        $this->_dataHelper->getPrecision() ?? 0,
                         '.',
                         ''
                     )
