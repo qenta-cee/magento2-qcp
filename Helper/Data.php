@@ -38,7 +38,7 @@ namespace Qenta\CheckoutPage\Helper;
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
 
-    protected $_pluginVersion = '3.0.1';
+    protected $_pluginVersion = '3.1.0';
     protected $_pluginName = 'Qenta/CheckoutPage';
 
     /**
@@ -68,12 +68,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             'basicdata/shop_id'     => '',
             'basicdata/secret'      => 'B8AKTPWBRMNBV455FG6M2DANE99WU2',
             'basicdata/backendpw'   => 'jcv45z'
-        ),
-        'test_3d'   => array(
-            'basicdata/customer_id' => 'D200410',
-            'basicdata/shop_id'     => 'page',
-            'basicdata/secret'      => 'UVNWUCQ7AGE9F5837YW53JBWDP77PWDHS2DMC3TMJ8VYB42G2WM4FWYTK5Z9',
-            'basicdata/backendpw'   => '9p3a0m5f'
         )
     );
 
@@ -103,7 +97,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getConfigData($field = null)
     {
-        $type = $this->scopeConfig->getValue('qenta_checkoutpage/basicdata/configuration',
+                $type = $this->scopeConfig->getValue('qenta_checkoutpage/basicdata/configuration',
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 
         if (isset( $this->_presets[$type] ) && isset( $this->_presets[$type][$field] )) {
@@ -191,7 +185,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function isBackendAvailable()
     {
         //return false;
-        return strlen($this->getConfigData('basicdata/backendpw') ?? '') > 0;
+       return strlen($this->getConfigData('basicdata/backendpw') ?? '') > 0;
+    }
+    public function isBackendAvailableAlwaysFalse()
+    {
+        return false;
     }
 
     /**

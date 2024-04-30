@@ -350,7 +350,7 @@ class OrderManagement
                     $invoice->register();
 
                     /* capture invoice if toolkit is not availble */
-                    if (!$this->_dataHelper->isBackendAvailable()) {
+                    if (!$this->_dataHelper->isBackendAvailableAlwaysFalse()) {
                         $doCapture = true;
                     } else {
                         $hasBackedOps = false;
@@ -380,7 +380,7 @@ class OrderManagement
                         }
 
                     }
-
+                    
                     if ($doCapture && !$fraudDetected) {
                         $invoice->capture();
                     }

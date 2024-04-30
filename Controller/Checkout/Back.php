@@ -38,6 +38,7 @@ use Magento\Sales\Model\Order\Email\Sender\OrderSender;
 use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Customer\Model\Session;
+use Magento\Store\Model\StoreManagerInterface;
 
 class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
 {
@@ -97,6 +98,13 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
      */
     protected $_customerSession;
 
+
+/**
+     * @var Magento\Store\Model\StoreManagerInterface
+     */
+    protected $_storeManager;
+
+    
     /**
      * @param \Magento\Framework\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
@@ -108,6 +116,7 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
      * @param \Magento\Quote\Api\CartManagementInterface $quoteManagement
      * @param \Qenta\CheckoutPage\Model\OrderManagement $orderManagement
      * @param \Magento\Customer\Model\Session $customerSession
+     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
@@ -120,7 +129,8 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
         \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Quote\Api\CartManagementInterface $quoteManagement,
         \Qenta\CheckoutPage\Model\OrderManagement $orderManagement,
-        \Magento\Customer\Model\Session $customerSession
+        \Magento\Customer\Model\Session $customerSession,
+        \Magento\Store\Model\StoreManagerInterface $storeManager
     ) {
         parent::__construct($context);
         $this->_resultPageFactory = $resultPageFactory;
@@ -133,6 +143,7 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
         $this->_quoteManagement   = $quoteManagement;
         $this->_orderManagement   = $orderManagement;
         $this->_customerSession   = $customerSession;
+        $this->_storeManager      = $storeManager;
     }
 
     public function execute()
@@ -241,6 +252,19 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
                 default:
                     throw new \Exception('Unhandled Qenta Checkout Page payment state:' . $return->getPaymentState());
             }
+            $this->_logger->debug(__METHOD__ . ': Test Back URL postfix' . $redirectTo);
+
+            try {
+                $this->_logger->debug(__METHOD__ . ': Test Back URL from Store URL_TYPE_WEB' . $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB) . $redirectTo);
+              }
+              
+              //catch exception
+              catch(Exception $e) {
+                $this->_logger->debug(__METHOD__ . ': Exception Back URL from Store' . $e);
+            }
+
+
+            $this->_storeManager->getStore()->getBaseUrl();
 
             if ($this->_request->getPost('iframeUsed')) {
 
@@ -254,7 +278,7 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
 
                 return $this->resultFactory
                         ->create(ResultFactory::TYPE_REDIRECT)
-                        ->setUrl($redirectTo, ['_current' => true]);
+                        ->setUrl($this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB) . $redirectTo);
             }
         } catch (\Exception $e) {
             if (!$this->messageManager->getMessages()->getCount()) {

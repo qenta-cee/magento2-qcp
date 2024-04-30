@@ -709,7 +709,7 @@ abstract class AbstractPayment extends AbstractMethod
     {
         $order = $payment->getOrder();
 
-        if ($this->_dataHelper->isBackendAvailable()) {
+        if ($this->_dataHelper->isBackendAvailableAlwaysFalse()) {
 
             $orderNumber = $payment->getAdditionalInformation('orderNumber');
             if (!strlen($orderNumber ?? '')) {
@@ -796,7 +796,7 @@ abstract class AbstractPayment extends AbstractMethod
         $ret           = $backendClient->refund($orderNumber, $amount, $payment->getOrder()->getBaseCurrencyCode());
         if ($ret->hasFailed()) {
             $this->_logger->debug(__METHOD__ . ':' . $ret->getError()->getMessage());
-            throw new \Exception($ret->getError()->getConsumerMessage());
+            throw new \Exception($ret->getError()->getMessage());
         }
 
         $transactionId = $ret->getCreditNumber();
