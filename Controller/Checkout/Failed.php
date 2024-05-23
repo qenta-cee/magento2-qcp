@@ -32,50 +32,38 @@
 
 namespace Qenta\CheckoutPage\Controller\Checkout;
 
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\View\Result\PageFactory;
+use Magento\Framework\Controller\ResultFactory;
+
 class Failed extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
 {
-    /**
-     * @var \Magento\Framework\HTTP\PhpEnvironment\Request
-     */
     protected $_request;
-
-    /**
-     * @var \Magento\Framework\Url
-     */
-    protected $_url;
-
-    /** @var \Magento\Framework\View\Result\PageFactory */
     protected $_resultPageFactory;
+    protected $urlBuilder;
 
-    /**
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
-     */
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+        Context $context,
+        PageFactory $resultPageFactory
     ) {
         parent::__construct($context);
         $this->_resultPageFactory = $resultPageFactory;
-        $this->_url               = $context->getUrl();
+        $this->_request = $context->getRequest();
+        $this->urlBuilder = $context->getUrl(); // Initialize the URL builder
     }
 
     public function execute()
     {
         $redirectTo = 'checkout/cart';
         if ($this->_request->getParam('iframeused')) {
-            $redirectUrl = $this->_url->getUrl($redirectTo);
+            $redirectUrl = $this->urlBuilder->getUrl($redirectTo, ['_secure' => true]);
 
             $page = $this->_resultPageFactory->create();
             $page->getLayout()->getBlock('checkout.failed')->addData(['redirectUrl' => $redirectUrl]);
             return $page;
-
         } else {
-
-            $this->_redirect($redirectTo);
+            $redirectUrl = $this->urlBuilder->getUrl($redirectTo, ['_secure' => true]);
+            return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)->setUrl($redirectUrl);
         }
     }
-
-
 }

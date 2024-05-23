@@ -35,90 +35,28 @@ namespace Qenta\CheckoutPage\Controller\Checkout;
 
 use Magento\Checkout\Model\Cart as CheckoutCart;
 use Magento\Sales\Model\Order\Email\Sender\OrderSender;
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Customer\Model\Session;
 use Magento\Store\Model\StoreManagerInterface;
 
 class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
 {
-    /**
-     * @var \Magento\Framework\HTTP\PhpEnvironment\Request
-     */
+    // Declare properties
     protected $_request;
-
-    /**
-     * @var \Qenta\CheckoutPage\Helper\Data
-     */
     protected $_dataHelper;
-
-    /**
-     * @var CheckoutCart
-     */
     protected $_cart;
-
-    /**
-     * @var \Magento\Framework\Url
-     */
     protected $_url;
-
-    /**
-     * @var OrderSender
-     */
     protected $_orderSender;
-
-    /**
-     * @var \Psr\Log\LoggerInterface
-     */
     protected $_logger;
-
-    /**
-     * @var \Magento\Checkout\Model\Session
-     */
     protected $_checkoutSession;
-
-    /**
-     * @var \Magento\Quote\Model\QuoteManagement
-     */
     protected $_quoteManagement;
-
-    /**
-     * @var \Magento\Framework\View\Result\PageFactory
-     */
     protected $_resultPageFactory;
-
-    /**
-     * @var \Qenta\CheckoutPage\Model\OrderManagement
-     */
     protected $_orderManagement;
-
-
-    /**
-     * @var Magento\Customer\Model\Session
-     */
     protected $_customerSession;
-
-
-/**
-     * @var Magento\Store\Model\StoreManagerInterface
-     */
     protected $_storeManager;
+    protected $urlBuilder;
 
-    
-    /**
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-     * @param \Qenta\CheckoutPage\Helper\Data $helper
-     * @param CheckoutCart $cart
-     * @param \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender
-     * @param \Psr\Log\LoggerInterface $logger
-     * @param \Magento\Checkout\Model\Session $checkoutSession
-     * @param \Magento\Quote\Api\CartManagementInterface $quoteManagement
-     * @param \Qenta\CheckoutPage\Model\OrderManagement $orderManagement
-     * @param \Magento\Customer\Model\Session $customerSession
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
-     */
+    // Constructor with all necessary dependencies
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
@@ -134,28 +72,26 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
     ) {
         parent::__construct($context);
         $this->_resultPageFactory = $resultPageFactory;
-        $this->_dataHelper        = $helper;
-        $this->_cart              = $cart;
-        $this->_url               = $context->getUrl();
-        $this->_orderSender       = $orderSender;
-        $this->_logger            = $logger;
-        $this->_checkoutSession   = $checkoutSession;
-        $this->_quoteManagement   = $quoteManagement;
-        $this->_orderManagement   = $orderManagement;
-        $this->_customerSession   = $customerSession;
-        $this->_storeManager      = $storeManager;
+        $this->_dataHelper = $helper;
+        $this->_cart = $cart;
+        $this->_url = $context->getUrl();
+        $this->_orderSender = $orderSender;
+        $this->_logger = $logger;
+        $this->_checkoutSession = $checkoutSession;
+        $this->_quoteManagement = $quoteManagement;
+        $this->_orderManagement = $orderManagement;
+        $this->_customerSession = $customerSession;
+        $this->_storeManager = $storeManager;
+        $this->urlBuilder = $context->getUrl(); // Initialize the urlBuilder property
     }
 
     public function execute()
     {
         $redirectTo = '/checkout/cart';
-
         $defaultErrorMessage = $this->_dataHelper->__('An error occurred during the payment process.');
 
         try {
-
             $this->_logger->debug(__METHOD__ . ':' . print_r($this->_request->getPost()->toArray(), true));
-
             $this->_cart->getCustomerSession()->unsUniqueId();
 
             if (!$this->_request->isPost()) {
@@ -198,7 +134,7 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
             }
 
             if ($return->mage_orderCreation == 'after') {
-
+                
                 if (
                     !$orderExists &&
                     ($return->getPaymentState() == \QentaCEE\QPay\ReturnFactory::STATE_SUCCESS || $return->getPaymentState() == \QentaCEE\QPay\ReturnFactory::STATE_PENDING)
@@ -215,7 +151,7 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
                     if ($return->getPaymentState() == \QentaCEE\QPay\ReturnFactory::STATE_PENDING) {
                         $this->messageManager->addNoticeMessage($this->_dataHelper->__('Your order will be processed as soon as we receive the payment confirmation from your bank.'));
                     }
-                    /* needed for success page otherwise magento redirects to cart */
+                     /* needed for success page otherwise magento redirects to cart */
                     $this->_checkoutSession->setLastQuoteId($order->getQuoteId());
                     $this->_checkoutSession->setLastSuccessQuoteId($order->getQuoteId());
                     $this->_checkoutSession->setLastOrderId($order->getId());
@@ -235,14 +171,11 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
                     break;
 
                 case \QentaCEE\QPay\ReturnFactory::STATE_FAILURE:
-                    /** @var \QentaCEE\QPay\Returns\Failure $return */
                     $msg = $return->getErrors()->getConsumerMessage();
                     if (!strlen($msg ?? '')) {
                         $msg = $defaultErrorMessage;
                     }
-
                     $this->messageManager->addErrorMessage($msg);
-
                     if ($return->mage_orderCreation == 'before') {
                         $quote = $this->_orderManagement->reOrder($return->mage_quoteId);
                         $this->_checkoutSession->replaceQuote($quote)->unsLastRealOrderId();
@@ -252,40 +185,29 @@ class Back extends \Qenta\CheckoutPage\Controller\CsrfAwareAction
                 default:
                     throw new \Exception('Unhandled Qenta Checkout Page payment state:' . $return->getPaymentState());
             }
-            $this->_logger->debug(__METHOD__ . ': Test Back URL postfix' . $redirectTo);
 
-            try {
-                $this->_logger->debug(__METHOD__ . ': Test Back URL from Store URL_TYPE_WEB' . $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB) . $redirectTo);
-              }
-              
-              //catch exception
-              catch(Exception $e) {
-                $this->_logger->debug(__METHOD__ . ': Exception Back URL from Store' . $e);
-            }
-
-
-            $this->_storeManager->getStore()->getBaseUrl();
+          
+           // $baseUrl = $this->_storeManager->getStore()->getBaseUrl();
+           
+            $redirectUrl = $this->urlBuilder->getUrl($redirectTo, ['_secure' => true]);
+            $this->_logger->debug(__METHOD__ . ': Test redirectURL with urlbuilder: '  . $redirectUrl . $redirectTo);
+            $this->_logger->debug(__METHOD__ . ': Test Back URL from Store URL_TYPE_WEB' . $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB) . $redirectTo);
 
             if ($this->_request->getPost('iframeUsed')) {
-
-                $redirectUrl = '/checkout/onepage/success';
-
                 $page = $this->_resultPageFactory->create();
                 $page->getLayout()->getBlock('checkout.back')->addData(['redirectUrl' => $redirectUrl]);
-
                 return $page;
             } else {
-
                 return $this->resultFactory
-                        ->create(ResultFactory::TYPE_REDIRECT)
-                        ->setUrl($this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB) . $redirectTo);
+                    ->create(ResultFactory::TYPE_REDIRECT)
+                    ->setUrl($redirectUrl . $redirectTo);
             }
         } catch (\Exception $e) {
             if (!$this->messageManager->getMessages()->getCount()) {
                 $this->messageManager->addErrorMessage($defaultErrorMessage);
             }
             $this->_logger->debug(__METHOD__ . ':' . $e->getMessage());
-            $this->_redirect($redirectTo);
+            $this->_redirect($redirectUrl);
         }
     }
 }
