@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bfc61f30792a29dc40ec63bfe280ee6f",
+    "content-hash": "ec60c217da97370034e86a2686a937d3",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -422,22 +422,22 @@
         },
         {
             "name": "qenta/checkout-client-library",
-            "version": "5.0.7",
+            "version": "5.0.8",
             "source": {
                 "type": "git",
-                "url": "https://github.com/qenta-cee/checkout-client-library.git",
-                "reference": "1821c856d4fc76e2aebb881f33df02688582da8f"
+                "url": "https://github.com/hobex/checkout-client-library.git",
+                "reference": "a51ebfa3d090a08ed6ab93675946f34e33e2ad5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/qenta-cee/checkout-client-library/zipball/1821c856d4fc76e2aebb881f33df02688582da8f",
-                "reference": "1821c856d4fc76e2aebb881f33df02688582da8f",
+                "url": "https://api.github.com/repos/hobex/checkout-client-library/zipball/a51ebfa3d090a08ed6ab93675946f34e33e2ad5c",
+                "reference": "a51ebfa3d090a08ed6ab93675946f34e33e2ad5c",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "~6.5.5",
                 "mobiledetect/mobiledetectlib": "^2.8",
-                "php": "~7.2.5|~7.3.0|~7.4.0|~8.0.0|~8.1.0"
+                "php": "~7.2.5|~7.3.0|~7.4.0|~8.0.0|~8.1.0|~8.2.0|~8.3.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0"
@@ -452,22 +452,22 @@
             "license": [
                 "GPL-2.0"
             ],
-            "description": "QENTA Client Library for Checkout Page and Checkout Seamless",
-            "homepage": "https://www.qenta-cee.at",
+            "description": "hobex Client Library for Checkout Page and Checkout Seamless",
+            "homepage": "https://www.hobex.at",
             "keywords": [
-                "QENTA",
                 "checkout",
+                "hobex",
                 "page",
                 "payment",
                 "seamless"
             ],
             "support": {
-                "docs": "https://guides.qenta.com",
-                "email": "support@qenta.com",
-                "issues": "https://github.com/qenta-cee/checkout-client-library/issues",
-                "source": "https://github.com/qenta-cee/checkout-client-library/tree/5.0.7"
+                "docs": "https://guides.hobex.at",
+                "email": "integration@hobex.at",
+                "issues": "https://github.com/hobex/checkout-client-library/issues",
+                "source": "https://github.com/hobex/checkout-client-library/tree/5.0.8"
             },
-            "time": "2025-07-01T07:20:07+00:00"
+            "time": "2025-08-29T08:58:26+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -515,7 +515,7 @@
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.32.0",
+            "version": "v1.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
@@ -578,7 +578,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.32.0"
+                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.33.0"
             },
             "funding": [
                 {
@@ -590,6 +590,10 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
@@ -598,7 +602,7 @@
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
-            "version": "v1.32.0",
+            "version": "v1.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
@@ -659,7 +663,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.32.0"
+                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.33.0"
             },
             "funding": [
                 {
@@ -668,6 +672,10 @@
                 },
                 {
                     "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
                     "type": "github"
                 },
                 {
